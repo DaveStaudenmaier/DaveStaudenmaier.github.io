@@ -12,17 +12,18 @@ Angular Version: 9
 
 Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this
 
-''''
+```
 ng new page-not-found
-''''
+```
 
 Angular will as you if you want to add routing to your project.  Type y
 
-''''
+```
 ? Would you like to add Angular routing? (y/N)
-''''
+```
 
-Angular will also ask you what type of 
+Angular will also ask you what stylesheet format you would like to use.   Select your favorite.
+
 The best way to add routing to an Angular application is when
 ```typescript
 const routes: Routes = [
