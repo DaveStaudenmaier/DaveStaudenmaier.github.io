@@ -10,7 +10,7 @@ I loved programming because you could create something real that had never exist
 
 So, I majored in Computer Science in college and developed code for many years for small companies and large companies, including such names as HBO.  I eventually moved into Software Development in the Airline, Supply-Chain and Healthcare industries.  It was all great fun and I've had a long career, eventually going into management all the way up to VP of Product Development.  
 
-But nothing could ever beat developing my own code with my own hands!  
+But nothing could ever beat developing code with my own hands!  
 
 And then in 2019, my wife and I made a major change in our lives.  We quit our jobs, sold our home and most of our possessions and began touring the country in an RV!  Though I had started the re-learning-programming process in 2018, this life change offered the perfect opportunity to put full-time focus on rebooting my development skills.  I focused my attention on a new progressive web app for the RV community called RVLikeMe.com I built on the MEAN stack (MongoDB, Express, Angular, Node.js) and hosted on AWS.   I haven't had so much fun in years!
 
