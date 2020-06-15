@@ -4,11 +4,9 @@ title: About
 permalink: /about/
 ---
 
-I started programming when I was a teenager, back before the Internet and even before most people had PCs in their home. When Steve Jobs and Bill Gates were at each other's throats.  
+I started programming when I was a teenager.  I loved programming because you could create something real that had never existed before and people could use it!
 
-I loved programming because you could create something real that had never existed before and people could use it!
-
-So, I majored in Computer Science in college and developed code for many years for small companies and large companies, including such names as HBO.  I eventually moved into Software Development in the Airline, Supply-Chain and Healthcare industries.  It was all great fun and I've had a long career, eventually going into management all the way up to VP of Product Development.  
+So, I majored in Computer Science in college and developed code for many years for small companies and large companies, including such names as HBO.  I eventually took on Software Development in the Airline, Supply-Chain and Healthcare industries, and moved into management, up to VP of Product Develpment. 
 
 But nothing could ever beat developing code with my own hands!  
 
