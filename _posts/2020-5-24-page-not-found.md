@@ -3,11 +3,27 @@ layout: post
 title: Add a 'Page Not Found' to your Angular 2+ routes
 ---
 
+Learn how to add a Page Not Found component you can redirect users to for invalid routes, and then automatically redirect them to your home page after several seconds.
+
+Angular Version: 9
+
 ----
 ****
 
-Learn how to add a Page Not Found component you can redirect users two for invalid routes and then automatically redirect them to your home page after several seconds.
+Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this
 
+''''
+ng new page-not-found
+''''
+
+Angular will as you if you want to add routing to your project.  Type y
+
+''''
+? Would you like to add Angular routing? (y/N)
+''''
+
+Angular will also ask you what type of 
+The best way to add routing to an Angular application is when
 ```typescript
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
