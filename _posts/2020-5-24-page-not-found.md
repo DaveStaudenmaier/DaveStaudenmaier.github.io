@@ -37,7 +37,7 @@ ng generate component other
 
 Great!  Now we have two components to route to.  Let's add a header in the 'home' component's template, replacing the default HTML, so it's easier to see where we are.  Do the same for the 'other' component as well.
 
-```typescript
+```html
 <h1>This is the home page</h1>
 ```
 
@@ -70,5 +70,50 @@ We're almost there.  Let's use routerLink to add a navigation link to 'other' on
 
 <a routerLink='/other'>Go To Other Page</a>
 ```
+Now, you should be able to toggle between the 'home' and 'other' pages.  Notice the URL changes to reflect the active route.  You can also change routes by entering the url.   http://localhost:4200/other and http://localhost:4200/home.  
+
+So, what do we do if a enters a page that we do not have such as http://localhost:4200/page?   The user ends up on a blank page and that's not very friendly.   Let's handle this page-not-found situation.  
+
+First, we add a new component we can route to when the path is invalid.   On your command line enter 
+
+```
+ng generate component page-not-found
+```
+
+In the page-not-found component's template, replace the default with this, explaining to the user that the page they are seeking was not found and that they will be redirected to the home page.
+
+```html
+<h1>Page Not Found</h1>
+<p>Sorry, this page was not found</p>
+<p>You will be redirected to the home page in a few seconds</p>
+```
+
+To handle the redirect, make the page-not-found.component.ts file look like this.  We use the ngAfterViewInit lifecycle hook to redirect to the home page after a 3 second delay, using the navigateByUrl method on Angular's Router class.
+
+```typescript
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-page-not-found',
+  templateUrl: './page-not-found.component.html',
+  styleUrls: ['./page-not-found.component.css']
+})
+export class PageNotFoundComponent {
+
+  constructor(private router: Router) { }
+
+  ngAfterViewInit() {
+    let self = this;
+
+    setTimeout(function () {
+      self.router.navigateByUrl('/home');
+    }, 3000)
+  }
+
+}
+
+```
+Back to the app-routing.module.ts file.  Add a wildcard (**) to the Routes array.  The router will select this route if the requested URL does not match any paths for the defined routes. 
 
 Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code
