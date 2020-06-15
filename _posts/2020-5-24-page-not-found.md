@@ -55,12 +55,20 @@ const routes: Routes = [
 
 Next, we add the router outlet to app.component.ts.   Delete the default template the Angular CLI created and replace it with the router outlet.  The router-outlet tag acts as a placeholder that Angular dynamically fills with your content based on the current router state.
 
-```typescript
+```html
 <router-outlet></router-outlet>
 ```
 
 Great!  Go head and run the app using ng serve and you should see the home page like this:
 
 ![home page](../images/home-page.png)
+
+We're almost there.  Let's use routerLink to add a navigation link to 'other' on the 'home' component.  Then do the same from 'other' to 'home'
+
+```html
+<h1>This is the home page</h1>
+
+<a routerLink='/other'>Go To Other Page</a>
+```
 
 Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code
