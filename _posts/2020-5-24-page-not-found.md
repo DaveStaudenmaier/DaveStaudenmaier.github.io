@@ -16,9 +16,7 @@ Let's create a new Angular project using the Angular CLI.   On your command line
 
 Angular will ask you if you want to add routing to your project.  Type y
 
-```
-? Would you like to add Angular routing? (y/N)
-```
+**? Would you like to add Angular routing? (y/N)**
 
 Angular will also ask you what stylesheet format you would like to use.   Select your favorite.
 
@@ -28,10 +26,8 @@ We already have an Angular application created with support for routing!
 
 Now, let's create a couple of components that we can route to.  The Angular CLI can do that for us.   Go to your page-not-found project directory and add a component called 'home' and a component called 'other' like so
 
-```
-ng generate component home
-ng generate component other
-```
+**ng generate component home**
+**ng generate component other**
 
 Great!  Now we have two components to route to.  Let's add a header in the 'home' component's template, replacing the default HTML, so it's easier to see where we are.  Do the same for the 'other' component as well.
 
