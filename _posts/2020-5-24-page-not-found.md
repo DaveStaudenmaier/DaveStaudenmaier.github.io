@@ -117,7 +117,7 @@ const routes: Routes = [
 ];
 ```
 
-And that's it!  Now if you can type in a bad URL, such as http://localhost:4200/bad, and you will be redirected to the 'page-not-found' component, which will explain to the user what happened and then redirect them to the home page after 3 seconds. 
+And that's it!  Now if you type in a bad URL, such as http://localhost:4200/bad, you will be redirected to the 'page-not-found' component, which will explain to the user what happened and then redirect them to the home page after 3 seconds. 
 
 Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code so you can see it in action!
 
