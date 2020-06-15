@@ -88,7 +88,7 @@ In the page-not-found component's template, replace the default with this, expla
 <p>You will be redirected to the home page in a few seconds</p>
 ```
 
-To handle the redirect, make the page-not-found.component.ts file look like this.  We use the ngAfterViewInit lifecycle hook to redirect to the home page after a 3 second delay, using the navigateByUrl method on Angular's Router class.
+To handle the redirect, make the page-not-found.component.ts file look like this.  We use the ngAfterViewInit lifecycle hook to redirect to the home page after a 3 second delay, using the navigateByUrl method on Angular's Router class.  Note that 'this' when used in the setTimeout callback function refers to the function itself, not our page-not-found class.  Defining self within the ngAfterViewInit() function handles this situation for us. 
 
 ```typescript
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -110,10 +110,22 @@ export class PageNotFoundComponent {
       self.router.navigateByUrl('/home');
     }, 3000)
   }
-
 }
-
 ```
-Back to the app-routing.module.ts file.  Add a wildcard (**) to the Routes array.  The router will select this route if the requested URL does not match any paths for the defined routes. 
 
-Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code
+The final step is to add a wildard(**) to the Routes array in the app-routing.module.ts. The router will select this route if the requested URL does not match any paths for the defined routes. 
+
+```typescript
+const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'other', component: OtherComponent},
+  {path: '**', component: PageNotFoundComponent}
+];
+```
+
+Now if you type in a bad URL such as http://localhost:4200/bad, you will be redirected to the 'page-not-found' component which will explain to the user what happened and then redirect them to the 'home' component after 3 seconds. 
+
+Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code so you can see it in action!
+
+Keep on developing!
