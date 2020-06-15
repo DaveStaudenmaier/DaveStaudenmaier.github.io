@@ -12,9 +12,7 @@ So, I majored in Computer Science in college and developed code for many years f
 
 But nothing could ever beat developing code with my own hands!  
 
-And then in 2019, my wife and I made a major change in our lives.  
-
-We quit our jobs, sold our home and most of our possessions and began touring the country in an RV!  
+And then in 2019, my wife and I made a major change in our lives.  We quit our jobs, sold our home and most of our possessions and began touring the country in an RV!  
 
 Though I had started the re-learning-programming process in 2018, this life change offered the perfect opportunity to put full-time focus on rebooting my development skills.  I focused my attention on a new progressive web app for the RV community called RVLikeMe.com I built on the MEAN stack (MongoDB, Express, Angular, Node.js) and hosted on AWS.   I haven't had so much fun in years!
 
