@@ -79,7 +79,9 @@ In page-not-found.component.html, replace the default HTML with this, which expl
 <p>You will be redirected to the home page in a few seconds</p>
 ```
 
-To handle the redirect, make the page-not-found.component.ts file look like this.  We use the ngAfterViewInit lifecycle hook to redirect to the home page after a 3 second delay, using the navigateByUrl method on Angular's Router class.  Note that the router class cannot be accessed form within the setTimeOut() function by using 'this.router' as you  might expect.  To access the Router class from within setTimeOut(), we add **self = this** inside ngAfterViewInit() and use 'self.router'.
+To handle the redirect, make the page-not-found.component.ts file look like this.  We use the ngAfterViewInit lifecycle hook to redirect to the home page after a 3 second delay, using the navigateByUrl method on Angular's Router class.  
+
+Special Note: The router class cannot be accessed form within the setTimeOut() function by using 'this.router' as you  might expect.  To access the Router class from within setTimeOut(), we add **self = this** inside ngAfterViewInit() and use 'self.router'.
 
 ```typescript
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -104,7 +106,7 @@ export class PageNotFoundComponent {
 }
 ```
 
-The final step is to add a wildard(**) to the Routes array in the app-routing.module.ts pointing to our page-not-found component. The router will select this route if the requested URL does not match any paths for the defined routes. 
+The final step is to add a wildard(**) to the Routes array in app-routing.module.ts, pointing to our page-not-found component. The router will select this route if the requested URL does not match any paths for the defined routes. 
 
 ```typescript
 const routes: Routes = [
@@ -115,7 +117,7 @@ const routes: Routes = [
 ];
 ```
 
-And that's it!  Now if you type in a bad URL such as http://localhost:4200/bad, you will be redirected to the 'page-not-found' component which will explain to the user what happened and then redirect them to the home page after 3 seconds. 
+And that's it!  Now if you can type in a bad URL, such as http://localhost:4200/bad, and you will be redirected to the 'page-not-found' component, which will explain to the user what happened and then redirect them to the home page after 3 seconds. 
 
 Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code so you can see it in action!
 
