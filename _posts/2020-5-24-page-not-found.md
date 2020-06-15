@@ -10,7 +10,7 @@ Angular Version: 9
 ----
 ****
 
-Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this
+Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this:
 
 **ng new page-not-found**
 
@@ -22,7 +22,7 @@ Now, we already have an Angular application created with support for routing!
 
 ![routing](../images/routing-set-up.png)
 
-Next, let's create a couple of components that we can route to.  The Angular CLI can do that for us.   Go to your page-not-found project directory and add a component called 'home' and a component called 'other' like so
+Next, let's create a couple of components that we can route to.  The Angular CLI can do that for us.   Go to your page-not-found project directory and add a component called 'home' and a component called 'other' like so:
 
 **ng generate component home**
 
@@ -65,7 +65,7 @@ Now let's use routerLink to add a navigation link to 'other' on home.component.h
 ```
 At this point, you should be able to toggle between the 'home' and 'other' pages.  Notice the URL changes to reflect the active route.  You can also switch routes by entering the url directly: http://localhost:4200/other or http://localhost:4200/home
 
-So, what do we do if a user enters a page that we do not have, such as http://localhost:4200/bad?   The user ends up on a blank page and that's not very friendly!   Let's handle this page-not-found situation.  
+So, what happens if a user enters a page that we do not have, such as http://localhost:4200/bad?   The user ends up on a **blank** page and that's not very friendly!   Let's handle this page-not-found situation.  
 
 First, we add a new component we can route to when the path is invalid.   On your command line enter 
 
