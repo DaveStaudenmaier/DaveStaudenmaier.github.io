@@ -22,7 +22,7 @@ That's when I decided I wanted to help others who are new to programming or want
 
 ### More Information
 
-I currently work remotely from my RV working freelance or contacts development. 
+I currently work remotely from my RV on freelance or contact development opportunities. 
 
 ### Contact me
 
