@@ -60,6 +60,16 @@ Go to app.component.html and add the following below. `<mat-sidenav>` is an angu
 
 `<app-sidenav>` is the selector for the sidenav component we created in the navigation folder. `<app-header-mobile>` is the selector for the header-mobile component we created and '<footer-mobile>` is the selector for the footer component we created.
 
+Be sure to use the `fullscreen` property of '<mat-sidenav-container>` so that it consumes the whole screen. 
+  
+`fxHide fxShow.lt-sm` tells flex layout to only show the header and footer components if using on a small device like a phone.  You can add additional toolbars for a different view for the desktop. 
+
+On the sidenav component, `(sideNavClosed)="sidenav.close()"` lets the sidenav component emit an event that tells app.component to close the sidenav. 
+
+On the footer component, `(sidenavToggle)="sidenav.toggle()"` lets the footer component emit an event that tells app.component to toggle the sidenav open or close.
+
+`mat-app-background' on main gives us the material background color default for the background color of the feature components.
+
 ```html
 <mat-sidenav-container fullscreen>
 
@@ -70,7 +80,7 @@ Go to app.component.html and add the following below. `<mat-sidenav>` is an angu
   <mat-sidenav-content fxLayout="column">
 
     <div class="header">
-      <app-header-mobile (sidenavToggle)="sidenav.toggle()" fxHide fxShow.lt-sm>
+      <app-header-mobile fxHide fxShow.lt-sm>
       </app-header-mobile>
     </div>
 
@@ -85,6 +95,8 @@ Go to app.component.html and add the following below. `<mat-sidenav>` is an angu
 
 </mat-sidenav-container>
 ```
+
+Add the associated CSS below in app.component.css.  
 
 ```css
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
