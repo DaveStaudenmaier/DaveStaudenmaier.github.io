@@ -18,6 +18,10 @@ Let's create a new Angular project using the Angular CLI.   On your command line
 
 **`ng new pwa-nav`**
 
+Angular will ask you if you want to add routing to your project.  Type y.  Then select the default stylesheet. 
+
+**`? Would you like to add Angular routing? (y/N)`**
+
 We are using Angular Material so we will need a few things installed.  Go to the pwa-nav directory and run this:
 
 **`npm install @angular/material @angular/cdk @angular/animations`**
@@ -52,3 +56,32 @@ Just a few navigation components now.  Got to the navigation folder and add thre
 
 Great!  We're ready to start adding code.   Go ahead and edit the project.
 
+Go to app.component.html and add the following below. `<mat-sidenav>` is an angular directive that is used to create a side navigation bar and main content panel with material design styling and animation capabilities.  `<mat-sidenav-container>` is the main container while `<mat-sidenav>` is the side panel.
+
+`<app-sidenav>` is the selector for the sidenav component we created in the navigation folder. `<app-header-mobile>` is the selector for the header-mobile component we created and '<footer-mobile>` is the selector for the footer component we created.
+
+```html
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav #sidenav role="navigation" mode="push">
+    <app-sidenav (sideNavClosed)="sidenav.close()"></app-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column">
+
+    <div class="header">
+      <app-header-mobile (sidenavToggle)="sidenav.toggle()" fxHide fxShow.lt-sm>
+      </app-header-mobile>
+    </div>
+
+    <main class="container mat-app-background">
+      <router-outlet></router-outlet>
+    </main>
+
+    <app-footer-mobile (sidenavToggle)="sidenav.toggle()"  fxHide fxShow.lt-sm>
+    </app-footer-mobile>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+```
