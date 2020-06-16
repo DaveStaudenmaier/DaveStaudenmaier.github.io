@@ -60,7 +60,7 @@ Go to app.component.html and add the following below. `<mat-sidenav>` is an angu
 
 `<app-sidenav>` is the selector for the sidenav component we created in the navigation folder. `<app-header-mobile>` is the selector for the header-mobile component we created and '<footer-mobile>` is the selector for the footer component we created.
 
-Be sure to use the `fullscreen` property of '<mat-sidenav-container>` so that it consumes the whole screen. 
+Be sure to use the `fullscreen` property of `<mat-sidenav-container>` so that it consumes the whole screen. 
   
 `fxHide fxShow.lt-sm` tells flex layout to only show the header and footer components if using on a small device like a phone.  You can add additional toolbars for a different view for the desktop. 
 
