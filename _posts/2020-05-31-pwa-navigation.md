@@ -278,7 +278,7 @@ export class FooterMobileComponent implements OnInit {
 
 Let's see how it looks!  You should be able to toggle between components now.
 
-<img src="/images/footer.png" height="300px">
+<img src="/images/footer.png" height="400px">
 
 One of our components is missing!  Where's the icon for the About component?   Let's add that to the sidenav menu.  Add this code to sidenav.component.html and sidenav.component.ts.  When the user clicks on the About menu item, we call the onAbout() method which routes the user to the About page and closes the sidenav menu by emitting an event to app.component.  Be sure to import Output, EventEmitter and Router. 
 
@@ -309,7 +309,7 @@ export class SidenavComponent implements OnInit {
 
 Now, you should be able to toggle the side nav by clicking on the 'more' button.
 
-<img src="/images/sidenav2.png" height="300px">
+<img src="/images/sidenav2.png" height="400px">
 
 We're almost done!   Let's just add a couple of icons to the header-mobile component as well.  We will add a back arrow on the left that you can use to let the user go back to previous pages if you are embedding links within our feature components, which you probably will do.   It's always good for the user to be able to get back to the previous pages and since this could be used in a progressive web app, we don't want to rely on the browser back button!
 
@@ -348,4 +348,6 @@ Add the associated css below to header-mobile-component.css.  `flex: 1 1 auto` w
 
 And that's it!  You now have a working header/footer/sidenav navigation for your progressive web app!
 
-Keep developing!
+<img src="/images/home1.jpg" height="400px">
+
+Keep on developing!
