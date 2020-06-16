@@ -173,7 +173,7 @@ const routes: Routes = [
 ```
 Now you can test it out.   You should be able to scroll the data on the home page.   It should look something like this:
 
-<img src="/images/interim1.png" height="300px">
+<img src="/images/interim1.png" height="400px">
 
 Coming along now!  Now we need to add some navigation icons in.  Replace the html we added in footer-mobile.component.html with the html below.   
 
