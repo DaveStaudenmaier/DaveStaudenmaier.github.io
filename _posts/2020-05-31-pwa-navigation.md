@@ -68,7 +68,7 @@ On the sidenav component, `(sideNavClosed)="sidenav.close()"` lets the sidenav c
 
 On the footer component, `(sidenavToggle)="sidenav.toggle()"` lets the footer component emit an event that tells app.component to toggle the sidenav open or close.
 
-`mat-app-background' on main gives us the material background color default for the background color of the feature components.
+`mat-app-background` on main gives us the material background color default for the background color of the feature components.
 
 ```html
 <mat-sidenav-container fullscreen>
@@ -96,7 +96,7 @@ On the footer component, `(sidenavToggle)="sidenav.toggle()"` lets the footer co
 </mat-sidenav-container>
 ```
 
-Add the associated CSS below in app.component.css.  
+Add the associated CSS below in app.component.css.  Be sure to use 100vh height for the sidenav directives and our feature container so that the background will extend to fill the screen regardless of the content size.   
 
 ```css
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
