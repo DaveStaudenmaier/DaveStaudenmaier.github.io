@@ -7,7 +7,7 @@ In this blog, we will create from scratch a navigation scheme suitable for a pro
 
 Angular Version: 9
 
-![screen shot](../images/home1.jpg)
+<img src="/images/home1.jpg" height="200px">
 
 You can find the complete code on my GitHub at [https://github.com/DaveStaudenmaier/AngularPWANavigationShell](https://github.com/DaveStaudenmaier/AngularPWANavigationShell).
 
