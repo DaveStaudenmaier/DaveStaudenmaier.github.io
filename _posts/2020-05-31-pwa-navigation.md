@@ -120,7 +120,7 @@ mat-sidenav {
 }
 ```
 
-Now let's add our toolbars.  In header-mobile.component.html, replace the html that is there with this:
+Now let's add our toolbars.  In header-mobile.component.html, replace the html that is there with the html below.  `class="mat-elevation-z4"` will give us a shadow under the toolbar so it looks elevated.   
 
 ```html
 <mat-toolbar class="mat-elevation-z4" color="primary">
