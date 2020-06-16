@@ -171,7 +171,139 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent}
 ];
 ```
-Now you can test it out.   You should be able to scroll the data on the home page.   It should look somethign like this:
+Now you can test it out.   You should be able to scroll the data on the home page.   It should look something like this:
 
 <img src="/images/interim1.png" height="300px">
+
+Coming along now!  Now we need to add some navigation icons in.  Replace the html we added in footer-mobile.component.html with the html below.   
+
+We're using `<mat-toolbar>` to create the toolbar look with Material's primary color.  
+
+We're using flex layout to arrange the icons into a row with even spacing in between.   
+
+And for each icon, we use a material icon with some associated text.  
+
+Be careful not to add too many icons.  I used four here.  On some devices you may be able to fit five but it starts to get cramped.  That's why I added the elipsis 'more' button which opens the sidenav and gives us more room for menu items. 
+
+```html
+<footer class="footer">
+  <mat-toolbar class="footer" color="primary">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+      <button mat-button routerLink="/home" routerLinkActive="active-menu-item">
+        <div class="toolbar-icon">
+          <mat-icon>home</mat-icon>
+        </div>
+        <div class="toolbar-icon-text">
+          <span>home</span>
+        </div>
+      </button>
+
+      <button mat-button routerLink="/forums" routerLinkActive="active-menu-item">
+        <div class="toolbar-icon">
+          <mat-icon>forums</mat-icon>
+        </div>
+        <div class="toolbar-icon-text">
+          <span>forums</span>
+        </div>
+      </button>
+
+      <button mat-button routerLink="/messages" routerLinkActive="active-menu-item">
+        <div class="toolbar-icon">
+          <mat-icon>messages</mat-icon>
+        </div>
+        <div class="toolbar-icon-text">
+          <span>messages</span>
+        </div>
+      </button>
+
+      <button mat-button (click)="onToggleSidenav()">
+        <div class="toolbar-icon">
+          <mat-icon>more_horiz</mat-icon>
+        </div>
+        <div class="toolbar-icon-text">
+          <span>more</span>
+        </div>
+      </button>
+
+    </div>
+  </mat-toolbar>
+</footer>
+```
+
+Below is the associated CSS too put in footer-mobile.component.css.  Use `line-height` to get the spacing between the icon and text. 
+
+I chose black as the color for the active icon (i.e. the one the user clicks on).
+
+```css
+footer {
+  position: fixed;
+  bottom: 0px;
+  overflow: hide;
+  width: 100%;
+  height: 50px; // Note: iPhonePlus requires 80px, so will need to be variable, but not handling that in this demo.
+}
+
+.toolbar-icon {
+  line-height: 0; // Set to zero or will affect spacing between icon and text
+}
+
+.toolbar-icon-text {
+  line-height: 1.8; // Proper spacing between icon and text
+  font-size: 70%; // Smaller text size for proper display under icon
+}
+
+.active-menu-item {
+  color: black;
+}
+```
+
+Finally we need to add one method in footer-mobile.component.ts to complete the footer toolbar to emit an event back to app.component when the user clicks on the 'more' button to tell app.component to open the sidenav.  Be sure to add the associated @Output decorator.  You will also need to add Output and EventEmitter to the import from @angular/core.
+
+```typescript
+export class FooterMobileComponent implements OnInit {
+  @Output() public sidenavToggle = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onToggleSidenav = () => {
+    this.sidenavToggle.emit();
+  }
+
+}
+```
+
+Let's see how it looks!  You should be able to toggle between components now.
+
+<img src="/images/footer.png" height="300px">
+
+One of our components is missing?  Where's the icon for the about component?   Let's add that to the sidenav menu.  Add this code to sidenav.component.html and sidenav.component.ts.  When the user clicks on the About menu item, we call the onAbout() method which routes the user to the About page and closes the sidenav menu by emitting an event to app.component.  Be sure to import Output, EventEmitter and Router. 
+
+```html
+<mat-nav-list>
+  <a mat-list-item (click)="onAbout()">
+    <mat-icon>people</mat-icon>
+    <span class="menu-text">About</span>
+  </a>
+</mat-nav-list>
+```
+
+```typescript
+export class SidenavComponent implements OnInit {
+  @Output() sideNavClosed = new EventEmitter();
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+  onAbout() {
+    this.router.navigateByUrl('/about');
+    this.sideNavClosed.emit(); // Emit event to parent component so it can tell sidenav to close
+  }
+}
+```
 
