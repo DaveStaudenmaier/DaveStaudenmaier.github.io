@@ -149,3 +149,29 @@ footer {
   height: 50px; 
 }
 ```
+
+And then we'll add some text to in home.component.html so we can make sure scrolling is working.  
+
+```html
+<p>home works!</p>
+<p>
+Lorem ipsum dolor sit amet, eu homero prompta ocurreret vis, et usu malorum periculis. Nibh suscipit pri te, est partem erroribus ad. Ut essent cetero menandri eam, vel at facete omnesque. Veritus appellantur ex qui, mea erat causae placerat ut. Est ex wisi solum civibus.
+Labore scaevola vel ut, pro ei nihil option definiebas. Ne copiosae dissentiunt vim, mel ex amet deleniti, id omnes corpora invidunt mei. Vim probo porro doctus cu, soleat scripta tractatos in vel. Est possim insolens adolescens te. Sed id decore oblique, tamquam repudiare liberavisse cu vel.
+Sit eu omnis latine, simul aliquid mediocritatem te mel. Ea liber postulant duo, cum mutat tacimates convenire in. Pro ei summo integre facilis, mentitum abhorreant ad quo. Vix alii ludus accusamus id, ad amet civibus has. Mundi cetero assentior mel cu, sit in assum aperiri, mel cu hinc efficiantur. Quo ex enim audiam.
+At eripuit mentitum antiopam usu, mei vitae dolore dissentiunt at. In ancillae explicari cum, eos ubique maiorum civibus ne, impetus perpetua vim an. Usu putent audire ex, est at dictas instructior. Eu dicat movet perpetua pro. In reque mazim mediocrem sed. At nam invenire democritum. Duo ne rebum ipsum consequuntur, ne vis vocent iudicabit.d
+Eu mei quis esse movet, ea officiis definiebas quo. Nam in adolescens inciderint dissentiunt, per mundi possim diceret et, mea ut reque percipit liberavisse. Copiosae luptatum expetendis cum at, solet dicam denique duo at. Ea eos illud fabellas, pro everti perfecto deseruisse at. Summo liber est et, mei feugait luptatum lucilius ad, pro eu feugait percipit. Eum id amet voluptaria.
+</p>
+```
+
+Just a little bit of routing so the home component becomes our default and we're ready to see how it looks.  In `app.routing.module`, add the following the the Routes array: 
+
+```typescript
+const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent}
+];
+```
+Now you can test it out.   You should be able to scroll the data on the home page.   It should look somethign like this:
+
+<img src="/images/interim1.png" height="300px">
+
