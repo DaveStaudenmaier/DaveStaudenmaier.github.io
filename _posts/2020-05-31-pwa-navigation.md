@@ -119,3 +119,33 @@ mat-sidenav {
   margin-bottom: 50px; // Matches height of footer so can see all content when scrolling to bottom
 }
 ```
+
+Now let's add our toolbars.  In header-mobile.component.html, replace the html that is there with this:
+
+```html
+<mat-toolbar class="mat-elevation-z4" color="primary">
+
+</mat-toolbar>
+```
+
+In footer-mobile.component.html, replace the html that is there with this:
+
+```html
+<footer class="footer">
+  <mat-toolbar class="footer" color="primary">
+
+  </mat-toolbar>
+</footer>
+```
+
+And in footer-mobile.component.css, add the code below.   This is what makes the toolbar stick to the bottom!
+
+```css
+footer {
+  position: fixed;
+  bottom: 0px;
+  overflow: hide;
+  width: 100%;
+  height: 50px; 
+}
+```
