@@ -16,7 +16,7 @@ You can find the complete code on my GitHub at [https://github.com/DaveStaudenma
 
 Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this:
 
-**ng new pwa-nav**
+**`ng new pwa-nav`**
 
 We are using Angular Material so we will need a few things installed.  Go to the pwa-nav directory and run this:
 
