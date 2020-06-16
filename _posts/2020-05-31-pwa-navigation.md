@@ -35,14 +35,19 @@ A couple more set-ups and we'll be ready to go.  in pwa-nav, add a directory cal
 In features, add the following four new components like this:
 
 **ng generate component home**
+
 **ng generate component forums**
+
 **ng generate component messages**
+
 **ng generate component about**
 
 Just a few navigation components now.  Got to the navigation folder and add three components like this:
 
 **ng generate component header-mobile**
+
 **ng generate component footer-mobile**
+
 **ng generate component sidenav**
 
 Great!  We're ready to start adding code.   Go ahead and edit the project.
