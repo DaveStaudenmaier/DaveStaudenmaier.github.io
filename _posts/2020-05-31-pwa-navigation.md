@@ -56,7 +56,7 @@ Just a few navigation components now.  Got to the navigation folder and add thre
 
 Great!  We're ready to start adding code.   Go ahead and edit the project.
 
-Go to app.component.html and add the following below. `<mat-sidenav>` is an angular directive that is used to create a side navigation bar and main content panel with material design styling and animation capabilities.  `<mat-sidenav-container>` is the main container while `<mat-sidenav>` is the side panel.
+Go to app.component.html and add the following below. `<mat-sidenav>` is an angular directive that is used to create a side navigation bar and main content panel with material design styling and animation capabilities.  `<mat-sidenav-container>` is the main container, `<mat-sidenav>` is the side panel and `<mat-sidenav-content>` is the content panel.
 
 `<app-sidenav>` is the selector for the sidenav component we created in the navigation folder. `<app-header-mobile>` is the selector for the header-mobile component we created and '<footer-mobile>` is the selector for the footer component we created.
 
@@ -84,4 +84,26 @@ Go to app.component.html and add the following below. `<mat-sidenav>` is an angu
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+```
+
+```css
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100vh; // Component content fills entire verticle space
+}
+
+mat-sidenav {
+  width: 40vw; // Width sidenav takes up when open
+}
+
+.header {
+  margin-bottom: 8px; // Leave space at bottom of toolbar so elevation shadow effect will show
+}
+
+// Component content area
+.container {
+  height: 100vh; // Component content fills entire verticle space
+  overflow: auto; // Keeps header from scrolling away
+  padding: 10px; // Component conent padding around edges
+  margin-bottom: 50px; // Matches height of footer so can see all content when scrolling to bottom
+}
 ```
