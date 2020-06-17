@@ -14,7 +14,11 @@ You can find the complete code on my GitHub at [https://github.com/DaveStaudenma
 ----
 ****
 
-Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this:
+We are going to use Angular Material SideNav to create our navigation container that will hold a header toolbar, a footer toolbar and a sidenav menu.  
+
+Also, you can find a great [overview of navigation](https://material.io/design/navigation/understanding-navigation.html#types-of-navigation) on the Material Design website.
+
+Let's get started by creating a new Angular project using the Angular CLI.   On your command line create a new project like this:
 
 **`ng new pwa-nav`**
 
