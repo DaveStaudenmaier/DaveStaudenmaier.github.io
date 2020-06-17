@@ -363,7 +363,7 @@ When the user clicks on the About menu item, we call the onAbout() method, which
 ----
 ****
 
-Now, you should be able to toggle the side nav by clicking on the 'more' button.
+Now, you should be able to toggle the side nav by clicking on the 'more' button.   Of course you can style the sidenav to your desired look.
 
 <img src="/images/sidenav2.png" height="500px">
 
