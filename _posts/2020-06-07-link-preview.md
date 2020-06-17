@@ -9,7 +9,7 @@ Angular Version: 9
 
 <img src="/images/link-preview.png" height="500px">
 
-You can find the complete code on my GitHub at [https://github.com/DaveStaudenmaier/AngularPWANavigationShell](https://github.com/DaveStaudenmaier/AngularPWANavigationShell).
+You can find the complete code on my GitHub at [https://github.com/DaveStaudenmaier/LinkPreview](https://github.com/DaveStaudenmaier/LinkPreview).
 
 ----
 ****
