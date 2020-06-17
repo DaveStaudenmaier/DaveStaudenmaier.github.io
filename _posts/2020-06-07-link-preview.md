@@ -30,4 +30,5 @@ Here is the metadata for my own site, RVLikeMe.com, as an example:
   <meta property="og:type" content="website" />
   <meta property="og:title" content="RV Like Me" />
   <meta property="og:description" content="Whether you are a full-time, part-time, wanna-be, stationary or mobile RVer, RV Like Me connects you with people living the RV lifestyle like you do." />
+  <meta property="og:image" content="https://rvlikeme.com/assets/images/rvlikeme.jpg" />
 ```
