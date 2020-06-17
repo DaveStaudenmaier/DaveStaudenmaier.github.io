@@ -179,7 +179,7 @@ Eu mei quis esse movet, ea officiis definiebas quo. Nam in adolescens inciderint
 ----
 ****
 
-Just a little bit of routing so the home component becomes our default and we're ready to see how it looks.  In `app.routing.module`, add the following the the Routes array: 
+Just a little bit of routing so the home component becomes our default and we're ready to see how it looks.  In `app.routing.module`, add the following to the Routes array: 
 
 ```typescript
 const routes: Routes = [
