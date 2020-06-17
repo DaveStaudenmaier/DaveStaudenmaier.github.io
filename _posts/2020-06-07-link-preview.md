@@ -119,6 +119,8 @@ For my simple example, I did not do much styling.   Here is the HTML and styles 
 
 <img src="/images/link-preview.png" height="500px">
 
+One important note.  If your application is secured with https, you will not be able to link to a non-https web site for security reasons. 
+
 You can find the complete code on my [GitHub](https://github.com/DaveStaudenmaier/LinkPreview).
 
 Keep on Developing!
