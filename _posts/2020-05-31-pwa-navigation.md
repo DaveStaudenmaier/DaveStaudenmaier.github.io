@@ -16,15 +16,15 @@ You can find the complete code on my GitHub at [https://github.com/DaveStaudenma
 
 Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this:
 
-**`ng new pwa-nav`**
+`ng new pwa-nav`
 
 Angular will ask you if you want to add routing to your project.  Type y.  Then select the default stylesheet. 
 
-  **`? Would you like to add Angular routing? (y/N)`**
+**? Would you like to add Angular routing? (y/N)**
 
 We are using Angular Material so we will need a few things installed.  Go to the pwa-nav directory and run this:
 
-  **`npm install @angular/material @angular/cdk @angular/animations`**
+**`npm install @angular/material @angular/cdk @angular/animations`**
 
 Now add Material to the project like this: 
 
