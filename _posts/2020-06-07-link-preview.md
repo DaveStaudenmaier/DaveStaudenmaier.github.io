@@ -32,3 +32,9 @@ Here is the metadata for my own site, RVLikeMe.com, as an example:
   <meta property="og:description" content="Whether you are a full-time, part-time, wanna-be, stationary or mobile RVer, RV Like Me connects you with people living the RV lifestyle like you do." />
   <meta property="og:image" content="https://rvlikeme.com/assets/images/rvlikeme.jpg" />
 ```
+
+**How to you get this metadata from a web site?**
+One way to get it is to create an account on [linkpreview.net](https://linkpreview.net).  Once registered you will get a key that you can use in an API call, passing a URL and receiving back a JSON object with the metadata from that web site.  
+
+Once you have the JSON object from linkpreview.net, it's just a matter of formatting it for display.  You could show it when the user hovers over a link or show it as part of a post.   In our example here, we will use it to show the user the preview before we store the link for display.  
+
