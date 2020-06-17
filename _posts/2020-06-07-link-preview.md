@@ -9,8 +9,6 @@ Angular Version: 9
 
 <img src="/images/link-preview.png" height="500px">
 
-You can find the complete code on my GitHub at [https://github.com/DaveStaudenmaier/LinkPreview](https://github.com/DaveStaudenmaier/LinkPreview).
-
 ----
 ****
 
@@ -120,4 +118,6 @@ For my simple example, I did not do much styling.   Here is the HTML and styles 
 **And here is what the user sees**
 <img src="/images/link-preview.png" height="500px">
 
-For the full source see my [GitHub]()
+You can find the complete code on my [GitHub](https://github.com/DaveStaudenmaier/LinkPreview).
+
+Keep on Developing!
