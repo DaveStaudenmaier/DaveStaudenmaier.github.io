@@ -34,16 +34,16 @@ Finally, we're going to need Angular Flex Layout.  Add it like this:
 
 **`npm install @angular/flex-layout`**
 
-A couple more set-ups and we'll be ready to go.  in pwa-nav, add a directory called **features** and another new directory called **navigation**
+A couple more set-ups and we'll be ready to go.  in pwa-nav, add a folder called **features** and another new folder called **navigation**
 
-In the **features** directory, add the following four new components like this:
+In the **features** folder, add the following four new components like this:
 
 - **`ng generate component home`**
 - **`ng generate component forums`**
 - **`ng generate component messages`**
 - **`ng generate component about`**
 
-Just a few navigation components now.  Got to the navigation folder and add three components like this:
+And in the **navigation** folder add three components like this:
 
 - **`ng generate component header-mobile`**
 - **`ng generate component footer-mobile`**
