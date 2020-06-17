@@ -16,7 +16,7 @@ You can find the complete code on my GitHub at [https://github.com/DaveStaudenma
 
 Let's create a new Angular project using the Angular CLI.   On your command line create a new project like this:
 
-**`_ng new pwa-nav_`**
+**`ng new pwa-nav`**
 
 Angular will ask you if you want to add routing to your project.  Type y.  Then select the default stylesheet. 
 
