@@ -20,7 +20,7 @@ You've seen how Facebook and other social media platforms display a link in a po
 
 ![Facebook Example](/images/link-preview-fb.png)
 
-What makes this work is metadata called the [Open Graph Protocol](https://ogp.me/#:~:text=Introduction,any%20other%20object%20on%20Facebook.).  Facebook launched Open Graph protocol in 2010, and it is is now managed by the Open Web Foundation.  The Open Graph Protocol allows web sites to control what is displayed when a web site is shared.  
+What makes this work is metadata called the [Open Graph Protocol](https://ogp.me/#:~:text=Introduction,any%20other%20object%20on%20Facebook.).  Facebook launched the Open Graph protocol in 2010, and it is is now managed by the Open Web Foundation.  The Open Graph Protocol allows web sites to control what is displayed when a web site is shared.  
 
 Here is the metadata for my own site, RVLikeMe.com, as an example:
 
