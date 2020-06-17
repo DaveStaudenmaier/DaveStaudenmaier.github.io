@@ -425,6 +425,6 @@ And that's it!  You now have a working header/footer/sidenav navigation for your
 
 <img src="/images/home1.jpg" height="500px">
 
-Feel free to contact me at <a href="mailto:"dave@dev-reboot.com">dave@dev-reboot.com</a> if you have any questions or comments. 
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
 
 Keep on developing!
