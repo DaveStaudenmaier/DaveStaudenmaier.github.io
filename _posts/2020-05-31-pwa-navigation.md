@@ -258,7 +258,7 @@ footer {
 }
 ```
 
-Finally we need to add one method in footer-mobile.component.ts to complete the footer toolbar to emit an event back to app.component when the user clicks on the 'more' button to tell app.component to open the sidenav.  Be sure to add the associated @Output decorator.  You will also need to add Output and EventEmitter to the import from @angular/core.
+We also need to add one method in footer-mobile.component.ts to complete the footer toolbar to emit an event back to app.component when the user clicks on the 'more' button to tell app.component to open the sidenav.  Be sure to add the associated @Output decorator.  You will also need to add Output and EventEmitter to the import from @angular/core.
 
 ```typescript
 export class FooterMobileComponent implements OnInit {
@@ -274,6 +274,18 @@ export class FooterMobileComponent implements OnInit {
   }
 
 }
+```
+
+Finally, we add the routes for our other feature components since we have icons for navigation now.   The Routes array in app-routing.module should now look like this:
+
+```typescript
+const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'forums', component: ForumsComponent},
+  {path: 'messages', component: MessagesComponent},
+  {path: 'about', component: AboutComponent}
+];
 ```
 
 Let's see how it looks!  You should be able to toggle between components now.
