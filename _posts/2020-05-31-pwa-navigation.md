@@ -65,7 +65,7 @@ On the footer component, `(sidenavToggle)="sidenav.toggle()"` emits an event tha
 
 `mat-app-background` on main gives us the Material background color default as the background color of the feature components.
 
-`html
+```html
 <mat-sidenav-container fullscreen>
 
   <mat-sidenav #sidenav role="navigation" mode="push">
@@ -89,7 +89,7 @@ On the footer component, `(sidenavToggle)="sidenav.toggle()"` emits an event tha
   </mat-sidenav-content>
 
 </mat-sidenav-container>
-`
+```
 
 Add the associated CSS below in `app.component.css`.  The `height: 100vh` property on the sidenav directives and our feature container is very important as it assures these will extend to fill the available space, regardless of the content size.   
 
