@@ -7,7 +7,7 @@ In this blog, I will show you how you can add a link preview to any application,
 
 Angular Version: 9
 
-<img src="/images/link-preview.jpg" height="500px">
+<img src="/images/link-preview.png" height="500px">
 
 You can find the complete code on my GitHub at [https://github.com/DaveStaudenmaier/AngularPWANavigationShell](https://github.com/DaveStaudenmaier/AngularPWANavigationShell).
 
