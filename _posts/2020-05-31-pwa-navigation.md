@@ -56,19 +56,21 @@ Just a few navigation components now.  Got to the navigation folder and add thre
 
 Great!  We're ready to start adding code.   Go ahead and edit the project.
 
-Go to app.component.html and add the following below. `<mat-sidenav>` is an angular directive that is used to create a side navigation bar and main content panel with material design styling and animation capabilities.  `<mat-sidenav-container>` is the main container, `<mat-sidenav>` is the side panel and `<mat-sidenav-content>` is the content panel.
+Go to app.component.html and add the code as shown below. 
 
-`<app-sidenav>` is the selector for the sidenav component we created in the navigation folder. `<app-header-mobile>` is the selector for the header-mobile component we created and '<footer-mobile>` is the selector for the footer component we created.
+`<mat-sidenav>` is an angular directive that is used to create a side navigation bar and main content panel with material design styling and animation capabilities.  `<mat-sidenav-container>` is the main container, `<mat-sidenav>` is the side panel and `<mat-sidenav-content>` is the content panel.
+
+`<app-sidenav>` is the selector for the sidenav component we created in the navigation folder. `<app-header-mobile>` is the selector for the header-mobile component we created and `<footer-mobile>` is the selector for the footer component we created.
 
 Be sure to use the `fullscreen` property of `<mat-sidenav-container>` so that it consumes the whole screen. 
   
 `fxHide fxShow.lt-sm` tells flex layout to only show the header and footer components if using on a small device like a phone.  You can add additional toolbars for a different view for the desktop. 
 
-On the sidenav component, `(sideNavClosed)="sidenav.close()"` lets the sidenav component emit an event that tells app.component to close the sidenav. 
+On the sidenav component, `(sideNavClosed)="sidenav.close()"` emits an event that tells app.component to close the sidenav. 
 
-On the footer component, `(sidenavToggle)="sidenav.toggle()"` lets the footer component emit an event that tells app.component to toggle the sidenav open or close.
+On the footer component, `(sidenavToggle)="sidenav.toggle()"` emits an event that tells app.component to toggle the sidenav open or close.
 
-`mat-app-background` on main gives us the material background color default for the background color of the feature components.
+`mat-app-background` on main gives us the Material background color default as the background color of the feature components.
 
 ```html
 <mat-sidenav-container fullscreen>
@@ -96,7 +98,7 @@ On the footer component, `(sidenavToggle)="sidenav.toggle()"` lets the footer co
 </mat-sidenav-container>
 ```
 
-Add the associated CSS below in app.component.css.  Be sure to use 100vh height for the sidenav directives and our feature container so that the background will extend to fill the screen regardless of the content size.   
+Add the associated CSS below in app.component.css.  100vh height for the sidenav directives and our feature container assures the  background will extend to fill the available space, regardless of the content size.   
 
 ```css
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
@@ -138,7 +140,7 @@ In footer-mobile.component.html, replace the html that is there with this:
 </footer>
 ```
 
-And in footer-mobile.component.css, add the code below.   This is what makes the toolbar stick to the bottom!
+And in footer-mobile.component.css, add the CSS shown below.   This is what makes the footer toolbar stick to the bottom!
 
 ```css
 footer {
@@ -150,7 +152,7 @@ footer {
 }
 ```
 
-And then we'll add some text to in home.component.html so we can make sure scrolling is working.  
+And then we'll add some text to in home.component.html so we can make sure scrolling is working like this:  
 
 ```html
 <p>home works!</p>
@@ -171,19 +173,19 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent}
 ];
 ```
-Now you can test it out.   You should be able to scroll the data on the home page.   It should look something like this:
+Now you can test it out!   You should be able to scroll the data on the home page and it should look like this:
 
 <img src="/images/interim1.png" height="400px">
 
-Coming along now!  Now we need to add some navigation icons in.  Replace the html we added in footer-mobile.component.html with the html below.   
+Coming along now!  Next we need to add some navigation icons to our toolbars.  Replace the html we added in footer-mobile.component.html with the html below.   
 
 We're using `<mat-toolbar>` to create the toolbar look with Material's primary color.  
 
 We're using flex layout to arrange the icons into a row with even spacing in between.   
 
-And for each icon, we use a material icon with some associated text.  
+And for each icon, we use a Material icon with some associated text.  
 
-Be careful not to add too many icons.  I used four here.  On some devices you may be able to fit five but it starts to get cramped.  That's why I added the elipsis 'more' button which opens the sidenav and gives us more room for menu items. 
+Be careful not to add too many icons.  I used four here.  On some devices you may be able to fit five, but it starts to get cramped.  That's why I added the elipsis 'more' button which opens the sidenav and gives us more room for menu items. 
 
 ```html
 <footer class="footer">
@@ -231,7 +233,7 @@ Be careful not to add too many icons.  I used four here.  On some devices you ma
 </footer>
 ```
 
-Below is the associated CSS too put in footer-mobile.component.css.  Use `line-height` to get the spacing between the icon and text. 
+Below is the associated CSS too put in footer-mobile.component.css.  Use `line-height` to get the spacing right between the icon and text. 
 
 I chose black as the color for the active icon (i.e. the one the user clicks on).
 
@@ -258,7 +260,7 @@ footer {
 }
 ```
 
-We also need to add one method in footer-mobile.component.ts to complete the footer toolbar to emit an event back to app.component when the user clicks on the 'more' button to tell app.component to open the sidenav.  Be sure to add the associated @Output decorator.  You will also need to add Output and EventEmitter to the import from @angular/core.
+We also need to add one method in footer-mobile.component.ts so the footer toolbar can emit an event back to app.component when the user clicks on the 'more' button to tell app.component to open the sidenav.  Be sure to add the associated @Output decorator.  You will also need to add Output and EventEmitter to the import from @angular/core.
 
 ```typescript
 export class FooterMobileComponent implements OnInit {
@@ -288,11 +290,11 @@ const routes: Routes = [
 ];
 ```
 
-Let's see how it looks!  You should be able to toggle between components now.
+Let's see how it looks!  You should be able to toggle between components now!
 
 <img src="/images/footer.png" height="400px">
 
-One of our components is missing!  Where's the icon for the About component?   Let's add that to the sidenav menu.  Add this code to sidenav.component.html and sidenav.component.ts.  When the user clicks on the About menu item, we call the onAbout() method which routes the user to the About page and closes the sidenav menu by emitting an event to app.component.  Be sure to import Output, EventEmitter and Router. 
+But, one of our components is missing!  Where's the icon for the About component?   Let's add that to the sidenav menu.  Add this code to sidenav.component.html and sidenav.component.ts.  When the user clicks on the About menu item, we call the onAbout() method, which routes the user to the About page and closes the sidenav menu by emitting an event to app.component.  Be sure to import Output, EventEmitter and Router. 
 
 ```html
 <mat-nav-list>
@@ -323,7 +325,9 @@ Now, you should be able to toggle the side nav by clicking on the 'more' button.
 
 <img src="/images/sidenav2.png" height="400px">
 
-We're almost done!   Let's just add a couple of icons to the header-mobile component as well.  We will add a back arrow on the left that you can use to let the user go back to previous pages if you are embedding links within our feature components, which you probably will do.   It's always good for the user to be able to get back to the previous pages and since this could be used in a progressive web app, we don't want to rely on the browser back button!
+We're almost done!   Let's just add a couple of icons to the header-mobile component as well.  
+
+We will add a back arrow on the left that you can use to let the user go back to previous pages if you are embedding links within our feature components, which you probably will do.   It's always good for the user to be able to get back to the previous pages and since this could be used in a progressive web app, we don't want to rely on the browser back button!
 
 Replace the html in header-mobile.component.html with the html below.   You can turn the back arrow on and off as needed using `*ngIf`, but we will leave it on for this demo.   The 'account' icon could be used for a user's profile picture.   
 
@@ -357,6 +361,8 @@ Add the associated css below to header-mobile-component.css.  `flex: 1 1 auto` w
   flex: 1 1 auto; // Fill space between two icons
 }
 ```
+
+Also add ```typescript showBackArrow = true; ``` to header-mobile-component.ts.  This is your boolean to toggle the back arrow on and off.  
 
 And that's it!  You now have a working header/footer/sidenav navigation for your progressive web app!
 
