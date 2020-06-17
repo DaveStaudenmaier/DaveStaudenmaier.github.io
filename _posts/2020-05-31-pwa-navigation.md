@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PWA Header/Footer/SideNav Navigation using Angular & Angular Material
+title: PWA Header & Footer Navigation Toolbars with SideNav using Angular & Angular Material
 ---
 
 In this blog, we will create from scratch a navigation scheme suitable for a progressive web app that includes a fixed footer and header as well as a slide-out side-nav.  
