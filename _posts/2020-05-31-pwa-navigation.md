@@ -362,7 +362,11 @@ Add the associated css below to header-mobile-component.css.  `flex: 1 1 auto` w
 }
 ```
 
-Also add ```typescript showBackArrow = true; ``` to header-mobile-component.ts.  This is your boolean to toggle the back arrow on and off.  
+Lastly, add the back arrow boolean to header-mobile.component.ts.  
+
+```typescript
+showBackArrow = true; 
+```  
 
 And that's it!  You now have a working header/footer/sidenav navigation for your progressive web app!
 
