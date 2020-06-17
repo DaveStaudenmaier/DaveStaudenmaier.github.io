@@ -121,4 +121,6 @@ And that's it!  Now if you type in a bad URL, such as http://localhost:4200/bad,
 
 Here is a [stackblitz](https://stackblitz.com/edit/angular-ivy-medwvu) with the all the code so you can see it in action!
 
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+
 Keep on developing!
