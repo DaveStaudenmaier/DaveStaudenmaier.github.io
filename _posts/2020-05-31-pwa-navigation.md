@@ -7,7 +7,7 @@ In this blog, we will create from scratch a navigation scheme suitable for a pro
 
 Angular/Material Version: 9
 
-<img src="/images/home1.jpg" height="400px">
+<img src="/images/home1.jpg" height="500px">
 
 You can find the complete code on my GitHub at [https://github.com/DaveStaudenmaier/AngularPWANavigationShell](https://github.com/DaveStaudenmaier/AngularPWANavigationShell).
 
@@ -193,7 +193,7 @@ const routes: Routes = [
 
 Now you can test it out!   You should be able to scroll the data on the home page and it should look like this:
 
-<img src="/images/interim1.png" height="400px">
+<img src="/images/interim1.png" height="500px">
 
 ----
 ****
@@ -325,7 +325,7 @@ const routes: Routes = [
 
 Let's see how it looks!  You should be able to toggle between components now!
 
-<img src="/images/footer.png" height="400px">
+<img src="/images/footer.png" height="500px">
 
 But, one of our components is missing!  Where's the icon for the About component?   Let's add that to the sidenav menu.  
 
@@ -365,7 +365,7 @@ When the user clicks on the About menu item, we call the onAbout() method, which
 
 Now, you should be able to toggle the side nav by clicking on the 'more' button.
 
-<img src="/images/sidenav2.png" height="400px">
+<img src="/images/sidenav2.png" height="500px">
 
 ----
 ****
@@ -423,6 +423,6 @@ showBackArrow = true;
 
 And that's it!  You now have a working header/footer/sidenav navigation for your progressive web app!
 
-<img src="/images/home1.jpg" height="400px">
+<img src="/images/home1.jpg" height="500px">
 
 Keep on developing!
