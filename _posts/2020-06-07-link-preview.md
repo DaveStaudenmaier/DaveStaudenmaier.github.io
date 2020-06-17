@@ -14,7 +14,7 @@ Angular Version: 9
 
 **What is a Link Preview?**
 
-You've seen how Facebook and other social media platforms display a link in a post.  It comes with a pretty picture, the url a title and a description, like this: 
+You've seen how Facebook and other social media platforms display a link in a post.  It comes with a pretty picture, the url, a title and a description, like this: 
 
 ![Facebook Example](/images/link-preview-fb.png)
 
@@ -39,7 +39,7 @@ Once you have the JSON object from linkpreview.net, it's just a matter of format
 
 **Connect with linkpreview.net**
 
-After you get your key from linkpreview.net, (you would replace <key> below with your key), using an Observable to subscribe, you can store the object for display.  
+After you get your key from [linkpreview.net](https://linkpreview.net), (you would replace `<key>` below with your key), using an Observable to subscribe, you can store the object for display.  
 ```typescript
   export interface IlinkPreview {
     description: string;
