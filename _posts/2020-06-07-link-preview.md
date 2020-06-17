@@ -13,3 +13,9 @@ You can find the complete code on my GitHub at [https://github.com/DaveStaudenma
 
 ----
 ****
+
+What is a Link Preview?
+
+You've seen how Facebook and other social media platforms display a link in a post.  It comes with a pretty picture, the url a title and a description, like this: 
+![Facebook Example](/images/link-preview-fb.png)
+
