@@ -34,9 +34,11 @@ If you want to test functionality specific to service worker such as offline cap
 
 After you build your project, run `http-server -p 8080 -c-1 dist/YourFolderName`.  Then you can access your application at `localhost:8080`.  
 
-The initial Angular project works fine online but if you take it offline, the downasaur!
+The initial Angular project works fine online
+<img src="/images/initial-no-sw.png">
 
-<img src="/images/initial-no-sw.png" height="400px">
+But if you take it offline, you get the downasaur!
+<img src="/images/initial-no-sw-offline.png">
 
 **What do I get out of the box?**
 
