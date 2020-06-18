@@ -3,7 +3,9 @@ layout: post
 title: How to add Service Worker to an Angular app and configure it to work offline and handle updates
 ---
 
-In this blog, I will show you how you can add Service Worker to an Angular application and then configure it to work offline, including chaching some remote data.   I will also show you how to do testing in your development environment and how to detect new versions of the service worker and notify the user that an update is available. 
+In this blog, I will show you how you can add Service Worker to an Angular application and then configure it to work offline, including chaching some remote data.   
+
+I will also show you how to do testing in your development environment and how to detect new versions of the service worker and notify the user that an update is available. 
 
 Angular Version: 9
 
