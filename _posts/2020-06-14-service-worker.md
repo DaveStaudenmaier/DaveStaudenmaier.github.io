@@ -44,11 +44,11 @@ Enter `ng add @angular/pwa` in your project directory on the command line to add
 
 Then run `ng build --prod` again and go back to `localhost:8080`.  You will need to close the tab or refresh the page to get the service worker activated.   Now if you run the project offline, it still works!
 
-<img src="/images/with-sw-offline.png>
+<img src="/images/with-sw-offline.png">
           
 In Chrome Developer tools, you can see the service worker running
 
-<img src="/images/with-sw.png>
+<img src="/images/with-sw.png">
 
 **What do I get out of the box?**
 
