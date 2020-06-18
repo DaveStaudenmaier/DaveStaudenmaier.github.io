@@ -10,16 +10,16 @@ Angular Version: 9
 ----
 ****
 
-##What is a Service Worker and what does it do?##
+**What is a Service Worker and what does it do?**
 
-##How do I add Service Worker to my Angular application?##
+**How do I add Service Worker to my Angular application?**
 
-##How do I test my Service Worker changes during development?##
+**How do I test my Service Worker changes during development?**
 
-##What do I get out of the box?##
+**What do I get out of the box?**
 
-##How does Service Worker handle updates?##
+**How does Service Worker handle updates?**
 
-##How can I cache data?##
+**How can I cache data?**
 
-##How can I detect a new version of Service Worker is available and notify the user?##
+**How can I detect a new version of Service Worker is available and notify the user?**
