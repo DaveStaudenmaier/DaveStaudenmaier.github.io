@@ -32,7 +32,11 @@ Enter `ng add @angular/pwa` in your project directory on the command line to add
 
 If you want to test functionality specific to service worker such as offline capability, you cannot use `ng serve`.  Instead you will need to use a server.   I use http-server, a light-weight node server to launch a simple node-based server to host the content of the folder your Angular DIST folder.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
 
-After you build your project, run `
+After you build your project, run `http-server -p 8080 -c-1 dist/YourFolderName`.  Then you can access your application at `localhost:8080`.  
+
+The initial Angular project works fine online but if you take it offline, the downasaur!
+
+![online](/images/initial-no-sw.png) ![offline](/images-initial-no-sw-offline.png)
 
 **What do I get out of the box?**
 
