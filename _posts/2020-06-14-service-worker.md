@@ -22,9 +22,17 @@ All of the major browsers now support service worker!   Check out this [link](ht
 
 If you are unfamiliar with the service worker life cycle, you will want to read this [article](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle) by Jake Archibald.
 
-**How do I add wervice worker to my Angular application?**
+The good news is the Angular PWA package makes working with the service worker easy!
+
+**How do I add service worker to my Angular application?**
+
+Enter `ng add @angular/pwa` in your project directory on the command line to add PWA support for your application, which includes the service worker and web manifest.  
 
 **How do I test my service worker changes during development?**
+
+If you want to test functionality specific to service worker such as offline capability, you cannot use `ng serve`.  Instead you will need to use a server.   I use http-server, a light-weight node server to launch a simple node-based server to host the content of the folder your Angular DIST folder.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
+
+After you build your project, run `
 
 **What do I get out of the box?**
 
