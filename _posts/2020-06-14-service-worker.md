@@ -24,10 +24,6 @@ If you are unfamiliar with the service worker life cycle, you will want to read 
 
 The good news is the Angular PWA package makes working with the service worker easy!
 
-**How do I add service worker to my Angular application?**
-
-Enter `ng add @angular/pwa` in your project directory on the command line to add PWA support for your application, which includes the service worker and web manifest.  
-
 **How do I test my service worker changes during development?**
 
 If you want to test functionality specific to service worker such as offline capability, you cannot use `ng serve`.  Instead you will need to use a server.   I use http-server, a light-weight node server to launch a simple node-based server to host the content of the folder your Angular DIST folder.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
@@ -39,6 +35,18 @@ The initial Angular project works fine online
 
 But if you take it offline, you get the downasaur!
 <img src="/images/initial-no-sw-offline.png">
+
+Let's add the service worker to take care of that.  
+
+**How do I add service worker to my Angular application?**
+
+Enter `ng add @angular/pwa` in your project directory on the command line to add PWA support for your application, which includes the service worker and web manifest.  
+
+Then run `ng build --prod` again and go back to `localhost:8080`.  You will need to close the tab or refresh the page to get the service worker activated.   Now if you run the project offline, it still works!
+<img src="/images/with-sw-offline.png>
+          
+In Chrome Developer tools, you can see the service worker running
+<img src="/images/with-sw.png>
 
 **What do I get out of the box?**
 
