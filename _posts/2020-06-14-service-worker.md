@@ -36,7 +36,7 @@ After you build your project, run `http-server -p 8080 -c-1 dist/YourFolderName`
 
 The initial Angular project works fine online but if you take it offline, the downasaur!
 
-![online](/images/initial-no-sw.png) ![offline](/images-initial-no-sw-offline.png)
+![online](/images/initial-no-sw.png) ![offline](/images/initial-no-sw-offline.png)
 
 **What do I get out of the box?**
 
