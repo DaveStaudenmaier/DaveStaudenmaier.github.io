@@ -225,3 +225,4 @@ Here, we verify that the service-worker is actually installed and enabled first.
 
 And that's it!  We have learned how to add service worker to our project, how it stores offline static assets and how we can add a configuration to store dynamic assets.   We have also learned how to know when a new version of our app is available and to notify the user and confirm it is OK to update.  
 
+For more information on the update events, see Angular's [article](https://angular.io/guide/service-worker-getting-started)
