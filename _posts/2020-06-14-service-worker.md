@@ -60,9 +60,26 @@ Let's see how `@angular/pwa` changed our application.
 
 Added `<noscript>Please enable JavaScript to continue using this application.</noscript>` under the `<app-root>` selector as this project cannot work without JavaScript enabled.
 
-Added `<link rel="manifest" href="manifest.webmanifest">` which points to the new web manifest file for PWA.
+Added `<link rel="manifest" href="manifest.webmanifest">` which points to the new web manifest file `manifest.webmanifest`, which allows you to save your app with an icon on the phone among other things.
 
 Added `<meta name="theme-color" content="#1976d2">` metadata for theme.
+
+**app.module.ts**
+
+Imports the service-worker module from `@angular/service-worker` and adds this under the imports array: `ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })`, which registers a service worker file called `ngsw-worker.js` which is enabled only for production.    You won't see `ngsw-worker.js` as it is generated when you build for production but you can find it in the disribution folder.  
+
+**assets**
+
+Added icons for the manifest file.
+![icons](/images/icons.png)
+
+**angular.json**
+
+Added a service-worker configuration pointing to a new file called `ngsw-config.json`.
+![sw-config](/images/sw-config.png)
+
+Here is the contents of the `ngsw-config.json` file:
+![config-json](/images/sw-config-json.png)
 
 **How does service worker handle updates?**
 
