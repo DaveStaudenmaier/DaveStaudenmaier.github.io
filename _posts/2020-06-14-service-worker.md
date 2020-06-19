@@ -128,7 +128,7 @@ Now, build the app and run it using http-server.   You should close the tab in t
 
 And if we take it offline, it looks the same.  as the static assets were all loaded and cached. 
 
-Now let's add some dynamic content.  In `app.component.ts` I added these two methods:
+Now let's add some dynamic content.  In `app.component.ts` I added this method:
 
 ```typescript
   private initializeData() {
