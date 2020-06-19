@@ -71,6 +71,7 @@ Imports the service-worker module from `@angular/service-worker` and adds this u
 **assets**
 
 Added icons for the manifest file.
+
 ![icons](/images/icons.png)
 
 **angular.json**
