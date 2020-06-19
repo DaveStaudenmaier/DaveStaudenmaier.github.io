@@ -3,9 +3,7 @@ layout: post
 title: How to use service worker for an Angular progressive web app to work offline
 ---
 
-In this blog, I will show you how you can add Service Worker to an Angular application and then configure it to work offline, including chaching some remote data.   
-
-I will also show you how to do testing in your development environment and how to detect new versions of the service worker and notify the user that an update is available. 
+In this blog, I will show you how you can add Service Worker to an Angular application and then configure it to work offline, including chaching some remote data.   I will also show you how to do testing in your development environment and how to detect new versions of the service worker and notify the user that an update is available. 
 
 As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/service-worker)
 
@@ -16,7 +14,7 @@ Angular Version: 9
 
 ## What is a service worker and what does it do?
 
-If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background on a separate thread than your web app.  It will keep running whether your web app is running or not and now sits between your web-app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
+If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background, on a separate thread than your web app.  It will keep running whether your web app is running or not and now sits between your web-app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
 
 The service worker also gives us advanced features such as push-notifications, but the feature we will be discussing here is offline data storage, allowing your PWA to function even if there user is not connected to the internet!
 
