@@ -159,4 +159,42 @@ For our purposes, let's assume that this data is very important and we want to l
 
 ## How can I cache dynamic data?
 
-**How can I detect a new version of service worker is available and notify the user?**
+Let's go back to `ngsw-config.json` and add a new **dataGroups** array after the **assetGroups** array like this:
+
+```typescript
+  "dataGroups": [
+    {
+      "name": "data",
+      "urls": [
+        "https://jsonplaceholder.typicode.com/posts"
+      ],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "6h",
+        "timeout": "5s",
+        "strategy": "freshness"
+      }
+    }
+  ]
+```
+
+I gave our dataGroup the name **data**, but you can choose what ever name you want.   **assetGroups** is for static assets and **dataGroups** is for dynamic data.   
+
+I added the URL for the API we are using in the **urls** array and then **cacheConfig** which configures how this data should be cached.
+
+**maxSize** defines how may responses we wish to cache.  This is not the number of records, but the number of responses.   Be careful. We don't want to cache everything as our space is limited by the browser. 
+
+**maxAge** defines how old the data in the cache should be before the service-worker fetches new data.  It should be in hours (6h), days (6d), minutes (6m), etc.
+
+**timeout** defines how long the service-worker should wait before using the cache.  Maybe you want it to try to fetch from the server, but if it takes longer than 5 seconds, get it from the cache. 
+
+**strategy** has two types.  
+- **freshness**, which tells service-worker to always try to fetch from the server first and only fetch from the cache if offline, taking into account **timeout**
+- **performance**, which tries to get something on the screen as quickly as possible, taking into account the **maxAge**.
+
+Now, after we build again, we see that dynamic data is handled offline. 
+
+![dynamid data offline](/images/my-pwa4.png)
+
+
+## How can I detect a new version of service worker is available and notify the user?
