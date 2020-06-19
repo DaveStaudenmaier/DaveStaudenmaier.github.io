@@ -192,9 +192,33 @@ I added the URL for the API we are using in the **urls** array and then **cacheC
 - **freshness**, which tells service-worker to always try to fetch from the server first and only fetch from the cache if offline, taking into account **timeout**
 - **performance**, which tries to get something on the screen as quickly as possible, taking into account the **maxAge**.
 
-Now, after we build again, we see that dynamic data is handled offline. 
+Now, after we build again, we see that dynamic data is handled offline, after refreshing online first to load the service-worker changes. 
 
 ![dynamid data offline](/images/my-pwa4.png)
 
 
 ## How can I detect a new version of service worker is available and notify the user?
+
+As we refresh our app or close the tab and start a new one to load our app changes, we might thing 'wouldn't it be nice if we could notify the user that a new app is available and ready to use?'.   Well, we can do just that!
+
+We will use a package Angular provides called SWUpdate.   I will add this to `app.component.ts':
+
+```typescript
+  import { SwUpdate } from '@angular/service-worker';
+  
+  private listenForSvcWorkerUpdate() {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(event => {
+        console.log('current version is', event.current);
+        console.log('available version is', event.available);
+        if (confirm('A new version of My PWA is available. Would you like to update now?')) {
+          window.location.reload();
+        }
+      });
+    }
+  }
+```
+
+Here, we verify that the service-worker is actually installed and enabled first.  If it is, we subscribe to the 'available' event from **SWUpdate**.   When a new version of our app has been loaded and is ready to replace the current version, the 'available' event will fire, telling us that we can notify the user.   Here I use **confirm**, which is supported by all major browsers, to tell the user there is a new version of the app and ask them if they want to update now.  If they do, we force a window reload which will allow service-worker to move to the new version.  In Chrome desktop, the notification looks like this:
+
+![update](/images/my-pwa5.png)
