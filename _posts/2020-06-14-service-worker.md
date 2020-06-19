@@ -28,7 +28,7 @@ You will see in this blog how the Angular PWA package makes working with the ser
 
 ## How do I test my service worker changes during development?
 
-If you want to test functionality specific to service worker such as offline capability, you cannot use `ng serve` as you normally would.  Instead you will need to use an http server.   I use `http-server`, a light-weight node server to launch a simple node-based server to host the content of the project's distribution files.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
+If you want to test functionality specific to service worker, such as offline capability, you cannot use `ng serve` as you normally would.  Instead you will need to use an http server.   I use `http-server`, a light-weight node server to launch a simple node-based server to host the content of the project's distribution files.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
 
 I will create a brand new Angular 9 project using `ng new` called *service-worker*, run `ng build --prod` and serve it using the http server `http-server -p 8080 -c-1 dist/service-worker` and then access it in the browser at `localhost:8080`.  
 
