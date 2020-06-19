@@ -123,4 +123,6 @@ One important note.  If your application is secured with https, you will not be 
 
 You can find the complete code on my [GitHub](https://github.com/DaveStaudenmaier/LinkPreview).
 
-Keep on Developing!
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+
+Keep on developing!
