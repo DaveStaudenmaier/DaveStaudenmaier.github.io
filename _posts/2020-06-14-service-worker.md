@@ -35,9 +35,11 @@ If you want to test functionality specific to service worker such as offline cap
 I will create a brand new Angular 9 project using `ng new` called *service-worker*, run `ng build --prod` and serve it using the http server `http-server -p 8080 -c-1 dist/service-worker` and then access it in the browser at `localhost:8080`.  
 
 The initial Angular project works fine online:
+
 <img src="/images/initial-no-sw.png">
 
 But if you take it offline, using Chrome's developer tools, you get the downasaur!
+
 <img src="/images/initial-no-sw-offline.png">
 
 Let's add the service worker to take care of that.  
@@ -50,6 +52,7 @@ Then run `ng build --prod` again and go back to `localhost:8080`.  You will need
 <img src="/images/with-sw-offline.png">
           
 In Chrome Developer tools, you can see the service worker running:
+
 <img src="/images/with-sw.png">
 
 ## What do I get out of the box?
@@ -76,10 +79,12 @@ Added icons for the manifest file.
 
 **angular.json**
 
-Added a service-worker configuration pointing to a new file called `ngsw-config.json`.
+Added a service-worker configuration pointing to a new file called `ngsw-config.json`:
+
 ![sw-config](/images/sw-config.png)
 
 Here is the contents of the `ngsw-config.json` file:
+
 ![config-json](/images/sw-config-json.png)
 
 **How does service worker handle updates?**
