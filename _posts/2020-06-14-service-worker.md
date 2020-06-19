@@ -62,17 +62,17 @@ Let's see how `@angular/pwa` changed our application.
 
 Added `<noscript>Please enable JavaScript to continue using this application.</noscript>` under the `<app-root>` selector as this project cannot work without JavaScript enabled.
 
-Added `<link rel="manifest" href="manifest.webmanifest">` which points to the new web manifest file `manifest.webmanifest`, which allows you to save your app with an icon on the phone among other things.
+Added `<link rel="manifest" href="manifest.webmanifest">` which points to the new web manifest file `manifest.webmanifest`, which allows you to save your app with an icon on the phone, among other things.
 
 Added `<meta name="theme-color" content="#1976d2">` metadata for theme.
 
 **app.module.ts**
 
-Imports the service-worker module from `@angular/service-worker` and adds this under the imports array: `ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })`, which registers a service worker file called `ngsw-worker.js` which is enabled only for production.    You won't see `ngsw-worker.js` as it is generated when you build for production but you can find it in the disribution folder.  
+Imports the service-worker module from `@angular/service-worker` and adds this under the imports array: `ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })`, which registers a service worker file called `ngsw-worker.js`.    You won't see `ngsw-worker.js` as it is generated when you build for production but you can find it in the disribution folder.  
 
 **assets**
 
-Added icons for the manifest file.
+Added icons for the manifest.
 
 ![icons](/images/icons.png)
 
@@ -86,47 +86,42 @@ Here is the contents of the `ngsw-config.json` file:
 
 ![config-json](/images/sw-config-json.png)
 
-We will discuss this file below to understand what is going on, but first, let's see what is happening behind the scenes.
-
-## What is happening behind the scenes when offline?
-
 Using the Chrome developer tools, we can see on the Network tab that the service worker is now serving the content:
 
 ![sw-network](/images/offline-network.png)
 
 ## What is happening in the `ngsw-config.json` file?
 
-We saw above that taking the app offline, already cached some resources so that it worked offline.   But how did it know what to cache?  Let's look at the `ngsw-config.json` file again.
+We saw above that taking the app offline already cached some resources so that it worked offline.   But how did it know what to cache?  Let's look at the `ngsw-config.json` file again.
 
 ![config-json](/images/sw-config-json.png)
 
 `"index": "/index.html"` tells the service worker which page is the root page of our application.
 
-The assetGroups array, `"assetGroups":`, tells the service worker which **static** assets it should cache.   The first set named **app** tells service-worker to cache our favicon, index.html, the web manifest file, all styles in the root folder and all JavaScript files in the root folder.  You can change these to, for instance, load all CSS in any CSS folder. InstallMode of **prefetch** tells service-worker to cache these assets **before** loading the app.  
+The assetGroups array tells the service worker which **static** assets it should cache.   The first, set named **app**, tells service-worker to cache our favicon, index.html, the web manifest file, all styles in the root folder and all JavaScript files in the root folder.  You can change these to, for instance, load all CSS in any CSS folder.  InstallMode of **prefetch** tells service-worker to cache these static assets **before** loading the app.  
 
 The **assets** assetGroup is configured a little differently.   InstallMode of **lazy** tells service worker to cache these assets only as they are used.   This means if the user loses their internet connection before these assets are loaded the first time, the user will not see them.  It's a good idea, however, to load some assets on an as-needed-basis to speed up initial load of the app.   updateMode of **prefetch** tells service-worker that when a new version of the app is available and the user is already using the app, it can prefetch these assets or lazy load them.   In this section all files under **assets** folder and sub-folders are loaded as well as all files with certain file extensions such as svg, jpg, png, etc.  
 
-You can see how you can use these assetGroups to prefetch or lazy load any assets you desire.   Just be careful not to load too much on prefetch or it will affect your apps performance.
+Hopefully, you can see how you might use these assetGroups to prefetch or lazy load any assets you desire.   Just be careful not to load too much on prefetch or it will affect your app performance.
 
 ## What about dynamic content?
 
-I am going to change our little app and add some dynamic content so we can learn how to cache that as well.  
+Let's change our little app and add some dynamic content so we can learn how to cache that as well.  
 
-First I will add static content, replacing the html in `app.component.html`, displaying a title and an image I put in the assets/images folder: 
+First add static content, replacing the html in `app.component.html`, displaying a title and an image I put in the assets/images folder.  Use whatever image you want. 
 
 ```typescript
 <h1 class="heading">My PWA</h1>
-<img src="./../assets/images/redwoods.png" class="image">
-<br>
+<img src="./../assets/images/redwoods.png">
 ```
 
 Now, build the app and run it using http-server.   You should close the tab in the browser you were using and go to localhost:8080 again.  And this is what we see:
 
 ![pwa initial](/images/my-pwa1.png)
 
-And if we take it offline, it looks the same.  as the static assets were all loaded and cached. 
+And if we take it offline, it looks the same.  as the static assets were all loaded and cached! 
 
-Now let's add some dynamic content.  In `app.component.ts` I added this method:
+Now let's add some dynamic content.  In `app.component.ts`, let's add this method and call it from ngOnInit:
 
 ```typescript
   private initializeData() {
@@ -137,7 +132,7 @@ Now let's add some dynamic content.  In `app.component.ts` I added this method:
   }
 ```
 
-The initializeData method calls a free dummy data API that we can use to get some 'posts' data and store in an array which we display in `app.component.html`:
+The initializeData method calls a free dummy data API that we can use to get some 'posts' data and store in an array and then display in `app.component.html`:
 
 ```html
 <div *ngFor="let post of posts">
@@ -149,11 +144,9 @@ Let's build our code and see how it looks.  Refresh localhost:8080 to see the ne
 
 ![with dynamic data](/images/my-pwa2.png)
 
-But when we take it offline the data does not display. 
+But when we take it offline the data does not display.  For our purposes, let's assume that this data is very important and we want to load it dynamically so it will display offline.  
 
 ![dynamid data offline](/images/my-pwa3.png)
-
-For our purposes, let's assume that this data is very important and we want to load it dynamically so it will display offline.  
 
 ## How can I cache dynamic data?
 
@@ -176,13 +169,13 @@ Let's go back to `ngsw-config.json` and add a new **dataGroups** array after the
   ]
 ```
 
-I gave our dataGroup the name **data**, but you can choose what ever name you want.   **assetGroups** is for static assets and **dataGroups** is for dynamic data.   
+**assetGroups** is for static assets and **dataGroups** is for dynamic data.   I gave our dataGroup the name **data**, but you can choose what ever name you want.  
 
-I added the URL for the API we are using in the **urls** array and then **cacheConfig** which configures how this data should be cached.
+I added the URL for the API we are using in the **urls** array and then added **cacheConfig** which configures how this data should be cached:
 
 **maxSize** defines how may responses we wish to cache.  This is not the number of records, but the number of responses.   Be careful. We don't want to cache everything as our space is limited by the browser. 
 
-**maxAge** defines how old the data in the cache should be before the service-worker fetches new data.  It should be in hours (6h), days (6d), minutes (6m), etc.
+**maxAge** defines how old the data in the cache should be before the service-worker fetches new data.  It could be in hours (6h), days (6d), minutes (6m), etc.
 
 **timeout** defines how long the service-worker should wait before using the cache.  Maybe you want it to try to fetch from the server, but if it takes longer than 5 seconds, get it from the cache. 
 
@@ -197,9 +190,9 @@ Now, after we build again, we see that dynamic data is handled offline, after re
 
 ## How can I detect a new version of service worker is available and notify the user?
 
-As we refresh our app or close the tab and start a new one to load our app changes, we might thing 'wouldn't it be nice if we could notify the user that a new app is available and ready to use?'.   Well, we can do just that!
+As we refresh our app or close the tab and start a new one to load our app changes, we might think 'wouldn't it be nice if we could notify the user that a new app is available and ready to use?'.   Well, we can do just that!
 
-We will use a package Angular provides called SWUpdate.   I will add this to `app.component.ts':
+We will use a package Angular provides called SWUpdate.   Add this to `app.component.ts' and call the method from ngOnInit.
 
 ```typescript
   import { SwUpdate } from '@angular/service-worker';
@@ -217,13 +210,13 @@ We will use a package Angular provides called SWUpdate.   I will add this to `ap
   }
 ```
 
-Here, we verify that the service-worker is actually installed and enabled first.  If it is, we subscribe to the 'available' event from **SWUpdate**.   When a new version of our app has been loaded and is ready to replace the current version, the 'available' event will fire, telling us that we can notify the user.   Here I use **confirm**, which is supported by all major browsers, to tell the user there is a new version of the app and ask them if they want to update now.  If they do, we force a window reload which will allow service-worker to move to the new version.  In Chrome desktop, the notification looks like this:
+Here, we verify that the service-worker is actually installed and enabled first.  If it is, we subscribe to the 'available' event from **SWUpdate**.   When a new version of our app has been loaded and is ready to replace the current version, the 'available' event will fire, telling us that we can notify the user.   Here I use **confirm**, which is supported by all major browsers, to tell the user there is a new version of the app and ask them if they want to update now.  If they do, we force a page reload which will allow service-worker to move to the new version.  In Chrome desktop, the notification looks like this:
 
 ![update](/images/my-pwa5.png)
 
-And that's it!  We have learned how to add service worker to our project, how it stores offline static assets and how we can add a configuration to store dynamic assets.   We have also learned how to know when a new version of our app is available and to notify the user and confirm it is OK to update.  
-
 For more information on the update events, see Angular's [article](https://angular.io/guide/service-worker-getting-started).
+
+And that's it!  We have learned how to add service worker to our project, how it stores offline static assets and how we can add a configuration to store dynamic assets.   We have also learned how to know when a new version of our app is available and to notify the user and confirm it is OK to update.  
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
 
