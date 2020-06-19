@@ -104,7 +104,9 @@ We saw above that taking the app offline, already cached some resources so that 
 
 `"index": "/index.html"` tells the service worker which page is the root page of our application.
 
-The assetGroups array, `"assetGroups":`, tells the service worker which **static** assets it should cache.   The first set named **app** tells service-worker to cache our favicon, index.html, the web manifest file, all styles and all JavaScript files.  InstallMode of **prefetch** tells service-worker to cache these assets before loading the app.  
+The assetGroups array, `"assetGroups":`, tells the service worker which **static** assets it should cache.   The first set named **app** tells service-worker to cache our favicon, index.html, the web manifest file, all styles in the root folder and all JavaScript files in the root folder.  You can change these to, for instance, load all CSS in any CSS folder. InstallMode of **prefetch** tells service-worker to cache these assets **before** loading the app.  
+
+The **assets** assetGroup is configured a little differently.   InstallMode of **lazy** tells service worker to cache these assets only as they are used.   This means if the user loses their internet connection before these assets are loaded the first time, the user will not see them.  It's a good idea, however, to load some assets on an as-needed-basis to speed up initial load of the app.   updateMode of **prefetch** tells service-worker that when a new version of the app is available and the user is already using the app, it can prefetch these assets or lazy load them.   In this section all files under **assets** folder and sub-folders are loaded as well as all files with certain file extensions such as svg, jpg, png, etc.  
 
 ## How does service worker handle updates?
 
