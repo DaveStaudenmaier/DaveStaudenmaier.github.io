@@ -12,7 +12,7 @@ Angular Version: 9
 ----
 ****
 
-**What is a service worker and what does it do?**
+## What is a service worker and what does it do?
 
 If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background on a separate thread than your web app allowing for background sync and push notifications.  The service worker feature we will be discussing here is offline data storage, allowing your PWA to function even if there user is not connected to the internet!
 
@@ -24,7 +24,7 @@ If you are unfamiliar with the service worker life cycle, you will want to read 
 
 The good news is the Angular PWA package makes working with the service worker easy!
 
-**How do I test my service worker changes during development?**
+## How do I test my service worker changes during development?
 
 If you want to test functionality specific to service worker such as offline capability, you cannot use `ng serve`.  Instead you will need to use a server.   I use http-server, a light-weight node server to launch a simple node-based server to host the content of the folder your Angular DIST folder.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
 
@@ -38,7 +38,7 @@ But if you take it offline, you get the downasaur!
 
 Let's add the service worker to take care of that.  
 
-**How do I add service worker to my Angular application?**
+## How do I add service worker to my Angular application?
 
 Enter `ng add @angular/pwa` in your project directory on the command line to add PWA support for your application, which includes the service worker and web manifest.  
 
@@ -50,7 +50,7 @@ In Chrome Developer tools, you can see the service worker running
 
 <img src="/images/with-sw.png">
 
-**What do I get out of the box?**
+## What do I get out of the box?
 
 **How does service worker handle updates?**
 
