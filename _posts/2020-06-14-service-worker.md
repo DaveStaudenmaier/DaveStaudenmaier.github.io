@@ -149,8 +149,14 @@ The initializeData method calls a free dummy data API that we can use to get som
 
 Let's build our code and see how it looks.  Refresh localhost:8080 to see the new dynamic data displayed: 
 
-![with dynamic data[(/images/my-pwa2.png)
+![with dynamic data](/images/my-pwa2.png)
 
-## How can I cache data?
+But when we take it offline the data does not display. 
+
+![dynamid data offline](/images/my-pwa3.png)
+
+For our purposes, let's assume that this data is very important and we want to load it dynamically so it will display offline.  
+
+## How can I cache dynamic data?
 
 **How can I detect a new version of service worker is available and notify the user?**
