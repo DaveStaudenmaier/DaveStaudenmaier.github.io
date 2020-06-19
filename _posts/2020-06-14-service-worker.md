@@ -88,8 +88,26 @@ Here is the contents of the `ngsw-config.json` file:
 
 ![config-json](/images/sw-config-json.png)
 
-**How does service worker handle updates?**
+We will discuss this file below to understand what is going on, but first, let's see what is happening behind the scenes.
 
-**How can I cache data?**
+## What is happening behind the scenes when offline?
+
+Using the Chrome developer tools, we can see on the Network tab that the service worker is now serving the content:
+
+![sw-network](/images/offline-network.png)
+
+## What is happening in the `ngsw-config.json` file?
+
+We saw above that taking the app offline, already cached some resources so that it worked offline.   But how did it know what to cache?  Let's look at the `ngsw-config.json` file again.
+
+![config-json](/images/sw-config-json.png)
+
+`"index": "/index.html"` tells the service worker which page is the root page of our application.
+
+The assetGroups array, `"assetGroups":`, tells the service worker which **static** assets it should cache.   The first set named **app** tells service-worker to cache our favicon, index.html, the web manifest file, all styles and all JavaScript files.  InstallMode of **prefetch** tells service-worker to cache these assets before loading the app.  
+
+## How does service worker handle updates?
+
+## How can I cache data?
 
 **How can I detect a new version of service worker is available and notify the user?**
