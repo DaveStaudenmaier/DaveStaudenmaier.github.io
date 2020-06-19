@@ -14,11 +14,11 @@ Angular Version: 9
 
 ## What is a service worker and what does it do?
 
-If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background, on a separate thread than your web app.  It will keep running whether your web app is running or not, and sits between your web-app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
+If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background, on a separate thread than your web app.  It will keep running whether your web app is running or not, and sits between your web app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
 
-The service worker also gives us advanced features such as push-notifications, but the feature we will be discussing here is offline data storage, allowing your PWA to function even if there user is not connected to the internet!
+The service worker also gives us advanced features such as push-notifications, but the feature we will be discussing here is offline data storage, allowing your PWA to function even if the user is not connected to the internet!
 
-Some special notes:
+**Some special notes:** 
 
 - It is important to understand that service worker requires HTTPS in production, though you can test with localhost.  I will show you how to do this.
 - All of the major browsers now support service worker!   Check out this [link](https://jakearchibald.github.io/isserviceworkerready/) for the latest information.
@@ -30,7 +30,7 @@ You will see in this blog how the Angular PWA package makes working with the ser
 
 If you want to test functionality specific to service worker, such as offline capability, you cannot use `ng serve` as you normally would.  Instead you will need to use an http server.   I use `http-server`, a light-weight node server to launch a simple node-based server to host the content of the project's distribution files.   This means that you must use  `ng build --prod` to create the production distribution files that it will use.   
 
-I will create a brand new Angular 9 project using `ng new` called *service-worker*, run `ng build --prod` and serve it using the http server `http-server -p 8080 -c-1 dist/service-worker` and then access it in the browser at `localhost:8080`.  
+I will create a brand new Angular 9 project using `ng new` called **service-worker**, run `ng build --prod`, and serve it using the http server `http-server -p 8080 -c-1 dist/service-worker` and then access it in the browser at `localhost:8080`.  
 
 The initial Angular project works fine online:
 
