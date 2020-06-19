@@ -222,3 +222,6 @@ We will use a package Angular provides called SWUpdate.   I will add this to `ap
 Here, we verify that the service-worker is actually installed and enabled first.  If it is, we subscribe to the 'available' event from **SWUpdate**.   When a new version of our app has been loaded and is ready to replace the current version, the 'available' event will fire, telling us that we can notify the user.   Here I use **confirm**, which is supported by all major browsers, to tell the user there is a new version of the app and ask them if they want to update now.  If they do, we force a window reload which will allow service-worker to move to the new version.  In Chrome desktop, the notification looks like this:
 
 ![update](/images/my-pwa5.png)
+
+And that's it!  We have learned how to add service worker to our project, how it stores offline static assets and how we can add a configuration to store dynamic assets.   We have also learned how to know when a new version of our app is available and to notify the user and confirm it is OK to update.  
+
