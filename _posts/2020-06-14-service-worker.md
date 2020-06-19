@@ -49,6 +49,7 @@ Let's add the service worker to take care of that.
 Enter `ng add @angular/pwa` in your project directory on the command line to add PWA support for your application, which includes the service worker and web manifest.  
 
 Then run `ng build --prod` again and go back to `localhost:8080`.  You will need to close the tab or refresh the page to get the service worker activated.   Now if you run the project offline, it still works!
+
 <img src="/images/with-sw-offline.png">
           
 In Chrome Developer tools, you can see the service worker running:
