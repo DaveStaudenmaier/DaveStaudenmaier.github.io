@@ -108,7 +108,48 @@ The assetGroups array, `"assetGroups":`, tells the service worker which **static
 
 The **assets** assetGroup is configured a little differently.   InstallMode of **lazy** tells service worker to cache these assets only as they are used.   This means if the user loses their internet connection before these assets are loaded the first time, the user will not see them.  It's a good idea, however, to load some assets on an as-needed-basis to speed up initial load of the app.   updateMode of **prefetch** tells service-worker that when a new version of the app is available and the user is already using the app, it can prefetch these assets or lazy load them.   In this section all files under **assets** folder and sub-folders are loaded as well as all files with certain file extensions such as svg, jpg, png, etc.  
 
-## How does service worker handle updates?
+You can see how you can use these assetGroups to prefetch or lazy load any assets you desire.   Just be careful not to load too much on prefetch or it will affect your apps performance.
+
+## What about dynamic content?
+
+I am going to change our little app and add some dynamic content so we can learn how to cache that as well.  
+
+First I will add static content, replacing the html in `app.component.html`, displaying a title and an image I put in the assets/images folder: 
+
+```typescript
+<h1 class="heading">My PWA</h1>
+<img src="./../assets/images/redwoods.png" class="image">
+<br>
+```
+
+Now, build the app and run it using http-server.   You should close the tab in the browser you were using and go to localhost:8080 again.  And this is what we see:
+
+![pwa initial](/images/my-pwa1.png)
+
+And if we take it offline, it looks the same.  as the static assets were all loaded and cached. 
+
+Now let's add some dynamic content.  In `app.component.ts` I added these two methods:
+
+```typescript
+  private initializeData() {
+    this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts')
+    .subscribe(dummyData => {
+      this.posts = dummyData;
+    });
+  }
+```
+
+The initializeData method calls a free dummy data API that we can use to get some 'posts' data and store in an array which we display in `app.component.html`:
+
+```html
+<div *ngFor="let post of posts">
+  <span>{{ post.title }}</span>
+</div>
+```
+
+Let's build our code and see how it looks.  Refresh localhost:8080 to see the new dynamic data displayed: 
+
+![with dynamic data[(/images/my-pwa2.png)
 
 ## How can I cache data?
 
