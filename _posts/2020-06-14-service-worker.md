@@ -7,6 +7,8 @@ In this blog, I will show you how you can add Service Worker to an Angular appli
 
 I will also show you how to do testing in your development environment and how to detect new versions of the service worker and notify the user that an update is available. 
 
+As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/service-worker)
+
 Angular Version: 9
 
 ----
@@ -14,13 +16,15 @@ Angular Version: 9
 
 ## What is a service worker and what does it do?
 
-If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background, on a separate thread than your web app, allowing for background sync and push notifications.  The service worker feature we will be discussing here is offline data storage, allowing your PWA to function even if there user is not connected to the internet!
+If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background on a separate thread than your web app.  It will keep running whether your web app is running or not and now sits between your web-app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
 
-It is important to understand that service worker requires HTTPS in production, though you can test with localhost.  I will show you how to do this.
+The service worker also gives us advanced features such as push-notifications, but the feature we will be discussing here is offline data storage, allowing your PWA to function even if there user is not connected to the internet!
 
-All of the major browsers now support service worker!   Check out this [link](https://jakearchibald.github.io/isserviceworkerready/) for the latest information.
+Some special notes:
 
-If you are unfamiliar with the service worker life cycle, you will want to read this [article](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle) by Jake Archibald.
+- It is important to understand that service worker requires HTTPS in production, though you can test with localhost.  I will show you how to do this.
+- All of the major browsers now support service worker!   Check out this [link](https://jakearchibald.github.io/isserviceworkerready/) for the latest information.
+- If you are unfamiliar with the service worker life cycle, you will want to read this [article](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle) by Jake Archibald.
 
 You will see in this blog how the Angular PWA package makes working with the service worker easy!
 
@@ -49,6 +53,16 @@ In Chrome Developer tools, you can see the service worker running:
 <img src="/images/with-sw.png">
 
 ## What do I get out of the box?
+
+Let's see how `@angular/pwa` changed our application.
+
+**index.html**
+
+Added `<noscript>Please enable JavaScript to continue using this application.</noscript>` under the `<app-root>` selector as this project cannot work without JavaScript enabled.
+
+Added `<link rel="manifest" href="manifest.webmanifest">` which points to the new web manifest file for PWA.
+
+Added `<meta name="theme-color" content="#1976d2">` metadata for theme.
 
 **How does service worker handle updates?**
 
