@@ -14,7 +14,7 @@ Angular Version: 9
 
 ## What is a service worker and what does it do?
 
-If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background, on a separate thread than your web app.  It will keep running whether your web app is running or not and now sits between your web-app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
+If you are creating a progressive web app, the service worker is a critical part of your application.   The service worker is a script that runs in the background, on a separate thread than your web app.  It will keep running whether your web app is running or not, and sits between your web-app and the server, acting as a proxy for requests (i.e. fetching assests of page or data from an API).  The service worker can listen to these requests and do things like caching the responses or returning these cached responses back to your page rather than fetching from the server.
 
 The service worker also gives us advanced features such as push-notifications, but the feature we will be discussing here is offline data storage, allowing your PWA to function even if there user is not connected to the internet!
 
