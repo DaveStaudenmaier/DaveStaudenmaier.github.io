@@ -129,7 +129,7 @@ Great!  Now all we need to do is add a little HTML to `app.component.html`, repl
 
 When you run the app, you can make a call and get a 'successful' response.   
 
-![screen shot](/images/screen-shot1.png)
+![screen shot](/images/blog/http-interceptor/screen-shot1.png)
 
 Now we can add the http-interceptor service.
 
@@ -198,7 +198,7 @@ We imported HTTP_INTERCEPTORS from `@angular/common/http` and instructed Angular
 
 Run the app again and call the service through the UI.  Now we see our console.log message so we know our interceptor is working!
 
-![screen shot](/images/screen-shot2.png)
+![screen shot](/images/blog/http-interceptor/screen-shot2.png)
 
 ## Intercepting incoming responses and handling a `504 Gateway Timeout` response
 
@@ -212,7 +212,7 @@ In our app, we will simulate a 504 error by adding this code to `app.component.h
 
 If we click our new button, we see in the console that we intercepted a 504 response.
 
-![screen shot](/images/screen-shot3.png)
+![screen shot](/images/blog/http-interceptor/screen-shot3.png)
 
 So how do we retry the request?   
 
@@ -246,7 +246,7 @@ Instead of passing through the response, we are intercepting it using the the `p
 
 Let's see what happens if we run our app and click the 504 button:
 
-![screen shot](/images/screen-shot5.png)
+![screen shot](/images/blog/http-interceptor/screen-shot5.png)
 
 Well, we are trying alright but we've created an infinite loop that keeps retrying the request when it receives an error response.   Let's fix that by adding the following code inside `errors.pipe` above. 
 
@@ -287,7 +287,7 @@ If we want to delay before re-trying, we can add the delay operator.   Our inter
 
 Now if we force the 504 error, it will retry 3 times with a 500 millisecond delay!
 
-!image[screen shot](/images/screen-shot6.png)
+!image[screen shot](/images/blog/http-interceptor/screen-shot6.png)
 
 ## Intercepting outgoing requests and making your requests consistent
 
