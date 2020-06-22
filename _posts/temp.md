@@ -126,8 +126,74 @@ Great!  Now all we need to do is add a little HTML to `app.component.html`, repl
 <br>
 <p *ngIf="showResult">Result = {{ httpResult }}</p>
 ```
+
+When you run the app, you can make a call and get a 'successful' response.   
+
+![screen shot](/images/screen-shot1.png)
+
+Now we can add the http-interceptor service.
+
 ## How to add http-interceptor to your Angular project
 
+Add a new service to our Angular project:
+
+*`ng g s http-interceptor`*
+
+In `http-interceptor.service.ts`, import the Http services we need from `@angular/common/http`.   Then add the HttpInterceptor interface to our class. 
+
+```typescript
+import { Injectable } from '@angular/core';
+import {  HttpEvent,
+          HttpInterceptor,
+          HttpHandler,
+          HttpRequest } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class HttpInterceptorService implements HttpInterceptor {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('request=', request.url);
+    return next.handle(request);
+  }
+}
+```
+
+All we will do for now is log the request url and pass the request through using `return next.handle(request)`. 
+
+Next we must tell Agular to use our interceptor service in `app.module.ts':
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
+import { HttpInterceptorService } from './http-interceptor.service';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService
+    },
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+We imported HTTP_INTERCEPTORS from `@angular/common/http` and instructed Angular to user our http interceptor service in the providers array.
 
 ## Intercepting outgoing requests and making your requests consistent
 
