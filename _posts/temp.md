@@ -299,6 +299,140 @@ Now if we force the 504 error, it will retry 3 times with a 500 millisecond dela
 ![screen shot](/images/blog/http-interceptor/screen-shot6.png)
 <br>
 <br>
+
 ## Intercepting outgoing requests and making your requests consistent
 
+Another use case for the http-interceptor is to handle repetitive code in one place.  
 
+Let's assume we are calling some backend API by adding the following code in `data.service.ts`:
+
+```typescript
+  getServerApi() {
+
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.getToken()}`
+      })
+    };
+
+    return this.http.get(this.serverUrl, requestOptions);
+  }
+
+  private getHostLocation() {
+    const hostLocation = window.location.host;
+
+    let serverUrl = environment.serverUrl;
+
+    if (environment.production && hostLocation.includes('localhost')) {
+      // Override back-end URL with localhost if testing Service Worker using http-server
+      serverUrl = 'http://localhost:3000';
+    }
+
+    return serverUrl;
+  }
+
+  private getToken(): string {
+    const token = 'my-token';
+
+    return token;
+  }
+```
+
+This would be fairly typical of a call to a back-end server where each call needs to get the server URL and an authorization token from local storage.  Since this call isn't real, I did not use local storage and there is no backend.   I added another button to  `app.component.ts` and some type script to call our backend server:
+
+```html
+<button (click)="onApi()">Test API</button>
+```
+
+```typescript
+  onApi() {
+    this.showResult = true;
+    this.httpResult = 'Loading...';
+
+    this.data.getServerApi()
+    .subscribe(result => {
+      this.httpResult = 'Success!';
+    }, error => {
+      this.httpResult  = 'Error! Status =' + error.status;
+    });
+  }
+```
+
+And just to show it is attemping the call, we see this CORS error we get when attempting to call a remote server that does not exist.
+
+![screen shot](/images/blog/http-interceptor/screen-shot8.png)
+
+Now, imagine we had many API calls to this server across many different services.  Each one would need to get the appropriate URL and token.   That's a lot of duplicate logic.   Instead, we will intercept the request and add in the duplicate logic there.
+
+In  `http-interceptor.service.ts`, add this code before the response interceptor and our `getHostLocation()` and `getToken()` methods as well:
+
+```typescript
+console.log('request=', request.url);
+
+let authReq: any;
+
+if (request.url.startsWith('/api')) {
+  authReq = request.clone({
+    url: `${serverUrl}${request.url}`,
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.getToken()}`
+    })
+  });
+} else {
+    authReq = request;
+}
+
+private getHostLocation() {
+  const hostLocation = window.location.host;
+
+  let serverUrl = environment.serverUrl;
+
+  if (environment.production && hostLocation.includes('localhost')) {
+    // Override back-end URL with localhost if testing Service Worker using http-server
+    serverUrl = 'http://localhost:3000';
+  }
+
+  return serverUrl;
+}
+
+private getToken(): string {
+  let token: any;
+
+  // Normally, you would get the authorization token stored locally like this.
+  // token = localStorage.getItem('my-token');
+
+  // But since we don't have one for this demo app, we will fake it
+
+  token = 'my-token';
+
+  return token;
+}
+```
+
+For our backend, all of our API calls start with `/api`, so we can look for that and implement our logic while letting other requests through as is.  The first thing we do is clone the request into a variable `authReq`.   Then we get the appropriate server URL and append our request URL and add our headers with the token.   
+
+Now that we've moved this code here, we can change `data.service.ts` to this much simpler and cleaner call!
+
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  constructor(private http: HttpClient) { }
+
+  getData(responseCode: number) {
+    return this.http.get('http://httpstat.us/' + responseCode + '?sleep=1000');
+  }
+
+  getServerApi() {
+    return this.http.get('/api/get-orders');
+  }
+}
+```
