@@ -204,6 +204,7 @@ Run the app again and call the service through the UI.  Now we see our console.l
 ![screen shot](/images/blog/http-interceptor/screen-shot2.png)
 <br>
 <br>
+
 ## Intercepting incoming responses and handling a `504 Gateway Timeout` response
 
 You are problably already familiar with the `504 Gateway Timeout` HTTP response if you've ever called a REST API before.  A `504 Gateway Timeout` Error indicates that a web server attempting to load a page for you did not get a timely response from another server from which it requested information. 
@@ -220,18 +221,19 @@ If we click our new button, we see in the console that we intercepted a 504 resp
 ![screen shot](/images/blog/http-interceptor/screen-shot3.png)
 <br>
 <br>
+
 So how do we retry the request?   
 
 Go to `http-interceptor.service.ts`, replace `return next.handle(request)` with the following code:
 
 ```typescript
-    return next.handle(request).pipe(
-      retryWhen(errors =>
-        errors.pipe(
-        )
-      )
-    );
-  }
+return next.handle(request).pipe(
+  retryWhen(errors =>
+    errors.pipe(
+    )
+  )
+);
+}
 ```
 
 You will need to add the appropriate imports as well:
@@ -256,41 +258,42 @@ Let's see what happens if we run our app and click the 504 button:
 ![screen shot](/images/blog/http-interceptor/screen-shot5.png)
 <br>
 <br>
+
 Well, we are trying alright but we've created an infinite loop that keeps retrying the request when it receives an error response.   Let's fix that by adding the following code inside `errors.pipe` above. 
 
 ```typescript
-  concatMap((error, count) => {
-    if (count < 3 && error.status === 504) {
-      return of(error);
-    }
-    return throwError(error.error);
-  })
+concatMap((error, count) => {
+  if (count < 3 && error.status === 504) {
+    return of(error);
+  }
+  return throwError(error.error);
+})
 ```
 We use concatMap here because we want to make sure that we are doing things in sequence while waiting for completion.   if the error is 504 and we haven't yet retried 3 times, we retry.  Otherwise, we thrown the error.  
 
 If we want to delay before re-trying, we can add the delay operator.   Our intercept code now looks like this:
 
 ```typescript
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    console.log('request=', request.url);
+intercept(
+  request: HttpRequest<any>,
+  next: HttpHandler
+): Observable<HttpEvent<any>> {
+  console.log('request=', request.url);
 
-    return next.handle(request).pipe(
-      retryWhen(errors =>
-        errors.pipe(
-          concatMap((error, count) => {
-            if (count < 3 && error.status === 504) {
-              return of(error);
-            }
-            return throwError(error.error);
-          }),
-          delay(500)
-        )
+  return next.handle(request).pipe(
+    retryWhen(errors =>
+      errors.pipe(
+        concatMap((error, count) => {
+          if (count < 3 && error.status === 504) {
+            return of(error);
+          }
+          return throwError(error.error);
+        }),
+        delay(500)
       )
-    );
-  }
+    )
+  );
+}
 ```
 
 Now if we force the 504 error, it will retry 3 times with a 500 millisecond delay!
@@ -307,36 +310,36 @@ Another use case for the http-interceptor is to handle repetitive code in one pl
 Let's assume we are calling some backend API by adding the following code in `data.service.ts`:
 
 ```typescript
-  getServerApi() {
+getServerApi() {
 
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.getToken()}`
-      })
-    };
+  const requestOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.getToken()}`
+    })
+  };
 
-    return this.http.get(this.serverUrl, requestOptions);
+  return this.http.get(this.serverUrl, requestOptions);
+}
+
+private getHostLocation() {
+  const hostLocation = window.location.host;
+
+  let serverUrl = environment.serverUrl;
+
+  if (environment.production && hostLocation.includes('localhost')) {
+    // Override back-end URL with localhost if testing Service Worker using http-server
+    serverUrl = 'http://localhost:3000';
   }
 
-  private getHostLocation() {
-    const hostLocation = window.location.host;
+  return serverUrl;
+}
 
-    let serverUrl = environment.serverUrl;
+private getToken(): string {
+  const token = 'my-token';
 
-    if (environment.production && hostLocation.includes('localhost')) {
-      // Override back-end URL with localhost if testing Service Worker using http-server
-      serverUrl = 'http://localhost:3000';
-    }
-
-    return serverUrl;
-  }
-
-  private getToken(): string {
-    const token = 'my-token';
-
-    return token;
-  }
+  return token;
+}
 ```
 
 This would be fairly typical of a call to a back-end server where each call needs to get the server URL and an authorization token from local storage.  Since this call isn't real, I did not use local storage and there is no backend.   I added another button to  `app.component.ts` and some type script to call our backend server:
@@ -346,22 +349,25 @@ This would be fairly typical of a call to a back-end server where each call need
 ```
 
 ```typescript
-  onApi() {
-    this.showResult = true;
-    this.httpResult = 'Loading...';
+onApi() {
+  this.showResult = true;
+  this.httpResult = 'Loading...';
 
-    this.data.getServerApi()
-    .subscribe(result => {
-      this.httpResult = 'Success!';
-    }, error => {
-      this.httpResult  = 'Error! Status =' + error.status;
-    });
-  }
+  this.data.getServerApi()
+  .subscribe(result => {
+    this.httpResult = 'Success!';
+  }, error => {
+    this.httpResult  = 'Error! Status =' + error.status;
+  });
+}
 ```
 
 And just to show it is attemping the call, we see this CORS error we get when attempting to call a remote server that does not exist.
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot8.png)
+<br>
+<br>
 
 Now, imagine we had many API calls to this server across many different services.  Each one would need to get the appropriate URL and token.   That's a lot of duplicate logic.   Instead, we will intercept the request and add in the duplicate logic there.
 
@@ -440,8 +446,13 @@ export class DataService {
 ```
 
 And that's it!  We try it out and get the same result as before, so we know it's working!
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot9.png)
+<br>
+<br>
+
+As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/http-interceptor)
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
 
