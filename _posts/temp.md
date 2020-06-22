@@ -200,6 +200,95 @@ Run the app again and call the service through the UI.  Now we see our console.l
 
 ![screen shot](/images/screen-shot2.png)
 
+## Intercepting incoming responses and handling a `504 Gateway Timeout` response
+
+You are problably already familiar with the `504 Gateway Timeout` HTTP response if you've ever called a REST API before.  A `504 Gateway Timeout` Error indicates that a web server attempting to load a page for you did not get a timely response from another server from which it requested information. 
+
+In our app, we will simulate a 504 error by adding this code to `app.component.html':
+
+```html
+<button (click)="onResponse(504)" class="button">Response 504</button>
+```
+
+If we click our new button, we see in the console that we intercepted a 504 response.
+
+![screen shot](/images/screen-shot3.png)
+
+So how do we retry the request?   
+
+Go to `http-interceptor.service.ts`, replace `return next.handle(request)` with the following code:
+
+```typescript
+    return next.handle(request).pipe(
+      retryWhen(errors =>
+        errors.pipe(
+        )
+      )
+    );
+  }
+```
+
+You will need to add the appropriate imports as well:
+
+```typescript
+import { Injectable } from '@angular/core';
+import {  HttpEvent,
+          HttpInterceptor,
+          HttpHandler,
+          HttpRequest
+        } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+
+import { retryWhen } from 'rxjs/operators';
+```
+Instead of passing through the response, we are intercepting it using the the `pipe` operator and, using the rxjs `retryWhen` operator, we've told Angular to retry ALL error responses.  
+
+Let's see what happens if we run our app and click the 504 button:
+
+![screen shot](/images/screen-shot5.png)
+
+Well, we are trying alright but we've created an infinite loop that keeps retrying the request when it receives an error response.   Let's fix that by adding the following code inside `errors.pipe` above. 
+
+```typescript
+  concatMap((error, count) => {
+    if (count < 3 && error.status === 504) {
+      return of(error);
+    }
+    return throwError(error.error);
+  })
+```
+We use concatMap here because we want to make sure that we are doing things in sequence while waiting for completion.   if the error is 504 and we haven't yet retried 3 times, we retry.  Otherwise, we thrown the error.  
+
+If we want to delay before re-trying, we can add the delay operator.   Our intercept code now looks like this:
+
+```typescript
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    console.log('request=', request.url);
+
+    return next.handle(request).pipe(
+      retryWhen(errors =>
+        errors.pipe(
+          concatMap((error, count) => {
+            if (count < 3 && error.status === 504) {
+              return of(error);
+            }
+            return throwError(error.error);
+          }),
+          delay(500)
+        )
+      )
+    );
+  }
+```
+
+Now if we force the 504 error, it will retry 3 times with a 500 millisecond delay!
+
+!image[screen shot](/images/screen-shot6.png)
+
 ## Intercepting outgoing requests and making your requests consistent
 
-## Intercepting incoming responses and handling a `504 Gateway Timeout` response
+
