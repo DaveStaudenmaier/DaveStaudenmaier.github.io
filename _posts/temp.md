@@ -411,6 +411,8 @@ private getToken(): string {
 }
 ```
 
+You will also need to change our response interceptor to take the new `authReq` variable like this `return next.handle(authReq).pipe(`.
+
 For our backend, all of our API calls start with `/api`, so we can look for that and implement our logic while letting other requests through as is.  The first thing we do is clone the request into a variable `authReq`.   Then we get the appropriate server URL and append our request URL and add our headers with the token.   
 
 Now that we've moved this code here, we can change `data.service.ts` to this much simpler and cleaner call!
@@ -436,3 +438,8 @@ export class DataService {
   }
 }
 ```
+
+We try it out and get the same result as before, so we know it's working:
+
+![screen shot](/images/blog/http-interceptor/screen-shot9.png)
+
