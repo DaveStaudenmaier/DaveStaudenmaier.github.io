@@ -439,7 +439,10 @@ export class DataService {
 }
 ```
 
-We try it out and get the same result as before, so we know it's working!
+And that's it!  We try it out and get the same result as before, so we know it's working!
 
 ![screen shot](/images/blog/http-interceptor/screen-shot9.png)
 
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+
+Keep on developing!
