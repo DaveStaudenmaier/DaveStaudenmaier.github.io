@@ -185,7 +185,8 @@ import { HttpInterceptorService } from './http-interceptor.service';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService
+      useClass: HttpInterceptorService,
+      multi: true
     },
   ],
   bootstrap: [AppComponent]
@@ -194,6 +195,10 @@ export class AppModule { }
 ```
 
 We imported HTTP_INTERCEPTORS from `@angular/common/http` and instructed Angular to user our http interceptor service in the providers array.
+
+Run the app again and call the service through the UI.  Now we see our console.log message so we know our interceptor is working!
+
+![screen shot](/images/screen-shot2.png)
 
 ## Intercepting outgoing requests and making your requests consistent
 
