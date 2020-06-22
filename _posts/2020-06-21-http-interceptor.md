@@ -26,11 +26,11 @@ In this blog we will intercept HTTP API server requests in our Angular project a
 
 First, we will create an Angular project and add a simple HTTP service.   Use `ng new` to create a project:
 
-*ng new http-interceptor*
+**`ng new http-interceptor`**
 
 Go to the project directory and add a service:
 
-*ng g s data*
+**`ng g s data`**
 
 Now, let's add HTTP capability to our project.  In `app.module.ts` import the `HttpClientModule` and add it to the imports array.
 
@@ -139,7 +139,7 @@ Now we can add the http-interceptor service.
 
 Add a new service to our Angular project:
 
-*ng g s http-interceptor*
+**`ng g s http-interceptor`**
 
 In `http-interceptor.service.ts`, import the Http services we need from `@angular/common/http`.   Then add the HttpInterceptor interface to our class. 
 
