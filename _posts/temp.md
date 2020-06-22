@@ -287,7 +287,7 @@ If we want to delay before re-trying, we can add the delay operator.   Our inter
 
 Now if we force the 504 error, it will retry 3 times with a 500 millisecond delay!
 
-!image[screen shot](/images/blog/http-interceptor/screen-shot6.png)
+![screen shot](/images/blog/http-interceptor/screen-shot6.png)
 
 ## Intercepting outgoing requests and making your requests consistent
 
