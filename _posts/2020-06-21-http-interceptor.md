@@ -16,21 +16,21 @@ Angular Version: 9
 
 The job of an Angular's HttpInterceptor is to intercept and handle an HttpRequest or an HttpResponse, allowing you to add code to do something. Some common use-cases are:
 - Add a token or some custom HTTP header information prior to sending a request to the server
-- Catch an HTTP response to for data transformation
+- Catch an HTTP response for data transformation
 - Log all HTTP activity
 - Detect a specific HTTP error response and take special action
 
-In this blog we will intercept all HTTP requests in our Angular project and add a token and server location information before passing through to the server.   We will also interept HTTP responses to detect a `504 Gateway Timeout` and retry 3 times, with a delay between each attempt before passing the 504 on.
+In this blog we will intercept HTTP API server requests in our Angular project and add a token and server location information before passing through to the server.   We will also interept HTTP responses to detect a `504 Gateway Timeout` and retry 3 times, with a delay between each attempt before passing the 504 on.
 
 ## Create new Angular Project
 
 First, we will create an Angular project and add a simple HTTP service.   Use `ng new` to create a project:
 
-*`ng new http-interceptor`*
+*ng new http-interceptor*
 
 Go to the project directory and add a service:
 
-*`ng g s data`*
+*ng g s data*
 
 Now, let's add HTTP capability to our project.  In `app.module.ts` import the `HttpClientModule` and add it to the imports array.
 
@@ -56,7 +56,7 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-Then go to the new service, `data.service.ts` and add HttpClient
+Then go to the new service, `data.service.ts`, and add HttpClient:
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -72,17 +72,17 @@ export class DataService {
 }
 ```
 
-Now we will add a call to a dummy service that simply sends back the response code we select after a delay we configure.  Add this method in `data.service.ts':
+Now we will add a method to call to a dummy service that simply sends back the response code we select, after a delay we configure.  Add this method in `data.service.ts':
 
 ```typescript
-  getData(responseCode: number) {
-    return this.http.get('http://httpstat.us/' + responseCode + '?sleep=1000');
-  }
+getData(responseCode: number) {
+  return this.http.get('http://httpstat.us/' + responseCode + '?sleep=1000');
+}
 ```
 
-OK.  We have added HTTP capability to our project and an http get request method.   
+OK.  We have added HTTP capability to our project and an `http get` request method.   
 
-Now, let's add a little code in `app.component.ts' to call the data service:
+Now, let's add a little code in `app.component.ts` to call the data service:
 
 ```typescript
 import { Component } from '@angular/core';
@@ -122,24 +122,24 @@ Great!  Now all we need to do is add a little HTML to `app.component.html`, repl
 <h1>Http Interceptor</h1>
 
 <button (click)="onResponse(200)" class="button">Response 200</button>
-<br>
-<br>
+
 <p *ngIf="showResult">Result = {{ httpResult }}</p>
 ```
 
-When you run the app, you can make a call and get a 'successful' response.   
+When you run the app, you can make a call and get a 'successful' response:
 <br>
 <br>
 ![screen shot](/images/blog/http-interceptor/screen-shot1.png)
 <br>
 <br>
+
 Now we can add the http-interceptor service.
 
 ## How to add http-interceptor to your Angular project
 
 Add a new service to our Angular project:
 
-*`ng g s http-interceptor`*
+*ng g s http-interceptor*
 
 In `http-interceptor.service.ts`, import the Http services we need from `@angular/common/http`.   Then add the HttpInterceptor interface to our class. 
 
@@ -166,7 +166,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
 All we will do for now is log the request url and pass the request through using `return next.handle(request)`. 
 
-Next we must tell Agular to use our interceptor service in `app.module.ts':
+Next we must tell Angular to use our interceptor service in `app.module.ts':
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -207,7 +207,7 @@ Run the app again and call the service through the UI.  Now we see our console.l
 
 ## Intercepting incoming responses and handling a `504 Gateway Timeout` response
 
-You are problably already familiar with the `504 Gateway Timeout` HTTP response if you've ever called a REST API before.  A `504 Gateway Timeout` Error indicates that a web server attempting to load a page for you did not get a timely response from another server from which it requested information. 
+You are problably already familiar with the `504 Gateway Timeout` HTTP response if you've ever called an API before.  A `504 Gateway Timeout` Error indicates that a web server attempting to load a page for you did not get a timely response from another server from which it requested information. 
 
 In our app, we will simulate a 504 error by adding this code to `app.component.html':
 
@@ -259,7 +259,7 @@ Let's see what happens if we run our app and click the 504 button:
 <br>
 <br>
 
-Well, we are trying alright but we've created an infinite loop that keeps retrying the request when it receives an error response.   Let's fix that by adding the following code inside `errors.pipe` above. 
+Well, we are retrying alright, but we've created an infinite loop that keeps retrying the request when it receives an error response.   Let's change that to only try 3 times and then fail, by adding the following code inside `errors.pipe` above. 
 
 ```typescript
 concatMap((error, count) => {
@@ -269,7 +269,7 @@ concatMap((error, count) => {
   return throwError(error.error);
 })
 ```
-We use concatMap here because we want to make sure that we are doing things in sequence while waiting for completion.   if the error is 504 and we haven't yet retried 3 times, we retry.  Otherwise, we thrown the error.  
+We use concatMap here because we want to make sure that we are doing things in sequence while waiting for completion.   If the error is 504 and we haven't yet retried 3 times, we retry.  Otherwise, we thrown the error.  
 
 If we want to delay before re-trying, we can add the delay operator.   Our intercept code now looks like this:
 
@@ -369,9 +369,9 @@ And just to show it is attemping the call, we see this CORS error we get when at
 <br>
 <br>
 
-Now, imagine we had many API calls to this server across many different services.  Each one would need to get the appropriate URL and token.   That's a lot of duplicate logic.   Instead, we will intercept the request and add in the duplicate logic there.
+Now, imagine we had many API calls to this server across many different services.  Each one would need to get the appropriate URL and token.   That's a lot of duplicate logic.   Instead, we will intercept the request and add in the duplicate logic there in a single place.
 
-In  `http-interceptor.service.ts`, add this code before the response interceptor and our `getHostLocation()` and `getToken()` methods as well:
+In  `http-interceptor.service.ts`, add this code before the response interceptor.  Also move our `getHostLocation()` and `getToken()` methods as well:
 
 ```typescript
 console.log('request=', request.url);
@@ -404,14 +404,7 @@ private getHostLocation() {
 }
 
 private getToken(): string {
-  let token: any;
-
-  // Normally, you would get the authorization token stored locally like this.
-  // token = localStorage.getItem('my-token');
-
-  // But since we don't have one for this demo app, we will fake it
-
-  token = 'my-token';
+  let token = 'my-token';
 
   return token;
 }
