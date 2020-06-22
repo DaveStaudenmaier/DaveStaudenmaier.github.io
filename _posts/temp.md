@@ -199,13 +199,11 @@ export class AppModule { }
 We imported HTTP_INTERCEPTORS from `@angular/common/http` and instructed Angular to user our http interceptor service in the providers array.
 
 Run the app again and call the service through the UI.  Now we see our console.log message so we know our interceptor is working!
-
-
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot2.png)
-
-
-
+<br>
+<br>
 ## Intercepting incoming responses and handling a `504 Gateway Timeout` response
 
 You are problably already familiar with the `504 Gateway Timeout` HTTP response if you've ever called a REST API before.  A `504 Gateway Timeout` Error indicates that a web server attempting to load a page for you did not get a timely response from another server from which it requested information. 
@@ -217,13 +215,11 @@ In our app, we will simulate a 504 error by adding this code to `app.component.h
 ```
 
 If we click our new button, we see in the console that we intercepted a 504 response.
-
-
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot3.png)
-
-
-
+<br>
+<br>
 So how do we retry the request?   
 
 Go to `http-interceptor.service.ts`, replace `return next.handle(request)` with the following code:
@@ -255,13 +251,11 @@ import { retryWhen } from 'rxjs/operators';
 Instead of passing through the response, we are intercepting it using the the `pipe` operator and, using the rxjs `retryWhen` operator, we've told Angular to retry ALL error responses.  
 
 Let's see what happens if we run our app and click the 504 button:
-
-
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot5.png)
-
-
-
+<br>
+<br>
 Well, we are trying alright but we've created an infinite loop that keeps retrying the request when it receives an error response.   Let's fix that by adding the following code inside `errors.pipe` above. 
 
 ```typescript
@@ -300,13 +294,11 @@ If we want to delay before re-trying, we can add the delay operator.   Our inter
 ```
 
 Now if we force the 504 error, it will retry 3 times with a 500 millisecond delay!
-
-
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot6.png)
-
-
-
+<br>
+<br>
 ## Intercepting outgoing requests and making your requests consistent
 
 
