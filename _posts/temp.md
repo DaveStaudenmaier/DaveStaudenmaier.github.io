@@ -128,13 +128,11 @@ Great!  Now all we need to do is add a little HTML to `app.component.html`, repl
 ```
 
 When you run the app, you can make a call and get a 'successful' response.   
-
-
-
+<br>
+<br>
 ![screen shot](/images/blog/http-interceptor/screen-shot1.png)
-
-
-
+<br>
+<br>
 Now we can add the http-interceptor service.
 
 ## How to add http-interceptor to your Angular project
