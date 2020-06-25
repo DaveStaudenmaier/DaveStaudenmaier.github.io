@@ -185,3 +185,9 @@ Here are some real-world use cases for custom attribute directives I've heard of
 - auto-focus on input fields
 - infinite scroll
 - stickiness to make an element fix in a position after a certain scrolling distance
+
+As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/custom-attribute-directive)
+
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+
+Keep on developing!
