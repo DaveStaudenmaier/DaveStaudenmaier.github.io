@@ -86,11 +86,5 @@ Renderer2 allows us to adjust the style of our Input element from typescript.
 
 And it meets the requirements:
 
-<a href="https://www.youtube.com"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px"></a>
+<a href="https://youtu.be/wiDZ0qVknqk"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px"></a>
 
-[![funky input](/images/blog/custom-attribute-directive/funky-input-screen-shot1.png)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
-<video width="320" height="240" controls>
-  
-  <source src="/images/blog/custom-attribute-directive/funky-input1.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
