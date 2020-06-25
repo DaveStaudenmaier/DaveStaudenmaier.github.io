@@ -85,3 +85,8 @@ export class AppComponent implements AfterViewInit {
 Renderer2 allows us to adjust the style of our Input element from typescript.
 
 And it meets the requirements:
+
+<video width="320" height="240" controls>
+  <source src="/images/blog/custom-attribute-directive/funky-input1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
