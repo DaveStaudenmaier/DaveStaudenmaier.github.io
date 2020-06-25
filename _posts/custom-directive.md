@@ -167,6 +167,6 @@ And the html is very simple now.  All we have to do is use our directive's selec
 
 It still looks awful but at least all the code is in one place when the visual designer comes to his senses and wants us to change it!
 
-<a href="https://youtu.be/_obj-qX_8rA"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px"></a>
+<a href="https://youtu.be/_obj-qX_8rA"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px" target="_blank"></a>
 
 ## Conclusion
