@@ -14,19 +14,35 @@ Angular Version: 9
 
 ## What is a directive and what are the different types?
 
-## What might we use an attribute directive for?
+Directives allow us to instruct Angular how to transform the DOM when rendering a template.
+
+There are three types of directives in Angular
+
+**Attribute Directive**
+- Used to alter the appearance and behavior of DOM elements.
+- Examples of Angular attribute directives are ngStyle and ngClass.
+- You can create your own attribute directives to encapsulate common logic.   Basically, anything you can do to the DOM in HTML, you can do programmatically with a custom attribute directive (i.e. add, remove, change styles, add; set a property like  a label, add or remove a class, etc.)
+
+**Structural Directive**
+- Used to alter the structure of the DOM.  `*` indicates a structural directive.
+- Examples of Angular structural directives are *ngIf and *ngFor
+- You can create your own structural directives to encapsulate common logic. 
+
+**Components**
+- Components are directives with a template!
+
+## What might we use a custom attribute directive for?
 
 Let's suppose a crazed visual designer has asked us to create a new look and feel for an input element in your app.   I say crazed because the visual designer has provided the following requirements for our input field:
-- input should be an oval shape with no indication of focus to mess up the shape
+- Input should be an oval shape with no indication of focus to mess up the shape
 - Limit of 10 characters
 - Input should be twice the height of normal inputs
 - Font size should be 24px
-- When the user enters an odd number of characters, the Input background switches to blue
-- When the user enters an even number of characters, the Input background switches to green
-- Therefore as user enters characters the background will switch from blue to green to blue to green, etc.
+- When the user enters an odd number of characters, the Input background switches to green
+- When the user enters an even number of characters, the Input background switches to blue
+- Therefore, as user enters characters the background will switch from green to blue to green to blue to green, etc.
 - When the user reaches the 10 character limit, the shape returns to normal
 - Placeholder value should be, quite fittingly, 'my funky input'
-
 
 Assuming this is a one-off request, we grit our teeth and decide to implement this in the component like this:
 
@@ -83,7 +99,7 @@ export class AppComponent implements AfterViewInit {
 }
 ```
 
-Renderer2 allows us to adjust the style of our Input element from typescript and listen for the `keydown` event on our input element.
+Renderer2 allows us to adjust the style of our input element from typescript and listen for the `keydown` event on our input element.
 
 And it meets the requirements (click to view on YouTube)
 
@@ -145,7 +161,7 @@ export class FunkyInputDirective implements OnInit {
 }
 ```
 
-We've taken in the odd and even colors as inputs using the @Input decorator.   It turns our Renderer2 is pretty powerful.  We can pretty much do anything that we might normally do through our HTML and CSS.  Now, we're using Renderer2 to set styles, attributes and properties, set focus to our element and remove styles, as well as listen for the `keydown` event on our input field!  
+We've taken in the odd and even colors as inputs using the @Input decorator.   It turns our Renderer2 is pretty powerful!  We can pretty much do anything that we might normally do through our HTML and CSS.  Now, we're using Renderer2 to set styles, attributes and properties, set focus to our element and remove styles, as well as listen for the `keydown` event on our input field!  And that's only a small example of what Renderer2 offers.  Check out [Angular's documentation on Renderer2](https://angular.io/api/core/Renderer2).
 
 And the html is very simple now.  All we have to do is use our directive's selector on an input field and use property binding to communicate our color choices.  Here are two implementations with different color choices. 
 
@@ -165,7 +181,7 @@ And the html is very simple now.  All we have to do is use our directive's selec
 </div>
 ```
 
-It still looks awful but at least all the code is in one place when the visual designer comes to his senses and wants us to change it!
+It still looks awful but at least all the code is in one place when the visual designer comes to his senses and wants us to change it!  (Click to view on YouTube)
 
 <a href="https://youtu.be/_obj-qX_8rA"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px" target="_blank"></a>
 
