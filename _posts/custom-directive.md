@@ -27,7 +27,7 @@ A crazed visual designer has asked you to create a new look and feel for an inpu
 - When the user reaches the 10 character limit, the shape returns to normal
 - Placeholder value should be, quite fittingly, 'my funky input'
 
-You decide to implment this in the component like this:
+You decide to implement this in the component like this:
 
 **HTML**
 ```html
@@ -51,13 +51,10 @@ You decide to implment this in the component like this:
 
 .normal-input {
   line-height: 2.5;
-  padding: 5px;
-  font-size: 24px;
   border-radius: default;
-  border-color: red;
-  border-color: default;
+  padding: 5px;
   outline: default;
-  color: default;
+  font-size: 24px;
 }
 ```
 
@@ -84,5 +81,7 @@ export class AppComponent implements AfterViewInit {
   }
 }
 ```
+
+Renderer2 allows us to adjust the style of our Input element from typescript.
 
 And it meets the requirements:
