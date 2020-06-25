@@ -87,7 +87,7 @@ Renderer2 allows us to adjust the style of our Input element from typescript and
 
 And it meets the requirements (click to view on YouTube)
 
-<a href="https://youtu.be/wiDZ0qVknqk"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px"></a>
+<a href="https://youtu.be/wiDZ0qVknqk"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px" target="_blank"></a>
 
 Unfortunately, the visual designer loves it so much, he wants to implement it consistently across the entire application!  Not only that, but he wants to make the colors configurable to match color schemes in various components.  Ugg.  Now we will have to duplicate this code in every component with an input element and maintain all that code and make sure it is consistent!
 
@@ -170,3 +170,18 @@ It still looks awful but at least all the code is in one place when the visual d
 <a href="https://youtu.be/_obj-qX_8rA"><img src="/images/blog/custom-attribute-directive/funky-input-screen-shot1.png" width="200px" target="_blank"></a>
 
 ## Conclusion
+
+We've learned how to enforce consistancy by encapsulating duplicate code into a directive and simplifying our HTML. 
+
+I think custom directives are underutilized by many development teams.  Perhaps this is because it is hard to imagine the use cases.  This is why I laid out this blog in such a way that you may imagine the use case and see the directive's usefulness.  
+
+Here are some real-world use cases for custom attribute directives I've heard of or used:
+- textarea autosize (i.e. expand as user uses up the space and keeps typing)
+- scroll a component vertically into view based on the current url
+- make any DOM element editable by an Admin and post changes to an endpoint
+- drag and drop
+- ripple effects
+- modify the templates of 3rd party components to add accessibility attributes
+- auto-focus on input fields
+- infinite scroll
+- stickiness to make an element fix in a position after a certain scrolling distance
