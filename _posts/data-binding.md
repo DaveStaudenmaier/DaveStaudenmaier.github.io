@@ -177,7 +177,7 @@ For our app, we saw above that we defaulted the value of the input to the `name`
 
 Let's see how our app looks now in this video I've posted on YouTube.
 
-<a href="https://youtu.be/wiDZ0qVknqk"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
+<a href="https://youtu.be/WeE-RYaOPvg"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
 
