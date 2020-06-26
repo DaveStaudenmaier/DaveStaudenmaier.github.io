@@ -55,6 +55,21 @@ Here is what the user sees:
 
 <img src="/images/blog/data-binding/name.png" width="300px">
 
+But what is meant by 'template expression'?   Angular will convert to a string any expression within the curly brackets. 
+
+**Number = {{ 1 + 2 }**
+
+Will dsplay as **Number = 3**
+
+If we have a boolean property called **wasHeABeatle = true**
+ 
+And in the template we have **He was a Beatle = {{ wasHeABeatle }}**
+
+Will display as **He was a Beatle = true**
+
+**Property Binding** 
+
+
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
