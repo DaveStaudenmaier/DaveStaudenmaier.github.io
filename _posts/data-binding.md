@@ -146,7 +146,7 @@ The onSubmit() method uses the @Output decorator to emit the latest value of the
 
 And in our app.component.html file, we are also using event binding to bind to `newName` in name.component.ts on the @Output decorator, and bind to the updateName method in app.component.ts, which updates the name property which is then reflected through string interpolation to the app.component template, as we saw above.    Note that we pass the event to the updateName method using the $event object.   Since all we emitted in the home.componet was the string 'name', then that is the value of the event object, but typically the event object has a rich set of properties you may want to use. 
 
-** app component HTML**
+**app component HTML**
 ```html
 <app-name
   [name]="name"
@@ -164,6 +164,18 @@ updateName(name: string) {
 Let's go over two-way data binding and then we'll see a video of how the app looks with what we've done so far.
 
 ### Two-way data binding 
+
+Two-way binding gives your app a way to share data between a component class and its template, but in both directions.  Without two-way binding, if we wanted to update the value of the name property in name.component.ts with the updated value, we would need to use event binding to update the value based on some event with the input, such as `blur`.  
+
+Two-way data binding uses the ngModel directive to make this simple by combining property binding and event binding.   So `property binding` + `event binding` = `two-way binding`.
+
+For our app, we saw above that we defaulted the value of the input to the `name` property.  When the user updates the name, we want the `name` property to be updated automatically.  All we have to do is the 'banana-in-a-box' with ngModel [()].  The syntax of `[(ngModel)]="property"` tells Angular to do what we need.  
+
+```html
+<input matInput [(ngModel)]="name">
+```
+
+Let's see how our app looks now in this video I've posted on YouTube.
 
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
