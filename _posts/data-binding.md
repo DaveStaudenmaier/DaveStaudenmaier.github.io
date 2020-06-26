@@ -35,7 +35,7 @@ Angular supports these different types of data binding which we will discuss thr
 
 I will show snippets of an Angular demo app you can find on GitHub and explain through these exmaples.   The app displays the name of a person with a picture and allows you to update the name from a child component.  So we have app.component and name.component.
 
-**Interpolation**
+### Interpolation
 
 Embedding expressions (i.e. template expressions) into marked up text is referred to as `interpolation`.  Interpolation allows you to incporporate a component property into the text between HTML element tags and within attribute assignments.   Interoplation uses double curly brackets to embed the {{ property }}. 
 
