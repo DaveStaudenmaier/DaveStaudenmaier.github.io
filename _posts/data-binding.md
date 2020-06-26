@@ -112,11 +112,13 @@ Here we pass a reference to name in our app.component.ts (i.e. `="name") to the 
 ```html
 <input matInput [(ngModel)]="name">
 ```
-Whoa, what is this ngModel?   We could have simpley displayed the name in our name.component.ts using property binding (i.e. [value]="name"), but we want to update our name property with the user updated name.   This is called two-way data binding which will we discuss in the next section.
+Whoa, what is this ngModel?   We could have simply displayed the name in our name.component.ts using property binding (i.e. [value]="name"), but we want to update our name property with the user updated name.   This is called two-way data binding which will we discuss in the next section.
 
 Here is what the user sees so far:
 
 <img src="/images/blog/data-binding/name-with-update.png" width="300px">
+
+### Two-way data binding 
 
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
