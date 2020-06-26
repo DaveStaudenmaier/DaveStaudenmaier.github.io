@@ -67,7 +67,56 @@ And in the template we have **He was a Beatle = {{ wasHeABeatle }}**
 
 Will display as **He was a Beatle = true**
 
-**Property Binding** 
+### Property Binding
+
+In the property binding, a template expression appears in quotes to the right of the = symbol as in [property]="expression".
+
+Let's say we wanted to display a picture of this Richard Starkey.  We could use property binding like this:
+
+**component** 
+```template
+profilePic = './../assets/images/ringo-Keystone-hutton-archives-getty.jpg';
+```
+
+**HTML**
+
+```html
+<img class="image" [src]="profilePic">
+```
+The square brackets around the element attribute `[src]` indicate to Angular that this is an expression to be evaluated.  
+
+Note that you could also have used interpolation in this example, in which case you would not use the square brackets:
+
+```html
+<img class="image" src="{{ profilePic }}">
+```
+
+Another example of property binding is passing a prooperty reference from a parent component to a child component.  In our example app, I created a component called `name` that uses the `@Input` decorator to get a reference to the name property in app.component.
+
+**name component**
+
+```typescript
+@Input('name') name: string;
+```
+
+**app.component HTML**
+
+```html
+<app-name
+  [name]="name"
+</app-name>
+```
+
+Here we pass a reference to name in our app.component.ts (i.e. `="name") to the name.component.ts name (i.e. [name]), which we can now display in our child template.   I created an input element in name.component.html and defaulted the value to the name from app.component.ts.
+
+```html
+<input matInput [(ngModel)]="name">
+```
+Whoa, what is this ngModel?   We could have simpley displayed the name in our name.component.ts using property binding (i.e. [value]="name"), but we want to update our name property with the user updated name.   This is called two-way data binding which will we discuss in the next section.
+
+Here is what the user sees so far:
+
+<img src="/images/blog/data-binding/name-with-update.png" width="300px">
 
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
