@@ -118,6 +118,51 @@ Here is what the user sees so far:
 
 <img src="/images/blog/data-binding/name-with-update.png" width="300px">
 
+
+### Event binding
+
+Event binding allows you to listen for certain events such as keystrokes, mouse movements, clicks, and touches.
+
+In our app, I added a button in home.component.html that uses event binding to listen for the click event and bind to the onSubmit method in home.component.ts.
+
+**home component HTML**
+```html
+<button mat-raised-button
+        color="primary"
+        (click)="onSubmit()">
+  Submit
+</button>
+```
+**home component**
+```typescript
+@Output() newName = new EventEmitter<string>();
+
+onSubmit() {
+  this.newName.emit(this.name);
+}
+```
+
+The onSubmit() method uses the @Output decorator to emit the latest value of the name property (see two-way binding) on how that was updated.  
+
+And in our app.component.html file, we are also using event binding to bind to `newName` in name.component.ts on the @Output decorator, and bind to the updateName method in app.component.ts, which updates the name property which is then reflected through string interpolation to the app.component template, as we saw above.    Note that we pass the event to the updateName method using the $event object.   Since all we emitted in the home.componet was the string 'name', then that is the value of the event object, but typically the event object has a rich set of properties you may want to use. 
+
+** app component HTML**
+```html
+<app-name
+  [name]="name"
+  (newName)="updateName($event)">
+</app-name>
+```
+
+**app component**
+```typescript
+updateName(name: string) {
+  this.name = name;
+}
+```
+
+Let's go over two-way data binding and then we'll see a video of how the app looks with what we've done so far.
+
 ### Two-way data binding 
 
 
