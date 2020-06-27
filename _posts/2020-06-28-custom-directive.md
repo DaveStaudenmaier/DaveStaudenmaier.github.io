@@ -3,11 +3,11 @@ layout: post
 title: Create a custom attribute directive in Angular
 ---
 
-In this blog, I explain the different types of directives in Angular and we will create a custom attribute directive and use it in a template.
+In this blog, I explain the different types of directives in Angular, create a custom attribute directive and use it in a template.
 
 As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/custom-attribute-directive)
 
-Angular Version: 9
+Angular Version: 9.1
 
 ----
 ****
@@ -21,17 +21,17 @@ There are three types of directives in Angular
 **Attribute Directive**
 - Used to alter the appearance and behavior of DOM elements.
 - Examples of Angular attribute directives are ngStyle and ngClass.
-- You can create your own attribute directives to encapsulate common logic.   Basically, anything you can do to the DOM in HTML, you can do programmatically with a custom attribute directive (i.e. add, remove, change styles, add; set a property like  a label, add or remove a class, etc.)
+- You can create your own attribute directives to encapsulate common logic.   Basically, anything you can do to the DOM in HTML, you can do programmatically with a custom attribute directive (i.e. add, remove, change styles, set a property like  a label, add or remove a class, etc.)
 
 **Structural Directive**
-- Used to alter the structure of the DOM.  `*` indicates a structural directive.
-- Examples of Angular structural directives are *ngIf and *ngFor
+- Used to alter the structure of the DOM.  **'*`** indicates a structural directive.
+- Examples of structural directives are *ngIf and *ngFor
 - You can create your own structural directives to encapsulate common logic. 
 
 **Components**
 - Components are directives with a template!
 
-## What might we use a custom attribute directive for?
+## Example use case requirements
 
 Let's suppose a crazed visual designer has asked us to create a new look and feel for an input element in your app.   I say crazed because the visual designer has provided the following requirements for our input field:
 - Input should be an oval shape with no indication of focus to mess up the shape
@@ -109,6 +109,8 @@ Unfortunately, the visual designer loves it so much, he wants to implement it co
 
 But wait, what if we create a custom attribute directive?  Then all of our code would be in one place and we could easily implement it consistently across the entire application!
 
+### Create a custom attribute directive 
+
 So, we use the Angular CLI to add a directive to our app:
 
 **`ng g d funky-input`**
@@ -161,7 +163,7 @@ export class FunkyInputDirective implements OnInit {
 }
 ```
 
-We've taken in the odd and even colors as inputs using the @Input decorator.   It turns our Renderer2 is pretty powerful!  We can pretty much do anything that we might normally do through our HTML and CSS.  Now, we're using Renderer2 to set styles, attributes and properties, set focus to our element and remove styles, as well as listen for the `keydown` event on our input field!  And that's only a small example of what Renderer2 offers.  Check out [Angular's documentation on Renderer2](https://angular.io/api/core/Renderer2).
+We've taken in the odd and even colors as inputs using the @Input decorator.   It turns out Renderer2 is pretty powerful!  We can pretty much do anything that we might normally do through our HTML and CSS.  Now, we're using Renderer2 to set styles, attributes and properties, set focus to our element and remove styles, as well as listen for the `keydown` event on our input field!  And that's only a small example of what Renderer2 offers.  Check out [Angular's documentation on Renderer2](https://angular.io/api/core/Renderer2).
 
 And the html is very simple now.  All we have to do is use our directive's selector on an input field and use property binding to communicate our color choices.  Here are two implementations with different color choices. 
 
