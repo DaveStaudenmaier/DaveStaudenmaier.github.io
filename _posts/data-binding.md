@@ -27,7 +27,6 @@ Angular supports these different types of data binding which we will discuss thr
 - Property binding
 - Event binding
 - Two-way data binding with ngModel
-- Attribute binding
 - Class binding
 - Style binding
 
@@ -231,7 +230,9 @@ Now let's see what our class binding and style binding looks like in this video 
 
 <a href="https://youtu.be/VvRNwXgrrgM"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
 
-As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
+## Conclusion
+
+We have used all of the different types of data binding Angular provides in our little app that you can find on my [GitHub](https://github.com/DaveStaudenmaier/data-binding).
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
 
