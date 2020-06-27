@@ -229,7 +229,7 @@ fontWeight = 'default';
 
 Now let's see what our class binding and style binding looks like in this video on YouTube:
 
-<a href="https://youtu.be/WeE-RYaOPvg"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
+<a href=https://youtu.be/VvRNwXgrrgM"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
 
