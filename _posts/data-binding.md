@@ -179,6 +179,58 @@ Let's see how our app looks now in this video I've posted on YouTube.
 
 <a href="https://youtu.be/WeE-RYaOPvg"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
 
+### Class binding
+
+You can add and remove CSS class names from an element's class attribute with a class binding.  
+
+To create a single class binding, start with the prefix class followed by a dot (.) and the name of the CSS class (for example, [class.foo]="hasFoo"). Angular adds the class when the bound expression is truthy, and it removes the class when the expression is falsy (with the exception of undefined).
+
+Let's change our name header on our app.component to turn red when it is updated.  To do that we add a new CSS class and use class binding to add the class when a boolean is set to true when the name is updated.   
+
+**CSS**
+```css
+.name {
+  color: red;
+}
+```
+
+**component**
+```typescript
+updatedName = false;
+```
+
+**HTML**
+```html
+<p [class.name]="updatedName">Name: {{ name }}</p>
+```
+When `updatedName` is set to `true`, the `name` class will be applied to the element.  
+
+### Style binding
+
+Similar to class binding, you can set styles dynamically using style binding.  For instance `[style.width]="width"`.
+
+Let's create a new property in app.component.ts called `fontWeight` and change it when the name is updated.
+
+**component**
+```typescript
+fontWeight = 'default';
+
+  updateName(name: string) {
+  this.name = name;
+  this.updatedName = true;
+  this.fontWeight = '900';
+  }
+```
+
+**HTML**
+```html
+<p [class.name]="updatedName" [style.font-weight]="fontWeight">Name: {{ name }}</p>
+```
+
+Now let's see what our class binding and style binding looks like in this video on YouTube:
+
+<a href="https://youtu.be/WeE-RYaOPvg"><img src="/images/blog/data-binding/ringo.png" width="200px" target="_blank"></a>
+
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/data-binding)
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
