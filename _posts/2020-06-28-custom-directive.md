@@ -111,7 +111,7 @@ But wait, what if we create a custom attribute directive?  Then all of our code 
 
 ## Create a custom attribute directive 
 
-So, we use the Angular CLI to add a directive to our app:
+First, we use the Angular CLI to add a directive to our app:
 
 **`ng g d funky-input`**
 
