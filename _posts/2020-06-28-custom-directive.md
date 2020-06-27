@@ -20,12 +20,12 @@ There are three types of directives in Angular
 
 **Attribute Directive**
 - Used to alter the appearance and behavior of DOM elements.
-- Examples of Angular attribute directives are ngStyle and ngClass.
+- Examples of Angular attribute directives are `ngStyle` and `ngClass`.
 - You can create your own attribute directives to encapsulate common logic.   Basically, anything you can do to the DOM in HTML, you can do programmatically with a custom attribute directive (i.e. add, remove, change styles, set a property like  a label, add or remove a class, etc.)
 
 **Structural Directive**
 - Used to alter the structure of the DOM.  **'*`** indicates a structural directive.
-- Examples of structural directives are *ngIf and *ngFor
+- Examples of structural directives are `*ngIf` and `*ngFor`
 - You can create your own structural directives to encapsulate common logic. 
 
 **Components**
