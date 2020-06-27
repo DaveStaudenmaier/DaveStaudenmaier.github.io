@@ -109,7 +109,7 @@ Unfortunately, the visual designer loves it so much, he wants to implement it co
 
 But wait, what if we create a custom attribute directive?  Then all of our code would be in one place and we could easily implement it consistently across the entire application!
 
-### Create a custom attribute directive 
+## Create a custom attribute directive 
 
 So, we use the Angular CLI to add a directive to our app:
 
