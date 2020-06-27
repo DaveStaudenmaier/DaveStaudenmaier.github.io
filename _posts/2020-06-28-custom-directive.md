@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Create a custom attribute directive in Angular
+title: Create a custom attribute directive in Angular to enforce consistancy, reduce duplication and simplify our templates
 ---
 
 In this blog, I explain the different types of directives in Angular, create a custom attribute directive and use it in a template.
