@@ -126,7 +126,14 @@ export class CardComponent implements OnInit {
 }
 ```
 
-In `<mat-card-header>`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator and apply it to an enum for consistency.  
+In `<mat-card-header>`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator and apply it to an enum for consistency, displaying in the template in `<mat-card-subtitle>`.   `<mat-actions>` implements the consistent 'LIKE' and 'SHARE' buttons. 
+
+Under the header we put the image using `<ng-content select="[image]"></ng-content>`.  Note the use of the `select` property which references a variable called `image` in the parent component.   This allows the parent componen to specify the HTML to be projected into this specific area of the card.   We use the same technique in `<mat-card-content>` to project the `locaion' and 'description' HTML into the appropriate place in our card. 
+
+Let's see how we would use our component.  In `app.component.html` I added this:
+
+```html
+```
 ## What is ng-template and ng-templateOutlet and why are they useful for our use case?
 
 ## What is ng-container and how can that help us?
