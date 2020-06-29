@@ -26,6 +26,9 @@ As part of a web application for RV users, we have been given these requirements
 - The next area should be a text area that the user of the reusable component may fill with something like a description.  For flexibility, the may configure the content and look-and-feel of this area.
 - There are two buttons under the description, LIKE and SHARE that are not configurable and should always have the same look and location on the card.
 
+Here is an example of a card:
+![example](/images/blog/content-projection/example.png)
+
 ## What is content projection and how can it help with our requirements?
 
 Based on these requirements, it makes sense to accept the card type as an @Input from the parent component using our reusable component.   But the rest of the requirements give much flexibility to the user of our component to use something like @Input.  Instead we will allow the user to 'project' their HTML content into our component!
