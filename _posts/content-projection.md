@@ -27,7 +27,8 @@ As part of a web application for RV users, we have been given these requirements
 - There are two buttons under the description, LIKE and SHARE that are not configurable and should always have the same look and location on the card.
 
 Here is an example of a card:
-![example](/images/blog/content-projection/example.png)
+
+<img src="/images/blog/content-projection/example.png" height="300px">
 
 ## What is content projection and how can it help with our requirements?
 
