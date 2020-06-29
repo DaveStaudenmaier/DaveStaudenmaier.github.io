@@ -43,6 +43,90 @@ ng new content-projection
 ng install @angular/material@9.1.0 @angular/cli@9.1.0 @angular/animations@9.1.0
 ng add @angular/material
 ```
+
+I also created a component called 'card' in our content-projection directory like this:
+
+```
+ng g c card
+```
+
+`card` will be our reusable card component.  in `card.component.html' I added the following:
+
+**HTML**
+```html
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>RV Like Me</mat-card-title>
+    <mat-card-subtitle>{{ type }}</mat-card-subtitle>
+    <img mat-card-avatar src="./../../assets/images/logo.png">
+  </mat-card-header>
+
+  <ng-content select="[image]"></ng-content>
+
+  <mat-card-content>
+    <ng-content select="[location]"></ng-content>
+    <ng-content select="[description]"></ng-content>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+
+</mat-card>
+
+```
+
+**CSS**
+```css
+mat-card {
+  margin: 5px;
+  max-width: 300px;
+}
+
+mat-card-header {
+  margin-bottom: 10px;
+}
+
+mat-card-content {
+  margin-top: 10px;
+}
+
+.main-image{
+  width: 100%;
+}
+```
+
+**Typescript**
+```typescript
+import { Component, OnInit, Input } from '@angular/core';
+
+enum CardType {
+  lifestyle = 'Lifestyle',
+  rig = 'Rig'
+}
+
+@Component({
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css']
+})
+export class CardComponent implements OnInit {
+  @Input() cardType: string;
+
+  type: string;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    this.type = CardType[this.cardType];
+  }
+
+}
+```
+
+In `<mat-card-header`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator.
 ## What is ng-template and ng-templateOutlet and why are they useful for our use case?
 
 ## What is ng-container and how can that help us?
