@@ -126,7 +126,7 @@ export class CardComponent implements OnInit {
 }
 ```
 
-In `<mat-card-header`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator and apply it to an enum
+In `<mat-card-header>`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator and apply it to an enum for consistency.  
 ## What is ng-template and ng-templateOutlet and why are they useful for our use case?
 
 ## What is ng-container and how can that help us?
