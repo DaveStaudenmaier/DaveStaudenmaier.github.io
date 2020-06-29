@@ -32,9 +32,17 @@ Here is an example of a card:
 
 ## What is content projection and how can it help with our requirements?
 
-Based on these requirements, it makes sense to accept the card type as an @Input from the parent component using our reusable component.   But the rest of the requirements give much flexibility to the user of our component to use something like @Input.  Instead we will allow the user to 'project' their HTML content into our component!
+Based on these requirements, it makes sense to accept the card type as an @Input from the parent component using our reusable component.   But the rest of the requirements give much flexibility to the user of our component which would make it difficult to use @Input.  Instead we will allow the user to 'project' their HTML content into our component by using the ng-content directive!
 
+The `ng-content` directive can be used as a placeholder in the target component to 'project' HTML from the parent component that is using the target component's selector in it's HTML.  This makes ideal for our requirements where we want the user of our reusable component to be able to provide styled HTML content to our component.   Let's see how it works. 
 
+I created a component called content-projection and added Angular Material so we can use Material's `<mat-card>` as our host container as it provides the structure needed to support the requirement.  In case you haven't done this, here are the CLI commands.  
+
+```
+ng new content-projection
+ng install @angular/material@9.1.0 @angular/cli@9.1.0 @angular/animations@9.1.0
+ng add @angular/material
+```
 ## What is ng-template and ng-templateOutlet and why are they useful for our use case?
 
 ## What is ng-container and how can that help us?
