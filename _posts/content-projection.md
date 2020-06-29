@@ -17,7 +17,7 @@ Angular Version: 9.1
 We have been given these requirements to create a reusable card component that will assure a consistent look-and-feel and branding for cards used throughout the application:
 - Card must use our logo icon
 
-<img src="/images/blog/content-projection/logo.png" width:80px"
+<img src="/images/blog/content-projection/logo.png" width="80px">
 
 - Card must have the title
 ## What is content projection and how can it help with our requirements?
