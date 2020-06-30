@@ -4,21 +4,13 @@ title: About
 permalink: /about/
 ---
 
-I started programming when I was a teenager.  I loved programming because you could create something real that had never existed before and people could use it!
+I am a passionate software developer with more than 15+ years’ experience developing software for small and large companies, such as HBO and across many industries, including Healthcare, Supply Chain Optimization, Investment Banking and Entertainment.  
 
-So, I majored in Computer Science in college and developed code for many years for small companies and large companies, including such names as HBO.  I eventually took on Software Development in the Airline, Supply-Chain and Healthcare industries, and moved into management, up to VP of Product Develpment. 
-
-But nothing could ever beat developing code with my own hands!  
-
-And then in 2019, my wife and I made a major change in our lives.  We quit our jobs, sold our home and most of our possessions and began touring the country in an RV!  
-
-Though I had started the re-learning-programming process in 2018, this life change offered the perfect opportunity to put full-time focus on rebooting my development skills.  I focused my attention on a new progressive web app for the RV community called RVLikeMe.com I built on the MEAN stack (MongoDB, Express, Angular, Node.js) and hosted on AWS.   I haven't had so much fun in years!
-
-That's when I decided I wanted to help others who are new to programming or want to go back, as I did, to get started, and so I created this blog. 
+The technical stack I am currently working in is the MEAN stack (Angular, Node.js/Express and MongoDB), but I also have extensive experience with relational databases and many other languages.  
 
 ### More Information
 
-I currently work remotely from my RV on freelance or contact development opportunities. 
+I currently work remotely on freelance or contact development opportunities.
 
 ### Contact me
 
