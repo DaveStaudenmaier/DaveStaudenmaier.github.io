@@ -192,7 +192,148 @@ Instead of a single image, we're passing in 3 smaller images that are clickable 
 
 <img src="/images/blog/content-projection/example2.png" height="300px">
 
-## What is ng-template and ng-templateOutlet and why are they useful for our use case?
+Great!  We've given the user the flexibility to change the content as they see fit, while maintaining consistancy and branding!
+
+Now, how can we make this code more efficient?   ng-template and ng-container!
+
+## ng-container, ng-template and ng-templateOutlet
+
+Let us suppose that we want to randomly alternate between the single and multi instances we showed above.   We might use ngSwitch to code it as follows: 
+
+**HTML**
+```typescript
+<div [ngSwitch]="cardType">
+
+  <div *ngSwitchCase="'single'">
+      <app-card
+        [cardType]="'lifestyle'">
+        <img image style="width:100%" src="./../../assets/images/mccall-sunset.jpg">
+        <p location>McCall, ID</p>
+        <p description>This was the view from our RV park.  Beautiful here!</p>
+      </app-card>
+  </div>
+
+  <div #multi>
+    <app-card
+      [cardType]="'lifestyle'">
+      <div image style="text-align:center">
+        <a style="text-decoration:none; cursor:pointer;"
+            href="./../../assets/images/mccall-sunset.jpg" target="_blank">
+            <img style="width:32.3%; margin-right:1.03%" src="./../../assets/images/mccall-sunset.jpg">
+        </a>
+
+        <a style="text-decoration:none; cursor:pointer;"
+            href="./../../assets/images/mccall-lake.jpg" target="_blank">
+            <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-lake.jpg">
+        </a>
+
+        <a style="text-decoration:none; cursor:pointer;"
+            href="./../../assets/images/mccall-snow.jpg" target="_blank">
+            <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-snow.jpg">
+        </a>
+      </div>
+      <p location>
+        Plan your visit to
+        <a href="https://visitmccall.org" class="hyperlink" target="_blank">McCall, ID</a>
+        !
+      </p>
+      <div description>
+        <p>Things to see in McCall, ID</p>
+        <ul>
+          <li>Payette Lake</li>
+          <li>Ponderosa State Park</li>
+          <li>Central Idaho Historical Museum</li>
+        </ul>
+      </div>
+    </app-card>
+  </div>
+
+  <div *ngSwitchDefault>
+    <p>I see nothing</p>
+  </div>
+
+</div>
+```
+
+**Typescript**
+```typescript
+enum CardType {
+  'single' = 1,
+  'multi' = 2
+}
+
+cardType: string;
+
+ngOnInit(): void {
+  const cardNbr = Math.floor(Math.random() * 2) + 1;
+  this.cardType = CardType[cardNbr];
+}
+```
+What does this look like in the DOM?   Using Chrome's development tools we can inspect the source code and see all of the `<divs>` we are using:
+
+<img src="/images/blog/content-projection/divs.png" max-width="400px">
+
+We could use the `<ng-template>` directive to help here.  Let's replace the `divs` around our two `<app-card>` selectors:
+
+```typescript
+  <ng-container [ngSwitch]="cardType">
+
+    <ng-template [ngSwitchCase]="'single'">
+        <app-card
+          [cardType]="'lifestyle'">
+          <img image style="width:100%" src="./../../assets/images/mccall-sunset.jpg">
+          <p location>McCall, ID</p>
+          <p description>This was the view from our RV park.  Beautiful here!</p>
+        </app-card>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'multi'">
+      <app-card
+        [cardType]="'lifestyle'">
+        <div image style="text-align:center">
+          <a style="text-decoration:none; cursor:pointer;"
+              href="./../../assets/images/mccall-sunset.jpg" target="_blank">
+              <img style="width:32.3%; margin-right:1.03%" src="./../../assets/images/mccall-sunset.jpg">
+          </a>
+
+          <a style="text-decoration:none; cursor:pointer;"
+              href="./../../assets/images/mccall-lake.jpg" target="_blank">
+              <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-lake.jpg">
+          </a>
+
+          <a style="text-decoration:none; cursor:pointer;"
+              href="./../../assets/images/mccall-snow.jpg" target="_blank">
+              <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-snow.jpg">
+          </a>
+        </div>
+        <p location>
+          Plan your visit to
+          <a href="https://visitmccall.org" class="hyperlink" target="_blank">McCall, ID</a>
+          !
+        </p>
+        <div description>
+          <p>Things to see in McCall, ID</p>
+          <ul>
+            <li>Payette Lake</li>
+            <li>Ponderosa State Park</li>
+            <li>Central Idaho Historical Museum</li>
+          </ul>
+        </div>
+      </app-card>
+    </ng-template>
+
+    <ng-template *ngSwitchDefault>
+      <p>I see nothing</p>
+    </ng-template>
+
+  </ng-container>
+```
+
+Now let's look at the DOM again.  Two of the divs are gone.   The only one remaining is the wrapper for the parent component.  What happened?
+
+<img src="/images/blog/content-projection/nodivs.png" max-width="400px">
+
+This is where the `ng-template` and and `ng-container` directives come in handy.   They allow us to hold our HTML without adding anything to the DOM.  Yet what the user sees remains the same.   This is good for performance because there are less useless `divs` in the DOM.
 
 ## What is ng-container and how can that help us?
 
