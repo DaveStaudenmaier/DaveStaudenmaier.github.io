@@ -133,7 +133,7 @@ Under the header we put the image using `<ng-content select="[image]"></ng-conte
 Let's see how we would use our component.  In `app.component.html` I added this:
 
 ```html
-<div *ngSwitchCase="'single'">
+<div>
     <app-card
       [cardType]="'lifestyle'">
       <img image style="width:100%" src="./../../assets/images/mccall-sunset.jpg">
@@ -145,7 +145,53 @@ Let's see how we would use our component.  In `app.component.html` I added this:
 
 We pass the card type of 'lifestyle' through property binding.   We use the `image` reference variable to identify where we want to put the image in the card, as well as the `location` and `description` reference variables.  
 
-Let's try it out 
+We try it out and it looks like the example in our requirements!
+
+Now let's make sure it has the flexibility we desire in our reusable component.   
+
+<img src="/images/blog/content-projection/example.png" height="300px">
+
+```typescript
+<div>
+  <app-card
+    [cardType]="'lifestyle'">
+    <div image style="text-align:center">
+      <a style="text-decoration:none; cursor:pointer;"
+          href="./../../assets/images/mccall-sunset.jpg" target="_blank">
+          <img style="width:32.3%; margin-right:1.03%" src="./../../assets/images/mccall-sunset.jpg">
+      </a>
+
+      <a style="text-decoration:none; cursor:pointer;"
+          href="./../../assets/images/mccall-lake.jpg" target="_blank">
+          <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-lake.jpg">
+      </a>
+
+      <a style="text-decoration:none; cursor:pointer;"
+          href="./../../assets/images/mccall-snow.jpg" target="_blank">
+          <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-snow.jpg">
+      </a>
+    </div>
+    <p location>
+      Plan your visit to
+      <a href="https://visitmccall.org" class="hyperlink" target="_blank">McCall, ID</a>
+      !
+    </p>
+    <div description>
+      <p>Things to see in McCall, ID</p>
+      <ul>
+        <li>Payette Lake</li>
+        <li>Ponderosa State Park</li>
+        <li>Central Idaho Historical Museum</li>
+      </ul>
+    </div>
+  </app-card>
+</div>
+```
+
+Instead of a single image, we're passing in 3 smaller images that are clickable to enlarge.   The text for location contains an external link and the description is now a list.   Let's see what this looks like now:
+
+<img src="/images/blog/content-projection/example2.png" height="300px">
+
 ## What is ng-template and ng-templateOutlet and why are they useful for our use case?
 
 ## What is ng-container and how can that help us?
