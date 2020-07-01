@@ -430,3 +430,13 @@ This is what it would look like if we used `divs` instead of `ng-container`
 <img src="/images/blog/content-projection/div.png" max-width="400px">
 
 If you want to apply two structural directives to an element, you could wrap the element in `ng-container` and apply one there, as Angular does not allow two structural directives on one element.
+
+## Conclusion
+
+We've learned how to use `ng-content` for projection of HTML from a parent template to a child template and how to use `ng-template` with `ngTemplateOutlet` to store and switch between HTML and `ng-container` to host structural directives without DOM impact.
+
+As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/content-projection)
+
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+
+Keep on developing!
