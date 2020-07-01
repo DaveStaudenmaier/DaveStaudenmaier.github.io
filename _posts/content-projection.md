@@ -196,9 +196,27 @@ Great!  We've given the user the flexibility to change the content as they see f
 
 Now, how can we make this code more efficient?   ng-template and ng-container!
 
-## ng-container, ng-template and ng-templateOutlet
+## ng-template
 
-Let us suppose that we want to randomly alternate between the single and multi instances we showed above.   We might use ngSwitch to code it as follows: 
+`ng-template` allows you to wrap some HTML that will not be included in the DOM unless you apply a structural directive like `*ngIf`.  This code will show nothing.  It is just holding the template:
+
+```html
+<ng-template>
+  <p>the text here will not be seen in the DOM</p>
+</ng-template>
+```
+
+But this template will be seen in the DOM provided showText evaluates to true:
+
+```html
+<ng-template *ngIf="showText">
+  <p>the text here will not be seen in the DOM</p>
+</ng-template>
+```
+
+`ng-template` itself will not show in the DOM but if you had used a `div` instead, the div would show.   So, it helps you optimize your HTML.
+
+I will use `ng-template` in our code to hold the 'single image' and 'multi-image' examples we saw above and alternate them based on a random number generator.  First, we will use `div` and then we will try `ng-template` and see the difference in the DOM.
 
 **HTML**
 ```typescript
@@ -269,72 +287,140 @@ ngOnInit(): void {
   this.cardType = CardType[cardNbr];
 }
 ```
-What does this look like in the DOM?   Using Chrome's development tools we can inspect the source code and see all of the `<divs>` we are using:
+What does this look like in the DOM?   Using Chrome's development tools we can inspect the source code and see all of the `divs` we are using:
 
 <img src="/images/blog/content-projection/divs.png" max-width="400px">
 
-We could use the `<ng-template>` directive to help here.  Let's replace the `divs` around our two `<app-card>` selectors:
+Now, we will try the `ng-template` directive, replacing the `divs` around our two `<app-card>` selectors:
 
 ```typescript
-  <ng-container [ngSwitch]="cardType">
+<div [ngSwitch]="cardType">
 
-    <ng-template [ngSwitchCase]="'single'">
-        <app-card
-          [cardType]="'lifestyle'">
-          <img image style="width:100%" src="./../../assets/images/mccall-sunset.jpg">
-          <p location>McCall, ID</p>
-          <p description>This was the view from our RV park.  Beautiful here!</p>
-        </app-card>
-    </ng-template>
-
-    <ng-template [ngSwitchCase]="'multi'">
+  <ng-template [ngSwitchCase]="'single'">
       <app-card
         [cardType]="'lifestyle'">
-        <div image style="text-align:center">
-          <a style="text-decoration:none; cursor:pointer;"
-              href="./../../assets/images/mccall-sunset.jpg" target="_blank">
-              <img style="width:32.3%; margin-right:1.03%" src="./../../assets/images/mccall-sunset.jpg">
-          </a>
-
-          <a style="text-decoration:none; cursor:pointer;"
-              href="./../../assets/images/mccall-lake.jpg" target="_blank">
-              <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-lake.jpg">
-          </a>
-
-          <a style="text-decoration:none; cursor:pointer;"
-              href="./../../assets/images/mccall-snow.jpg" target="_blank">
-              <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-snow.jpg">
-          </a>
-        </div>
-        <p location>
-          Plan your visit to
-          <a href="https://visitmccall.org" class="hyperlink" target="_blank">McCall, ID</a>
-          !
-        </p>
-        <div description>
-          <p>Things to see in McCall, ID</p>
-          <ul>
-            <li>Payette Lake</li>
-            <li>Ponderosa State Park</li>
-            <li>Central Idaho Historical Museum</li>
-          </ul>
-        </div>
+        <img image style="width:100%" src="./../../assets/images/mccall-sunset.jpg">
+        <p location>McCall, ID</p>
+        <p description>This was the view from our RV park.  Beautiful here!</p>
       </app-card>
-    </ng-template>
+  </ng-template>
 
-    <ng-template *ngSwitchDefault>
-      <p>I see nothing</p>
-    </ng-template>
+  <ng-template [ngSwitchCase]="'multi'">
+    <app-card
+      [cardType]="'lifestyle'">
+      <div image style="text-align:center">
+        <a style="text-decoration:none; cursor:pointer;"
+            href="./../../assets/images/mccall-sunset.jpg" target="_blank">
+            <img style="width:32.3%; margin-right:1.03%" src="./../../assets/images/mccall-sunset.jpg">
+        </a>
 
-  </ng-container>
+        <a style="text-decoration:none; cursor:pointer;"
+            href="./../../assets/images/mccall-lake.jpg" target="_blank">
+            <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-lake.jpg">
+        </a>
+
+        <a style="text-decoration:none; cursor:pointer;"
+            href="./../../assets/images/mccall-snow.jpg" target="_blank">
+            <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-snow.jpg">
+        </a>
+      </div>
+      <p location>
+        Plan your visit to
+        <a href="https://visitmccall.org" class="hyperlink" target="_blank">McCall, ID</a>
+        !
+      </p>
+      <div description>
+        <p>Things to see in McCall, ID</p>
+        <ul>
+          <li>Payette Lake</li>
+          <li>Ponderosa State Park</li>
+          <li>Central Idaho Historical Museum</li>
+        </ul>
+      </div>
+    </app-card>
+  </ng-template>
+
+  <ng-template *ngSwitchDefault>
+    <p>I see nothing</p>
+  </ng-template>
+
+</div>
 ```
 
-Now let's look at the DOM again.  Two of the divs are gone.   The only one remaining is the wrapper for the parent component.  What happened?
+Now let's look at the DOM again.  Two of the divs are gone.   The only one remaining is the wrapper for the parent component.  
 
 <img src="/images/blog/content-projection/nodivs.png" max-width="400px">
 
-This is where the `ng-template` and and `ng-container` directives come in handy.   They allow us to hold our HTML without adding anything to the DOM.  Yet what the user sees remains the same.   This is good for performance because there are less useless `divs` in the DOM.
+## ng-container and ng-templateOutlet
 
-## What is ng-container and how can that help us?
+We avoid another unnecessary `div` which is holdin gout `ngSwitch` by replacing with `ng-container`. 
 
+The `ng-container` directive provides us with an element that we can attach a structural directive to without having to create an extra element.
 
+We could simplify further using `ngTemplateOutlet` to reference the appropriate templates.  This makes for cleaner code
+
+```html
+<ng-container [ngSwitch]="cardType">
+
+  <ng-container *ngSwitchCase="'single'">
+    <ng-container *ngTemplateOutlet="single"></ng-container>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'multi'">
+    <ng-container *ngTemplateOutlet="multi"></ng-container>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <ng-container *ngTemplateOutlet="default"></ng-container>
+  </ng-container>
+
+</ng-container>
+
+<ng-template #single>
+  <app-card
+    [cardType]="'lifestyle'">
+    <img image style="width:100%" src="./../../assets/images/mccall-sunset.jpg">
+    <p location>McCall, ID</p>
+    <p description>This was the view from our RV park.  Beautiful here!</p>
+  </app-card>
+</ng-template>
+
+<ng-template #multi>
+  <app-card
+    [cardType]="'lifestyle'">
+    <div image style="text-align:center">
+      <a style="text-decoration:none; cursor:pointer;"
+          href="./../../assets/images/mccall-sunset.jpg" target="_blank">
+          <img style="width:32.3%; margin-right:1.03%" src="./../../assets/images/mccall-sunset.jpg">
+      </a>
+
+      <a style="text-decoration:none; cursor:pointer;"
+          href="./../../assets/images/mccall-lake.jpg" target="_blank">
+          <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-lake.jpg">
+      </a>
+
+      <a style="text-decoration:none; cursor:pointer;"
+          href="./../../assets/images/mccall-snow.jpg" target="_blank">
+          <img style="width:32.3%; margin-left:1.03%" src="./../../assets/images/mccall-snow.jpg">
+      </a>
+    </div>
+    <p location>
+      Plan your visit to
+      <a href="https://visitmccall.org" class="hyperlink" target="_blank">McCall, ID</a>
+      !
+    </p>
+    <div description>
+      <p>Things to see in McCall, ID</p>
+      <ul>
+        <li>Payette Lake</li>
+        <li>Ponderosa State Park</li>
+        <li>Central Idaho Historical Museum</li>
+      </ul>
+    </div>
+  </app-card>
+</ng-template>
+```
+
+We can see here that there is no `div` clutter at all.   Just our container to host the child component.
+
+<img src="/images/blog/content-projection/container.png" max-width="400px">
