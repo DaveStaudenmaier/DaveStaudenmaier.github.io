@@ -427,7 +427,7 @@ We can see here that there is no `div` clutter at all.   Just our container to h
 
 <img src="/images/blog/content-projection/container.png" max-width="400px">
 
-If you want to apply two structural directives to an element, you could wrap the element in `ng-container` and apply one there, as Angular does not allow two structural directives on one element.
+On a side note, if you want to apply two structural directives to an element, you could wrap the element in `ng-container` and apply one there, as Angular does not allow two structural directives on one element.
 
 ## Conclusion
 
