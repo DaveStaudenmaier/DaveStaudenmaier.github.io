@@ -28,7 +28,7 @@ As part of a web application for RV users, we have been given these requirements
 
 Here is an example of a card:
 
-<img src="/images/blog/content-projection/example.png" height="400px">
+<img src="/images/blog/content-projection/example.png" height="500px">
 
 ## What is content projection and how can it help with our requirements?
 
