@@ -28,15 +28,15 @@ As part of a web application for RV users, we have been given these requirements
 
 Here is an example of a card:
 
-<img src="/images/blog/content-projection/example.png" height="300px">
+<img src="/images/blog/content-projection/example.png" height="400px">
 
 ## What is content projection and how can it help with our requirements?
 
-Based on these requirements, it makes sense to accept the card type as an @Input from the parent component using our reusable component.   But the rest of the requirements give much flexibility to the user of our component which would make it difficult to use @Input.  Instead we will allow the user to 'project' their HTML content into our component by using the ng-content directive!
+Based on these requirements, it makes sense to accept the card type as an @Input from the parent component using our reusable component.   But the rest of the requirements give much flexibility to the user of our component which would make it difficult to use @Input.  Instead we will allow the user to 'project' their HTML content into our component by using the `ng-content` directive!
 
 The `ng-content` directive can be used as a placeholder in the target component to 'project' HTML from the parent component that is using the target component's selector in it's HTML.  This makes ideal for our requirements where we want the user of our reusable component to be able to provide styled HTML content to our component.   Let's see how it works. 
 
-I created a component called content-projection and added Angular Material so we can use Material's `<mat-card>` as our host container as it provides the structure needed to support the requirement.  In case you haven't done this, here are the CLI commands.  
+I created a component called content-projection and added Angular Material so we can use Material's `<mat-card>` as our host container, as it provides the structure needed to support the requirement.  In case you haven't done this, here are the CLI commands.  
 
 ```
 ng new content-projection
@@ -50,7 +50,7 @@ I also created a component called 'card' in our content-projection directory lik
 ng g c card
 ```
 
-`card` will be our reusable card component.  in `card.component.html' I added the following:
+`card` will be our reusable card component.  in `card.component.html` I added the following:
 
 **HTML**
 ```html
@@ -128,7 +128,7 @@ export class CardComponent implements OnInit {
 
 In `<mat-card-header>`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator and apply it to an enum for consistency, displaying in the template in `<mat-card-subtitle>`.   `<mat-actions>` implements the consistent 'LIKE' and 'SHARE' buttons. 
 
-Under the header we put the image using `<ng-content select="[image]"></ng-content>`.  Note the use of the `select` property which references a variable called `image` in the parent component.   This allows the parent component to specify the HTML to be projected into this specific area of the card.   We use the same technique in `<mat-card-content>` to project the `locaion' and 'description` HTML into the appropriate place in our card. 
+Under the header we put the image using `<ng-content select="[image]"></ng-content>`.  Note the use of the `select` property which references a variable called `image` in the parent component.   This allows the parent component to specify the HTML to be projected into this specific area of the card.   We use the same technique in `<mat-card-content>` to project the `locaion` and `description` HTML into the appropriate place in our card. 
 
 Let's see how we would use our component.  In `app.component.html` I added this:
 
@@ -149,7 +149,7 @@ We try it out and it looks like the example in our requirements!
 
 Now let's make sure it has the flexibility we desire in our reusable component.   
 
-<img src="/images/blog/content-projection/example.png" height="300px">
+<img src="/images/blog/content-projection/example.png" height="400px">
 
 ```typescript
 <div>
@@ -198,7 +198,9 @@ Now, how can we make this code more efficient?   ng-template and ng-container!
 
 ## ng-template
 
-`ng-template` allows you to wrap some HTML that will not be included in the DOM unless you apply a structural directive like `*ngIf`.  This code will show nothing.  It is just holding the template:
+`ng-template` allows you to wrap some HTML that will not be included in the DOM unless you apply a structural directive like `*ngIf`.  
+
+This code will show nothing.  It is just holding the template:
 
 ```html
 <ng-template>
@@ -353,11 +355,11 @@ Now let's look at the DOM again.  Two of the divs are gone.   The only one remai
 
 ## ng-container and ng-templateOutlet
 
-We avoid another unnecessary `div` which is holdin gout `ngSwitch` by replacing with `ng-container`. 
+We avoid another unnecessary `div`, which is holding our `ngSwitch`, by replacing with `ng-container`. 
 
-The `ng-container` directive provides us with an element that we can attach a structural directive to without having to create an extra element.
+The `ng-container` directive provides us with an element that we can attach a structural directive to without having to create an extra element in the DOM.
 
-We could simplify further using `ngTemplateOutlet` to reference the appropriate templates.  This makes for cleaner code
+We could simplify further using `ngTemplateOutlet` to reference the appropriate templates.  This makes for cleaner code.
 
 ```html
 <ng-container [ngSwitch]="cardType">
@@ -421,19 +423,15 @@ We could simplify further using `ngTemplateOutlet` to reference the appropriate 
 </ng-template>
 ```
 
-We can see here that there is no `div` clutter at all.   Just our container to host the child component.
+We can see here that there is no `div` clutter at all.   Just our container to host the child component!
 
 <img src="/images/blog/content-projection/container.png" max-width="400px">
-
-This is what it would look like if we used `divs` instead of `ng-container`
-
-<img src="/images/blog/content-projection/div.png" max-width="400px">
 
 If you want to apply two structural directives to an element, you could wrap the element in `ng-container` and apply one there, as Angular does not allow two structural directives on one element.
 
 ## Conclusion
 
-We've learned how to use `ng-content` for projection of HTML from a parent template to a child template and how to use `ng-template` with `ngTemplateOutlet` to store and switch between HTML and `ng-container` to host structural directives without DOM impact.
+We have learned how to use `ng-content` for projection of HTML from a parent template to a child template and how to use `ng-template` with `ngTemplateOutlet` to store and switch between HTML and `ng-container` to host structural directives without DOM impact.
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/content-projection)
 
