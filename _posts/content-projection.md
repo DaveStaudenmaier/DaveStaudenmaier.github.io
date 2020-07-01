@@ -188,7 +188,11 @@ Now let's make sure it has the flexibility we desire in our reusable component.
 </div>
 ```
 
-Instead of a single image, we're passing in 3 smaller images that are clickable to enlarge.   The text for location contains an external link and the description is now a list.   Let's see what this looks like now:
+Instead of a single image, we're passing in 3 smaller images that are clickable to enlarge.   The text for location contains an external link and the description is now a list. 
+
+One important thing to point out is that the styles are coming from the parent.  I've used both in-line styles and a style class in the `app.component`.
+
+Let's see what this looks like now:
 
 <img src="/images/blog/content-projection/example2.png" height="500px">
 
