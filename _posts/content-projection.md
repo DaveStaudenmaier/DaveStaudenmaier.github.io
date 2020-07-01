@@ -147,9 +147,9 @@ We pass the card type of 'lifestyle' through property binding.   We use the `ima
 
 We try it out and it looks like the example in our requirements!
 
-Now let's make sure it has the flexibility we desire in our reusable component.   
+<img src="/images/blog/content-projection/example.png" height="500px">
 
-<img src="/images/blog/content-projection/example.png" height="400px">
+Now let's make sure it has the flexibility we desire in our reusable component.   
 
 ```typescript
 <div>
@@ -190,7 +190,7 @@ Now let's make sure it has the flexibility we desire in our reusable component.
 
 Instead of a single image, we're passing in 3 smaller images that are clickable to enlarge.   The text for location contains an external link and the description is now a list.   Let's see what this looks like now:
 
-<img src="/images/blog/content-projection/example2.png" height="300px">
+<img src="/images/blog/content-projection/example2.png" height="500px">
 
 Great!  We've given the user the flexibility to change the content as they see fit, while maintaining consistancy and branding!
 
