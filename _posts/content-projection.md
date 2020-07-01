@@ -424,3 +424,7 @@ We could simplify further using `ngTemplateOutlet` to reference the appropriate 
 We can see here that there is no `div` clutter at all.   Just our container to host the child component.
 
 <img src="/images/blog/content-projection/container.png" max-width="400px">
+
+This is what it would look like if we used `divs` instead of `ng-container`
+
+<img src="/images/blog/content-projection/div.png" max-width="400px">
