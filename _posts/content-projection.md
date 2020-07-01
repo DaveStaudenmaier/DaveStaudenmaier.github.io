@@ -32,9 +32,9 @@ Here is an example of a card:
 
 ## What is content projection and how can it help with our requirements?
 
-Based on these requirements, it makes sense to accept the card type as an @Input from the parent component using our reusable component.   But the rest of the requirements give much flexibility to the user of our component which would make it difficult to use @Input.  Instead we will allow the user to 'project' their HTML content into our component by using the `ng-content` directive!
+Based on these requirements, it makes sense to pass a reference to the card type through an `@Input` decorator.   But the rest of the requirements give much flexibility to the user of our component, which would make it difficult to use `@Input`.  Instead we will allow the user to 'project' their HTML content into our component by using the `ng-content` directive!
 
-The `ng-content` directive can be used as a placeholder in the target component to 'project' HTML from the parent component that is using the target component's selector in it's HTML.  This makes ideal for our requirements where we want the user of our reusable component to be able to provide styled HTML content to our component.   Let's see how it works. 
+The `ng-content` directive can be used as a placeholder in the target component to 'project' HTML from the parent component that is using the target component's selector in it's HTML.  This makes it ideal for our requirements, where we want the user of our reusable component to be able to provide styled HTML content to our component.   Let's see how it works. 
 
 I created a component called content-projection and added Angular Material so we can use Material's `<mat-card>` as our host container, as it provides the structure needed to support the requirement.  In case you haven't done this, here are the CLI commands.  
 
@@ -126,9 +126,9 @@ export class CardComponent implements OnInit {
 }
 ```
 
-In `<mat-card-header>`, we use the title and logo provided in our requirements.  We accept the cardType from the parent through the @Input decorator and apply it to an enum for consistency, displaying in the template in `<mat-card-subtitle>`.   `<mat-actions>` implements the consistent 'LIKE' and 'SHARE' buttons. 
+In `<mat-card-header>`, we use the title and logo provided in our requirements.  We reference the cardType from the parent through the @Input decorator and apply it to an enum for consistency, displaying in the template in `<mat-card-subtitle>`.   `<mat-actions>` implements the consistent 'LIKE' and 'SHARE' buttons. 
 
-Under the header we put the image using `<ng-content select="[image]"></ng-content>`.  Note the use of the `select` property which references a variable called `image` in the parent component.   This allows the parent component to specify the HTML to be projected into this specific area of the card.   We use the same technique in `<mat-card-content>` to project the `locaion` and `description` HTML into the appropriate place in our card. 
+Under `<mat-card-header>` we put the image using `<ng-content select="[image]"></ng-content>`.  Note the use of the `select` property which references a variable called `image` in the parent component.   This allows the parent component to specify the HTML to be projected into this specific area of the card.   We use the same technique in `<mat-card-content>` to project the `location` and `description` HTML into the appropriate place in our card. 
 
 Let's see how we would use our component.  In `app.component.html` I added this:
 
@@ -143,7 +143,7 @@ Let's see how we would use our component.  In `app.component.html` I added this:
 </div>
 ```
 
-We pass the card type of 'lifestyle' through property binding.   We use the `image` reference variable to identify where we want to put the image in the card, as well as the `location` and `description` reference variables.  
+We pass the card type of 'lifestyle' through property binding.   We use the `image` reference variable on the `<img>` tag to identify where we want to put the image in the card, as well as the `location` and `description` reference variables.  
 
 We try it out and it looks like the example in our requirements!
 
@@ -435,7 +435,7 @@ On a side note, if you want to apply two structural directives to an element, yo
 
 ## Conclusion
 
-We have learned how to use `ng-content` for projection of HTML from a parent template to a child template and how to use `ng-template` with `ngTemplateOutlet` to store and switch between HTML and `ng-container` to host structural directives without DOM impact.
+Hopefully, by using a real-world use case, you can see how to use `ng-content` for projection of HTML from a parent template to a child template and how to use `ng-template` with `ngTemplateOutlet` to store and switch between HTML and `ng-container` to host structural directives without DOM impact.
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/content-projection)
 
