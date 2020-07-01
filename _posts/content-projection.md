@@ -428,3 +428,5 @@ We can see here that there is no `div` clutter at all.   Just our container to h
 This is what it would look like if we used `divs` instead of `ng-container`
 
 <img src="/images/blog/content-projection/div.png" max-width="400px">
+
+If you want to apply two structural directives to an element, you could wrap the element in `ng-container` and apply one there, as Angular does not allow two structural directives on one element.
