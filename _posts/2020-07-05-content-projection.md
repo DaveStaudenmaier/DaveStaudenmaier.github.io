@@ -23,7 +23,7 @@ As part of a web application for RV users, we have been given these requirements
 - For phase one, the component should accept a card type of 'lifestyle' or 'rig' and this should be displayed nicely as a subtitle. 
 - The next area of the card should be an area for a picture, or multiple pictures, or really anything the user of the reusable component wants to put there.  
 - Next, should be a text area the user of the reusable component could fill with something like location or other meta information. For flexibility, the may configure the content and look-and-feel of this area.
-- The next area should be a text area that the user of the reusable component may fill with something like a description.  For flexibility, the may configure the content and look-and-feel of this area.
+- The next area should be a text area that the user of the reusable component may fill with something like a description.  For flexibility, they may configure the content and look-and-feel of this area.
 - There are two buttons under the description, LIKE and SHARE that are not configurable and should always have the same look and location on the card.
 
 Here is an example of a card:
@@ -198,7 +198,7 @@ Let's see what this looks like now:
 
 Great!  We've given the user the flexibility to change the content as they see fit, while maintaining consistancy and branding!
 
-Now, how can we make this code more efficient?   ng-template and ng-container!
+Now, how can we make this code more efficient?   `ng-template` and `ng-container`!
 
 ## ng-template
 
@@ -359,7 +359,7 @@ Now let's look at the DOM again.  Two of the divs are gone.   The only one remai
 
 ## ng-container and ng-templateOutlet
 
-We avoid another unnecessary `div`, which is holding our `ngSwitch`, by replacing with `ng-container`. 
+We can also avoid another unnecessary `div`, which is holding our `ngSwitch`, by replacing with `ng-container`. 
 
 The `ng-container` directive provides us with an element that we can attach a structural directive to without having to create an extra element in the DOM.
 
@@ -437,7 +437,7 @@ On a side note, if you want to apply two structural directives to an element, yo
 
 Hopefully, by using a real-world use case, you can see how to use `ng-content` for projection of HTML from a parent template to a child template and how to use `ng-template` with `ngTemplateOutlet` to store and switch between HTML and `ng-container` to host structural directives without DOM impact.
 
-As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/content-projection)
+As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/content-projection).
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
 
