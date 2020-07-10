@@ -19,5 +19,14 @@ Angular Version: 9.1.0
 ****
 
 ## Setting up an Angular project for animations
-## 
+
+## Conclusion
+
+Hopefully, by using real-world, practical examples, you can get an idea of how powerful and useful Angular animations are and how you might apply it in your own project!
+
+As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/animations).
+
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+
+Keep on developing!
 
