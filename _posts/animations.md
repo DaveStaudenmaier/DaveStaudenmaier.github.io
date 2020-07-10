@@ -20,6 +20,16 @@ Angular Version: 9.1.0
 
 ## Setting up an Angular project for animations
 
+## Add Post slide-in animation example
+
+## Thumbnail photo expansion animation example
+
+## Draw attention to an element animation example
+
+## Add-to-list animation example
+
+## Route animation
+
 ## Conclusion
 
 Hopefully, by using real-world, practical examples, you can get an idea of how powerful and useful Angular animations are and how you might apply it in your own project!
