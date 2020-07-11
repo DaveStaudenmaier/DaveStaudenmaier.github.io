@@ -19,6 +19,13 @@ Angular Version: 9.1.0
 ****
 
 ## Setting up an Angular project for animations
+First we create a new project called 'animations' and then in the animations project folder we install Angular Material, CDK and animations.
+
+```
+ng new animations
+ng install @angular/material@9.1.0 @angular/cli@9.1.0 @angular/animations@9.1.0
+ng add @angular/material
+```
 
 ## Add Post slide-in animation example
 
