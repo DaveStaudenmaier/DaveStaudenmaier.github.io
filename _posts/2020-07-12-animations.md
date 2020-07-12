@@ -75,7 +75,9 @@ The `animate()` function is where the magic happens.  Use the `animate()` functi
 
 The timings parameter takes a string defined in three parts: animate ('duration delay easing').
 
-In our example, we do not use delay.  We want the slide-in (transition from 'out' to 'in') to occur over 800 milliseconds.  We could have expressed this as `.8s` or just `800` as well.   The third argument, easing, controls how the animation accelerates and decelerates during its runtime. For example, ease-in causes the animation to begin slowly, and to pick up speed as it progresses.   You can find some good advice on easing in [Material Design documentation](https://material.io/design/motion/speed.html#controlling-speed).   
+In our example, we do not use delay.  We want the slide-in (transition from 'out' to 'in') to occur over 800 milliseconds.  We could have expressed this as `.8s` or just `800` as well.   The third argument, easing, controls how the animation accelerates and decelerates during its runtime. For example, ease-in causes the animation to begin slowly, and to pick up speed as it progresses.   You can find some good advice on easing in [Material Design documentation](https://material.io/design/motion/speed.html#controlling-speed). 
+
+
 Valid values for easing are `ease`, `ease-in`, `ease-out`, `ease-in-out`, or a `cubic-bezier() function call`.  Here is a nice [blog](https://css-tricks.com/ease-out-in-ease-in-out/) by Chris Coyier on these easing options.   The one we are using, `ease-in-out`, is slow at the beginning and the end and faster in the middle. 
 
 For slide-out, perhaps we want our transition to happen faster, so we go with a duration of 400 milliseconds.  
@@ -84,7 +86,7 @@ Finally, you will see all of this is wrapped up in the `trigger()` function. An 
 
 So, how do we use this animation?   
 
-In `post.component.ts` I import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator.  You could also simply define your animation directly in the animations array of the component, but in our case we define all of our animations in one file and export them so they may be imported into various components. 
+In `post.component.ts` we import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator.  You could also simply define your animation directly in the animations array of the component, but in our case we define all of our animations in one file and export them so they may be imported into various components. 
 
 ```typescript
 import { slideDownAnimation, addItemFadeAnimation } from './../animations';
@@ -114,7 +116,7 @@ Then, we bind the trigger to a template expression using standard Angular proper
 ```typescript
   addPostOpen = 'out';
 ```
-And so, you can see that the default is our 'out' state where you might remember `maxHeight` is zero, and so it is hidden.   All we have to do to activate our animation to show the add-post template, is set the `addPostOpen` property to 'in'!   I simply created a button a user can click to add a post and then set the `addPostOpen` property to 'in' which animated the showing of my `app-add-post` component's template.  
+And so, you can see that the default is our 'out' state where you might remember `maxHeight` is zero, and so it is hidden.   All we have to do to activate our animation to show the add-post template, is set the `addPostOpen` property to 'in'!   We simply create a button a user can click to add a post and then set the `addPostOpen` property to 'in', which animates the showing of my `app-add-post` component's template.  
 
 ## Fade in animation on new post
 
@@ -173,7 +175,7 @@ Let's look at how we apply this trigger first.   In `post.component.html` we wra
 
 Back to the animation.  We are using the `query()` function, which is typically used to find an element in the HTML.  The `query()` function takes three arguments: (selector, animation, options).  The selector identifies the element to query, or a set of elements that contain Angular-specific characteristics.
 
-In our case we are setting the selector to the alias `:enter` which really means going from a state of `void` to anything (`void => *`) and `:leave` which is an alias for `* => void`.   I am not deleting posts in this example, so `:leave` will not be used, but I wanted to leave it for you to see what you could do.  For more information on 'Angular-specific characteristics' see the [Angular documentation](https://angular.io/api/animations/query). 
+In our case we are setting the selector to the alias `:enter` which really means going from a state of `void` to anything (`void => *`) and `:leave` which is an alias for `* => void`.   We are not deleting posts in this example, so `:leave` will not be used, but I wanted to leave it for you to see what you could do.  For more information on 'Angular-specific characteristics' see the [Angular documentation](https://angular.io/api/animations/query). 
 
 ```html
 query(':enter',
@@ -204,7 +206,7 @@ This animation is simliar to our slide-in example above.   We define the start s
 
 See the slide-in example for an explanation of the `trigger()`, `state()`, `transition()`, `animate()` and `style()` functions.  
 
-I use the animation in `other.component.html` as follows: 
+We use the animation in `other.component.html` as follows: 
 
 ```html
 <p>Click thumbnail to view full size</p>
@@ -360,9 +362,9 @@ export const fadeAnimation = trigger('fadeAnimation', [
 
 We are using the same techniques we used in the above animations.   When our trigger changes value, we want to do three sequential animations using the `query()` function.
 
-In the first `query()`, we hide the new page as it enters so we can fade out the old page.   
+In the first `query()`, we hide the new page as it enters so we can fade out the old page. `:enter` (i.e. `void => *`) identifies the new page.
 
-In the second `query()`, we animate the old page from full opacity to invisible over 600 milliseconds.
+In the second `query()`, we animate the old page from full opacity to invisible over 600 milliseconds.  `:leave` (i.e. `* => void`) identifies the page we are leaving.
 
 In the third `query()`, we animate the new page from invisible (as we set in the first query) to fully visible over 600 milliseconds.
 
@@ -380,23 +382,23 @@ Since we applied this to the main `router-outlet`, it will work for all route tr
 
 ## Conclusion
 
-In this blog, we have used many of the available animation functions:
-- trigger(): Kicks off the animation and serves as a container for all other animation function calls. HTML template binds to triggerName. Use the first argument to declare a unique trigger name. Uses array syntax.
-- transition(): Defines the animation sequence between two named states. Uses array syntax.
-- style(): Defines one or more CSS styles to use in animations. Controls the visual appearance of HTML elements during animations. Uses object syntax.
-- query(): Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
-- state(): Creates a named set of CSS styles that should be applied on successful transition to a given state. The state can then be referenced by name within other animation functions.
-- animate(): Specifies the timing information for a transition. Optional values for delay and easing. Can contain style() calls within.
+**In this blog, we have used many of the available animation functions:**
+- **trigger()**: Kicks off the animation and serves as a container for all other animation function calls. HTML template binds to triggerName. Use the first argument to declare a unique trigger name. Uses array syntax.
+- **transition()**: Defines the animation sequence between two named states. Uses array syntax.
+- **style()**: Defines one or more CSS styles to use in animations. Controls the visual appearance of HTML elements during animations. Uses object syntax.
+- **query()**: Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
+- **state()**: Creates a named set of CSS styles that should be applied on successful transition to a given state. The state can then be referenced by name within other animation functions.
+- **animate()**: Specifies the timing information for a transition. Optional values for delay and easing. Can contain style() calls within.
 
 **There are a lot more you can use to create more complex animations including:**
 
-- keyframes(): 	Allows a sequential change between styles within a specified time interval. Use within animate(). Can include multiple style() calls within each keyframe(). Uses array syntax.
-- group(): Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
-- sequence(): Specifies a list of animation steps that are run sequentially, one by one.
-- stagger(): Staggers the starting time for animations for multiple elements.
-- animation(): Produces a reusable animation that can be invoked from elsewhere. Used together with useAnimation().
-- useAnimation(): Activates a reusable animation. Used with animation().
-- animateChild(): Allows animations on child components to be run within the same timeframe as the parent.
+- **keyframes()**: 	Allows a sequential change between styles within a specified time interval. Use within animate(). Can include multiple style() calls within each keyframe(). Uses array syntax.
+- **group()**: Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
+- **sequence()**: Specifies a list of animation steps that are run sequentially, one by one.
+- **stagger()**: Staggers the starting time for animations for multiple elements.
+- **animation()**: Produces a reusable animation that can be invoked from elsewhere. Used together with useAnimation().
+- **useAnimation()**: Activates a reusable animation. Used with animation().
+- **animateChild()**: Allows animations on child components to be run within the same timeframe as the parent.
 
 Hopefully, by using real-world, practical examples, you can get an idea of how powerful and beautiful Angular animations can be and how you might apply it in your own project!
 
