@@ -13,22 +13,32 @@ In this blog, I will who show some examples of practical, real-world animations 
 
 As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/animations).
 
+I recommend downloading the project from GitHub because I will not be going through details like how to set up Angular or create a post component.   We will focus on the animations involved.  
+
 Angular Version: 9.1.0
 
 ----
 ****
 
-## Setting up an Angular project for animations
-First we create a new project called 'animations' and then in the animations project folder we install Angular Material, CDK and animations.
+## Project set-up
 
-```
-ng new animations
-ng install @angular/material@9.1.0 @angular/cli@9.1.0 @angular/animations@9.1.0
-ng add @angular/material
-```
+In the project there is an `animations.ts` file where all of the animation configurations are stored.  
+
+The project uses Angular Routing because we will go over how to animate a route. 
+
+There are four components:
+- app.component
+- post.component
+- add-post.component
+- other.component
+
+`app.component.html` simply holds the router outlet.  The default page is `post.component.html`, which also contains the `add-post-component` which we will slide in.  
+
+`other.component` is another component to hold some examples and another component to route to for our routing example.
 
 ## Add Post slide-in animation example
 
+In the project is 
 ## Thumbnail photo expansion animation example
 
 ## Draw attention to an element animation example
