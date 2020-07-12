@@ -349,7 +349,24 @@ export const fadeAnimation = trigger('fadeAnimation', [
 
 We are using the same techniqes we used in the above animations.   When our trigger changes value, we want to do three sequential animations using the `query()` function.
 
-First, as the 
+In the first `query()`, we hide the new page as it enters so we can fade out the old page.   
+
+In the second `query()`, we animate the old page from full opacity to invisible over 600 milliseconds.
+
+In the third `query()`, we animate the new page from invisible (as we set in the first query) to fully visible over 600 milliseconds.
+
+That should all look familiar.  But how do we apply this to our routes?  We apply it to our main `router-outlet` in `app.component.html`:
+
+```html
+<main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+ </main>
+```
+
+Here we trigger our route fade animation when a route is activated.  We can determine this by assigning 'outlet' to a reference variable we called '#o' and checking the `isActivated` state of 'o', our outlet.  If it is activated, then set our trigger to the activatedRoute, otherwise set it to null. 
+
+Since we applied this to the main `router-outlet`, it will work for all route transitions!
+
 ## Conclusion
 
 Hopefully, by using real-world, practical examples, you can get an idea of how powerful and useful Angular animations are and how you might apply it in your own project!
