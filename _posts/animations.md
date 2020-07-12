@@ -317,10 +317,39 @@ Here is how we use this animation in `other.component.html`:
   <mat-divider></mat-divider>
 ```
 
-WHen the user clicks a button, we add an item to the Items array.  I simply set the value of our `listAddItemSlideInAnimation` trigger to 'slideIn' which triggers our slide-in animation. 
+When the user clicks a button, we add an item to the Items array.  I simply set the value of our `listAddItemSlideInAnimation` trigger to 'slideIn' which triggers our slide-in animation. 
 
 ## Route animation
 
+As the user switches from one screen to the next through Angular's routing, it would be nice if the change was smooth rather than jarring.  Perhaps the old page fades out and the new page fades in.   
+
+Here is the animation we are using in the `animations.ts` file:
+
+```typescript
+export const fadeAnimation = trigger('fadeAnimation', [
+  transition('* => *', [
+    query(
+      ':enter',
+      [style({ opacity: 0 })],
+      { optional: true } 
+    ),
+    query(
+      ':leave',
+      [style({ opacity: 1 }), animate('0.6s', style({ opacity: 0 }))],
+      { optional: true }
+    ),
+    query(
+      ':enter',
+      [style({ opacity: 0 }), animate('0.6s', style({ opacity: 1 }))],
+      { optional: true }
+    )
+  ])
+]);
+```
+
+We are using the same techniqes we used in the above animations.   When our trigger changes value, we want to do three sequential animations using the `query()` function.
+
+First, as the 
 ## Conclusion
 
 Hopefully, by using real-world, practical examples, you can get an idea of how powerful and useful Angular animations are and how you might apply it in your own project!
