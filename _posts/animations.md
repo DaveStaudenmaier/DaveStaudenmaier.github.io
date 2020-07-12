@@ -182,6 +182,8 @@ query(':enter',
 ```
 Next we apply the style using the `style()` function, animating from an opacity of zero (invisible) to 1 over 3 seconds.  
 
+By default, Angular throws an error when zero items are found. Set the optional flag to ignore this error.
+
 ## Thumbnail photo expansion animation example
 
 ## Draw attention to an element animation example
