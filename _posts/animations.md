@@ -24,6 +24,7 @@ Angular Version: 9.1.0
 
 When you run the project you will see the following animations in this YouTube video:
 
+<a href="https://youtu.be/j_7ug2WHK4w"><img src="/images/blog/amimations/animations.png" width="200px" target="_blank"></a>
 
 ## Project set-up
 
