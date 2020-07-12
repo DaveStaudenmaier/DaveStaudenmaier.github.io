@@ -40,7 +40,7 @@ I created a component called content-projection and added Angular Material so we
 
 ```
 ng new content-projection
-ng install @angular/material@9.1.0 @angular/cli@9.1.0 @angular/animations@9.1.0
+ng install @angular/material @angular/cdk @angular/animations
 ng add @angular/material
 ```
 
