@@ -219,6 +219,39 @@ Here we use the property `imageState` whose value is defaulted to 'thumbnail' an
 
 ## Draw attention to an element animation example
 
+Perhaps you wish to draw the user's attention to an element on the page when some event happens.  
+
+Here is the animation we are using in the `animations.ts` file:
+
+```typescript
+export const attentionAnimation = trigger('attentionAnimation', [
+  transition('* => drawAttention', [
+    query('.attention', animate(1000, style({color: 'red', fontSize: '24px', fontWeight: 'bold'}))),
+    query('.attention', animate(1000, style({color: 'black', fontSize: '16px', fontWeight: 'normal'})))
+  ])
+]);
+```
+
+I hope things are starting to look familiar now.  Similar to the post fade in animation above, we start with a transition and use two `query()` functions.  In this case, we want to begin our animation when the trigger is set to 'drawAnimation'.  
+
+This time we are using the `query()` function to find a specific element using a class name of `attention`.  First, over 1 second we will grow the text we want to draw attention to and change it's color to red and bold it.  Then the second `query()` funciton, brings the text back to normal.  
+
+In `other.component.html` we apply this animation: 
+
+```html
+<div>
+  <button mat-button class="mat-raised-button" (click)="startAnimation()">Draw attention animation</button>
+</div>
+
+...
+
+<div [@attentionAnimation]="attention">
+  <p class="attention">some text</p>
+</div>
+```
+
+We initiate the animation with a button.  In the `startAnimation()` function, we change the value of the `attention` property to 'drawAttention', which triggers the animation on an element futher down the page which we identified with a class name of `attention`.   
+
 ## Add-to-list animation example
 
 ## Route animation
