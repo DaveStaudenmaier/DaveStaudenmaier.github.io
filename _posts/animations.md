@@ -369,7 +369,24 @@ Since we applied this to the main `router-outlet`, it will work for all route tr
 
 ## Conclusion
 
-Hopefully, by using real-world, practical examples, you can get an idea of how powerful and useful Angular animations are and how you might apply it in your own project!
+In this blog, we have used many of the available animation functions:
+- trigger(): Kicks off the animation and serves as a container for all other animation function calls. HTML template binds to triggerName. Use the first argument to declare a unique trigger name. Uses array syntax.
+- transition(): Defines the animation sequence between two named states. Uses array syntax.
+- style(): Defines one or more CSS styles to use in animations. Controls the visual appearance of HTML elements during animations. Uses object syntax.
+- query(): Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
+- state(): Creates a named set of CSS styles that should be applied on successful transition to a given state. The state can then be referenced by name within other animation functions.
+- animate(): Specifies the timing information for a transition. Optional values for delay and easing. Can contain style() calls within.
+
+**There are a lot more you can use to create more complex animations including:**
+- keyframes(): 	Allows a sequential change between styles within a specified time interval. Use within animate(). Can include multiple style() calls within each keyframe(). Uses array syntax.
+- group(): Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
+- sequence(): Specifies a list of animation steps that are run sequentially, one by one.
+- stagger(): Staggers the starting time for animations for multiple elements.
+- animation(): Produces a reusable animation that can be invoked from elsewhere. Used together with useAnimation().
+- useAnimation(): Activates a reusable animation. Used with animation().
+- animateChild(): Allows animations on child components to be run within the same timeframe as the parent.
+
+Hopefully, by using real-world, practical examples, you can get an idea of how powerful and beautiful Angular animations can be and how you might apply it in your own project!
 
 As a reminder, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/animations).
 
