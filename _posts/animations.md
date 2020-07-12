@@ -118,7 +118,7 @@ And so, you can see that the default is our 'out' state where you might remember
 
 ## Fade in animation on new post
 
-In addition to sliding add-post in and out, when I show the new post back in the post component, I want to slowing fade it in instead of abruptly showing it.  
+When we add a post, it is added to our posts array and is displayed for the user.  We will use animation to slowly fade in the new post.  
 
 Here is the animation in the `animations.ts` file:
 
@@ -137,11 +137,11 @@ export const addItemFadeAnimation = trigger('addItemFadeAnimation', [
 ]);
 ```
 
-Here we start again with a trigger named 'addItemFadeAnimation'.  But in this example we start with transition.  Remember, the transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of animation steps.
+Here we start again with a trigger, named 'addItemFadeAnimation'.  But in this example we start with transition.  Remember, the transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of animation steps.
 
 In this example, when we change our triggered value in any way, we want the animation to trigger.  We define this using wildcard `*`.  If the value changes from anything to anything, apply the animation.
 
-Let's look at how we apply this trigger first.   In `post.component.html` I wrapped an `*ngFor` directive with our animation trigger.  If the posts array length changes (i.e. we add a new element to the array), then apply the animation to the new element.  
+Let's look at how we apply this trigger first.   In `post.component.html` we wrap an `*ngFor` directive with our animation trigger.  If the posts array length changes (i.e. we add a new element to the array), then apply the animation to the new element.  
 
 ```html
 <div [@addItemFadeAnimation]="posts.length">
@@ -171,7 +171,7 @@ Let's look at how we apply this trigger first.   In `post.component.html` I wrap
 </div>
 ```
 
-Back to the animation.  We are using the `query()` function, which is typically used to find an element in the HTML.  The `query()` function takes three arguments: (selector, animation, options).  The selector identifies the element to query, or a set of elements that contain Angular-specific characteristics
+Back to the animation.  We are using the `query()` function, which is typically used to find an element in the HTML.  The `query()` function takes three arguments: (selector, animation, options).  The selector identifies the element to query, or a set of elements that contain Angular-specific characteristics.
 
 In our case we are setting the selector to the alias `:enter` which really means going from a state of `void` to anything (`void => *`) and `:leave` which is an alias for `* => void`.   I am not deleting posts in this example, so `:leave` will not be used, but I wanted to leave it for you to see what you could do.  For more information on 'Angular-specific characteristics' see the [Angular documentation](https://angular.io/api/animations/query). 
 
@@ -181,13 +181,13 @@ query(':enter',
   { optional: true }
 ),
 ```
-Next we apply the style using the `style()` function, animating from an opacity of zero (invisible) to 1 over 3 seconds.  
+Next we apply the style using the `style()` function, animating from an opacity of zero (invisible) to one over 3 seconds.  
 
-By default, Angular throws an error when zero items are found. Set the optional flag to ignore this error.
+By default, Angular throws an error when zero items are found. We set the optional flag to ignore this error.
 
 ## Thumbnail photo expansion animation example
 
-If you are showing a thumbnail photo to a user that you want to exand to full size when the user clicks on the image, if would be nice if the image expanded and contracted slowly rather than jumping to full size.  Let's see how we do that.  
+Suppose you are showing a thumbnail photo to a user that you want to exand to full size when the user clicks on the image.  It would be nice if the image expanded and contracted slowly rather than jumping to full size.  Let's see how we do that.  
 
 Here is the animation we are using in the `animations.ts` file:
 
@@ -200,7 +200,7 @@ export const thumbnailImageExpandAnimation = trigger('thumbnailImageExpandAnimat
 ]);
 ```
 
-This animation is simliar to our slide-in example above.   We define the start state we call 'thumbnail' and the end state we call 'fullsize'.  Then we animate expansion to full size over 1 second and conraction back to original size in 1 second.  
+This animation is simliar to our slide-in example above.   We define the start state we call 'thumbnail' and the end state we call 'fullsize'.  Then we animate expansion to full size over 1 second and contraction back to original size in 1 second.  
 
 See the slide-in example for an explanation of the `trigger()`, `state()`, `transition()`, `animate()` and `style()` functions.  
 
@@ -216,7 +216,17 @@ I use the animation in `other.component.html` as follows:
 </div>
 ```
 
-Here we use the property `imageState` whose value is defaulted to 'thumbnail' and changed to 'fullsize' in the `expandImage()` function when the user clicks on the image.
+Here we use the property `imageState` whose value is defaulted to 'thumbnail' and changed to 'fullsize' in the `expandImage()` function when the user clicks on the image.  This triggers our `thumbnail => fullsize` transition.  Setting it back to 'thumbnail' when the user clicks on the full size image will trigger our `fullsize => thumbnail` animation.
+
+```typescript
+expandImage() {
+  if (this.imageState === 'thumbnail') {
+    this.imageState = 'fullsize';
+  } else {
+    this.imageState = 'thumbnail';
+  }
+}
+```
 
 ## Draw attention to an element animation example
 
@@ -235,7 +245,7 @@ export const attentionAnimation = trigger('attentionAnimation', [
 
 I hope things are starting to look familiar now.  Similar to the post fade in animation above, we start with a transition and use two `query()` functions.  In this case, we want to begin our animation when the trigger is set to 'drawAnimation'.  
 
-This time we are using the `query()` function to find a specific element using a class name of `attention`.  First, over 1 second we will grow the text we want to draw attention to and change it's color to red and bold it.  Then the second `query()` funciton, brings the text back to normal.  
+This time we are using the `query()` function to find a specific element with a class name of `attention`.  First, over 1 second we will grow the text we want to draw attention to and change it's color to red and bold it.  Then the second `query()` funciton, brings the text back to normal.  
 
 In `other.component.html` we apply this animation: 
 
@@ -289,7 +299,7 @@ export const listAddItemSlideInAnimation = trigger('listAddItemSlideInAnimation'
 
 ListAddItemFadeAnimation works just like the post add above.  Any change of our trigger item (i.e. length of the array) will cause the new item to fade in by changing it's opacacity over 800 milliseconds. 
 
-For slide-in, we are using something new called `transform`.  `transform` is used to move the element in and out of position.  The `translateX()` function defines the position.  In our final state, we want the normal position is defined as `translateX(0)`.  In the `transition()` function we ease in from the left (i.e. `translateX(-100%)`) over 300 milliseconds.  In the example, I do not have a delete, but if I did, the `:leave` transition would trow the item off to the right (i.e. `translateX(100%)`). 
+For slide-in, we are using something new called `transform`.  `transform` is used to move the element in and out of position.  The `translateX()` function defines the position.  In our final state, we want the normal position which is defined as `translateX(0)`.  In the `transition()` function we ease in from the left (i.e. `translateX(-100%)`) over 300 milliseconds.  In the example, I do not have a delete, but if I did, the `:leave` transition would throw the item off to the right (i.e. `translateX(100%)`). 
 
 Here is how we use this animation in `other.component.html`: 
 
@@ -318,7 +328,7 @@ Here is how we use this animation in `other.component.html`:
   <mat-divider></mat-divider>
 ```
 
-When the user clicks a button, we add an item to the Items array.  I simply set the value of our `listAddItemSlideInAnimation` trigger to 'slideIn' which triggers our slide-in animation. 
+When the user clicks a button, we add an item to the Items array.  We simply set the value of our `listAddItemSlideInAnimation` trigger to 'slideIn' which triggers our slide-in animation. 
 
 ## Route animation
 
@@ -348,7 +358,7 @@ export const fadeAnimation = trigger('fadeAnimation', [
 ]);
 ```
 
-We are using the same techniqes we used in the above animations.   When our trigger changes value, we want to do three sequential animations using the `query()` function.
+We are using the same techniques we used in the above animations.   When our trigger changes value, we want to do three sequential animations using the `query()` function.
 
 In the first `query()`, we hide the new page as it enters so we can fade out the old page.   
 
@@ -379,6 +389,7 @@ In this blog, we have used many of the available animation functions:
 - animate(): Specifies the timing information for a transition. Optional values for delay and easing. Can contain style() calls within.
 
 **There are a lot more you can use to create more complex animations including:**
+
 - keyframes(): 	Allows a sequential change between styles within a specified time interval. Use within animate(). Can include multiple style() calls within each keyframe(). Uses array syntax.
 - group(): Specifies a group of animation steps (inner animations) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within sequence() or transition().
 - sequence(): Specifies a list of animation steps that are run sequentially, one by one.
