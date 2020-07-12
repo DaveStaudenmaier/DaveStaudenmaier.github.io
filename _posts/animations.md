@@ -186,6 +186,37 @@ By default, Angular throws an error when zero items are found. Set the optional 
 
 ## Thumbnail photo expansion animation example
 
+If you are showing a thumbnail photo to a user that you want to exand to full size when the user clicks on the image, if would be nice if the image expanded and contracted slowly rather than jumping to full size.  Let's see how we do that.  
+
+Here is the animation we are using in the `animations.ts` file:
+
+```typescript
+export const thumbnailImageExpandAnimation = trigger('thumbnailImageExpandAnimation', [
+  state('thumbnail', style({width: '80px'})),
+  state('fullsize', style({ width: '100%'})),
+  transition('thumbnail => fullsize', animate(1000, style({ width: '100%'}))),
+  transition('fullsize => thumbnail', animate(1000, style({ width: '80px'})))
+]);
+```
+
+This animation is simliar to our slide-in example above.   We define the start state we call 'thumbnail' and the end state we call 'fullsize'.  Then we animate expansion to full size over 1 second and conraction back to original size in 1 second.  
+
+See the slide-in example for an explanation of the `trigger()`, `state()`, `transition()`, `animate()` and `style()` functions.  
+
+I use the animation in `other.component.html` as follows: 
+
+```html
+<p>Click thumbnail to view full size</p>
+<div>
+  <img [@thumbnailImageExpandAnimation]="imageState"
+  class="image"
+  src="./../../assets/images/redwoods.png"
+  (click)="expandImage()">
+</div>
+```
+
+Here we use the property `imageState` whose value is defaulted to 'thumbnail' and changed to 'fullsize' in the `expandImage()` function when the user clicks on the image.
+
 ## Draw attention to an element animation example
 
 ## Add-to-list animation example
