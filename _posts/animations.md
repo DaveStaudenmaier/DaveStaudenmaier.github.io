@@ -3,7 +3,7 @@ layout: post
 title: Practical, real-world animation examples with Angular
 ---
 
-In this blog, I will who show some examples of practical, real-world animations using Angular, and will explain how they work.   Here are the animations we will cover: 
+In this blog, I will who show some examples of practical, real-world animations using Angular, and will explain in detail how they work.   Here are the animations we will cover: 
 - A slide-down animation exposing an Add Post component's template
 - A fade in for the new post applied
 - A thumbnail photo that will expand smoothly to full-size when clicked and shrink back down when clicked again
@@ -44,6 +44,8 @@ There are four components:
 
 ## Add Post slide-in animation example
 
+In the project and on the video, you will see an animation that slides in an add-post template when the user clicks a button. 
+
 In the `animations.ts` file this animation makes the add-post slide in:
 
 ```typescript
@@ -63,11 +65,11 @@ export const slideDownAnimation = trigger('slideDownAnimation', [
 
 So, what are we doing here?  
 
-The `state()` function allows you to collect a set of styles in an animation state, and give the state a name, such as 'open' and 'closed' or, in this case, 'in' and 'out'.  The `state()` function takes two arguments: a unique name and a `style()` function. You can define whatever styles you want in the object passed to the `style()` function. For our slide-in animation, all we want to do is expand the identfied element (we will get to this) to it's full height when the state is 'in' and not show anything when the state is 'out'.  Using `maxHeight` with `overflow` hidden accomplishes this. 
+The `state()` function allows you to collect a set of styles in an animation state, and give the state a name, such as 'open' and 'closed' or, in this case, 'in' and 'out'.  The `state()` function takes two arguments: a unique name and a `style()` function. You can define whatever styles you want in the object passed to the `style()` function. For our slide-in animation, all we want to do is expand the add-post template (we will get to this) to it's full height when the state is 'in' and not show anything when the state is 'out'.  Using `maxHeight` with `overflow` hidden accomplishes this. 
 
 Note the use of camel case is required, so instead of `max-height` as you would use it in CSS, we use `maxHeight`.  Be sure to always use camel case.
 
-The `transition()` function allows us to specify the animations to apply as we move from one state to another.  The transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of `animate()` steps.  In our case, we move from 'out', where the maxHeight of the element is zero and thus not shown, to 'in', where the maxHeight is 300px, and so the element is visible.  Later we will see other types of transitions and the use of wildcard.  
+The `transition()` function allows us to specify the animations to apply as we move from one state to another.  The transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of `animate()` steps.  In our case, we move from 'out', where the maxHeight of add-post is zero and thus not shown, to 'in', where the maxHeight is 300px, and so the element is visible.  Later we will see other types of transitions and the use of wildcard.  
 
 The `animate()` function is where the magic happens.  Use the `animate()` function to define the length, delay, and easing of a transition, and to designate the style function for defining styles while transitions are taking place. The animate() function accepts the timings and styles input parameters.  In our example, because our styles are defined in the `state()` function, we only need to define the timings. 
 
@@ -81,9 +83,9 @@ In our example, I wanted the slide-out of our element to happen faster, so I cho
 
 Finally, you will see all of this is wrapped up in the `trigger()` function. An animation requires a trigger, so that it knows when to start. The trigger() function collects the states and transitions, and gives the animation a name, so that you can attach it to the triggering element in the HTML template.
 
-Now, how do we use this animation?   
+So, how do we use this animation?   
 
-In the `post.component.ts` I import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator. 
+In `post.component.ts` I import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator. 
 
 ```typescript
 import { slideDownAnimation, addItemFadeAnimation } from './../animations';
@@ -99,13 +101,13 @@ import { slideDownAnimation, addItemFadeAnimation } from './../animations';
 })
 ```
 
-In `post.component.html` we tie a container element for the HTML we wish to animate to the trigger name prefixed with '@' and wrapped in square brackets. Then, you can bind the trigger to a template expression using standard Angular property binding syntax.   In our example we tie it to a property called `addPostOpen` which is defined in `post.component.ts` as follows:
+In `post.component.html` I tie a container element for the HTML we wish to animate to the trigger name prefixed with '@' and wrapped in square brackets. Then, you can bind the trigger to a template expression using standard Angular property binding syntax.   In our example we tie it to a property called `addPostOpen` which is defined in `post.component.ts` as follows:
 
 ```typescript
   addPostOpen = 'out';
 ```
 
-And so, you can see that the default is our 'out' state where you remember `maxHeight` is zero and so it is hidden.   All we have to do to activate our animation is set the `addPostOpen` property to `in`!   I simply created a button a user can click to add a post and then set the `addPostOpen` property to 'in' which animated the showing of my `app-add-post` component's template.  
+And so, you can see that the default is our 'out' state where you remember `maxHeight` is zero and so it is hidden.   All we have to do to activate our animation to show the add-post template, is set the `addPostOpen` property to 'in'!   I simply created a button a user can click to add a post and then set the `addPostOpen` property to 'in' which animated the showing of my `app-add-post` component's template.  
 
 ```html
   <div [@slideDownAnimation]="addPostOpen">
