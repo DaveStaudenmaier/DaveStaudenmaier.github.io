@@ -20,6 +20,11 @@ Angular Version: 9.1.0
 ----
 ****
 
+## What will the animations look like?
+
+When you run the project you will see the following animations in this YouTube video:
+
+
 ## Project set-up
 
 In the project there is an `animations.ts` file where all of the animation configurations are stored.  
