@@ -250,9 +250,74 @@ In `other.component.html` we apply this animation:
 </div>
 ```
 
-We initiate the animation with a button.  In the `startAnimation()` function, we change the value of the `attention` property to 'drawAttention', which triggers the animation on an element futher down the page which we identified with a class name of `attention`.   
+We initiate the animation with a button.  In the `startAnimation()` function, we change the value of the `attention` property to 'drawAttention', which triggers the animation on an element futher down the page, which we identified with a class name of `attention`.   
+
+When the user clicks the button, 'some text' will grow to 24px, become bold and red and then shrink back to normal. 
 
 ## Add-to-list animation example
+
+Suppose you have a dynamic list of items and you allow the user to add an item to the list.  You can animate the addition of the item to the list.  I will show two ways: fade in (as we did above for a new post) and slide in from the left. 
+
+Here is the animation we are using in the `animations.ts` file:
+
+```typescript
+export const listAddItemFadeAnimation = trigger('listAddItemFadeAnimation', [
+  transition('* <=> *', [
+    query(':enter',
+      [style({ opacity: 0 }), animate('800ms ease-out', style({ opacity: 1 }))],
+      { optional: true }
+    ),
+    query(':leave',
+      animate('800ms', style({ opacity: 0 })),
+      { optional: true }
+    )
+  ])
+]);
+
+export const listAddItemSlideInAnimation = trigger('listAddItemSlideInAnimation', [
+  state('slideIn', style({ transform: 'translateX(0)' })),
+  transition(':enter', [
+    style({ transform: 'translateX(-100%)' }),
+    animate('0.3s ease-in')
+  ]),
+  transition(':leave', [
+    animate('0.3s ease-out', style({ transform: 'translateX(100%)' }))
+  ])
+]);
+```
+
+ListAddItemFadeAnimation works just like the post add above.  Any change of our trigger item (i.e. length of the array) will cause the new item to fade in by changing it's opacacity over 800 milliseconds. 
+
+For slide-in, we are using something new called `transform`.  `transform` is used to move the element in and out of position.  The `translateX()` function defines the position.  In our final state, we want the normal position is defined as `translateX(0)`.  In the `transition()` function we ease in from the left (i.e. `translateX(-100%)`) over 300 milliseconds.  In the example, I do not have a delete, but if I did, the `:leave` transition would trow the item off to the right (i.e. `translateX(100%)`). 
+
+Here is how we use this animation in `other.component.html`: 
+
+```html
+  <div>
+    <button mat-button
+            class="mat-raised-button"
+            (click)="addItemToList()">
+        Add to list animations
+  </button>
+  </div>
+
+  <p>Fade in animation</p>
+  <ul [@listAddItemFadeAnimation]="items.length" class="items">
+    <li *ngFor="let item of items" class="item">
+      Item {{ item }}
+    </li>
+  </ul>
+  <mat-divider></mat-divider>
+  <p>Slide in animation</p>
+  <ul class="items">
+    <li *ngFor="let item of items" class="item" [@listAddItemSlideInAnimation]="'slideIn'">
+      Item {{ item }}
+    </li>
+  </ul>
+  <mat-divider></mat-divider>
+```
+
+WHen the user clicks a button, we add an item to the Items array.  I simply set the value of our `listAddItemSlideInAnimation` trigger to 'slideIn' which triggers our slide-in animation. 
 
 ## Route animation
 
