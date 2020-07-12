@@ -79,6 +79,8 @@ Valid values for easing are `ease`, `ease-in`, `ease-out`, `ease-in-out`, or a `
 
 In our example, I wanted the slide-out of our element to happen faster, so I chose a duration of `400ms`.  
 
+Finally, you will see all of this is wrapped up in the `trigger()` function. An animation requires a trigger, so that it knows when to start. The trigger() function collects the states and transitions, and gives the animation a name, so that you can attach it to the triggering element in the HTML template.
+
 Now, how do we use this animation?   
 
 In the `post.component.ts` I import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator. 
@@ -97,6 +99,20 @@ import { slideDownAnimation, addItemFadeAnimation } from './../animations';
 })
 ```
 
+In `post.component.html` we tie a container element for the HTML we wish to animate to the trigger name prefixed with '@' and wrapped in square brackets. Then, you can bind the trigger to a template expression using standard Angular property binding syntax.   In our example we tie it to a property called `addPostOpen` which is defined in `post.component.ts` as follows:
+
+```typescript
+  addPostOpen = 'out';
+```
+
+And so, you can see that the default is our 'out' state where you remember `maxHeight` is zero and so it is hidden.   All we have to do to activate our animation is set the `addPostOpen` property to `in`!   I simply created a button a user can click to add a post and then set the `addPostOpen` property to 'in' which animated the showing of my `app-add-post` component's template.  
+
+```html
+  <div [@slideDownAnimation]="addPostOpen">
+    <app-add-post (post)="postAddComplete($event)">
+    </app-add-post>
+  </div>
+```
 ## Fade in animation on new post
 
 ## Thumbnail photo expansion animation example
