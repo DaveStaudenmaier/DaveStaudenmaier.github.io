@@ -13,7 +13,7 @@ In this blog, I will who show some examples of practical, real-world animations 
 
 As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/animations).
 
-For this blog I am using several components to illustrate animations.   For brevity, I will only be going through the animations code, not the rest.   So, I recommend downloading the project from GitHub and running `npm install`.
+This is a **LOT** to cover in one blog post, but I wanted you to have it all in one place in case you want to incorporate any of my code in your code and have a single place to reference.  For brevity, I will only be going through the animations code, not the various components code.   So, I recommend downloading the project from GitHub and running `npm install`.
 
 Angular Version: 9.1.0
 
