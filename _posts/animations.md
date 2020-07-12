@@ -3,7 +3,7 @@ layout: post
 title: Practical, real-world animation examples with Angular
 ---
 
-In this blog, I will who show some examples of practical, real-world animations using Angular, and will explain in detail how they work.   Here are the animations we will cover: 
+In this blog, I will who show six examples of practical, real-world animations using Angular, and will explain in detail how they work.   Here are the animations we will cover: 
 - A slide-down animation exposing an Add Post component's template
 - A fade in for the new post applied
 - A thumbnail photo that will expand smoothly to full-size when clicked and shrink back down when clicked again
@@ -44,9 +44,9 @@ There are four components:
 
 ## Add Post slide-in animation example
 
-In the project and on the video, you will see an animation that slides in an add-post template when the user clicks a button. 
+Suppose you had a forum where users can see and add posts.  Perhaps you default to showing the posts, but have an 'add post' button which, when clicked, you want to smoothly slide in a form for adding a new post that is encapsulated in an add-post component.  
 
-In the `animations.ts` file this animation makes the add-post slide in:
+Here is the animation we are using in the `animations.ts` file:
 
 ```typescript
 export const slideDownAnimation = trigger('slideDownAnimation', [
@@ -65,27 +65,26 @@ export const slideDownAnimation = trigger('slideDownAnimation', [
 
 So, what are we doing here?  
 
-The `state()` function allows you to collect a set of styles in an animation state, and give the state a name, such as 'open' and 'closed' or, in this case, 'in' and 'out'.  The `state()` function takes two arguments: a unique name and a `style()` function. You can define whatever styles you want in the object passed to the `style()` function. For our slide-in animation, all we want to do is expand the add-post template (we will get to this) to it's full height when the state is 'in' and not show anything when the state is 'out'.  Using `maxHeight` with `overflow` hidden accomplishes this. 
+The `state()` function allows us to collect a set of styles in an animation state, and give the state a name, such as 'open' and 'closed' or, in this case, 'in' and 'out'.  The `state()` function takes two arguments: a unique name and a `style()` function. You can define whatever styles you want in the object passed to the `style()` function. For our slide-in animation, all we want to do is expand the add-post template (we will get to this) to it's full height when the state is 'in' and not show anything when the state is 'out'.  Using `maxHeight` with `overflow` hidden accomplishes this. 
 
-Note the use of camel case is required, so instead of `max-height` as you would use it in CSS, we use `maxHeight`.  Be sure to always use camel case.
+**Note: The use of camel case for style names is required, so instead of `max-height` as we would use it in CSS, we use `maxHeight`.**
 
-The `transition()` function allows us to specify the animations to apply as we move from one state to another.  The transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of animation steps.  In our case, we move from 'out', where the maxHeight of add-post is zero and thus not shown, to 'in', where the maxHeight is 300px, and so the element is visible.  Later we will see other types of transitions and the use of wildcard.  
+The `transition()` function allows us to specify the animations to apply as we move from one state to another.  The transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of animation steps.  In our case, we move from 'out', where the maxHeight of add-post is zero and thus not shown, to 'in', where the maxHeight is 300px, and so the element is visible.  In other examples, we will see other types of transitions and the use of a wildcard.  
 
 The `animate()` function is where the magic happens.  Use the `animate()` function to define the length, delay, and easing of a transition, and to designate the style function for defining styles while transitions are taking place. The animate() function accepts the timings and styles input parameters.  In our example, because our styles are defined in the `state()` function, we only need to define the timings. 
 
 The timings parameter takes a string defined in three parts: animate ('duration delay easing').
 
-In our example, we do not have a delay.  We want the slide-in (transition from 'out' to 'in') to occur over 800 milliseconds.  We could have expressed this as `.8s` or just `800` as well.   The third argument, easing, controls how the animation accelerates and decelerates during its runtime. For example, ease-in causes the animation to begin slowly, and to pick up speed as it progresses.   You can find some good advice on easing in [Material Design documentation](https://material.io/design/motion/speed.html#controlling-speed).   
+In our example, we do not use delay.  We want the slide-in (transition from 'out' to 'in') to occur over 800 milliseconds.  We could have expressed this as `.8s` or just `800` as well.   The third argument, easing, controls how the animation accelerates and decelerates during its runtime. For example, ease-in causes the animation to begin slowly, and to pick up speed as it progresses.   You can find some good advice on easing in [Material Design documentation](https://material.io/design/motion/speed.html#controlling-speed).   
+Valid values for easing are `ease`, `ease-in`, `ease-out`, `ease-in-out`, or a `cubic-bezier() function call`.  Here is a nice [blog](https://css-tricks.com/ease-out-in-ease-in-out/) by Chris Coyier on these easing options.   The one we are using, `ease-in-out`, is slow at the beginning and the end and faster in the middle. 
 
-Valid values for easing are `ease`, `ease-in`, `ease-out`, `ease-in-out`, or a `cubic-bezier() function call`.  Here is a nice [blog](https://css-tricks.com/ease-out-in-ease-in-out/) by Chris Coyier on these easing options.   The one I chose, `ease-in-out` is slow at the beginning and the end and faster in the middle. 
-
-In our example, I wanted the slide-out of our element to happen faster, so I chose a duration of `400ms`.  
+For slide-out, perhaps we want our transition to happen faster, so we go with a duration of 400 milliseconds.  
 
 Finally, you will see all of this is wrapped up in the `trigger()` function. An animation requires a trigger, so that it knows when to start. The trigger() function collects the states and transitions, and gives the animation a name, so that you can attach it to the triggering element in the HTML template.
 
 So, how do we use this animation?   
 
-In `post.component.ts` I import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator. 
+In `post.component.ts` I import `slideDownAnimation` from `animations.ts` and add it to the `animations` array in the `@Component` decorator.  You could also simply define your animation directly in the animations array of the component, but in our case we define all of our animations in one file and export them so they may be imported into various components. 
 
 ```typescript
 import { slideDownAnimation, addItemFadeAnimation } from './../animations';
@@ -101,13 +100,7 @@ import { slideDownAnimation, addItemFadeAnimation } from './../animations';
 })
 ```
 
-In `post.component.html` I tie a container element for the HTML we wish to animate to the trigger name prefixed with '@' and wrapped in square brackets. Then, you can bind the trigger to a template expression using standard Angular property binding syntax.   In our example we tie it to a property called `addPostOpen` which is defined in `post.component.ts` as follows:
-
-```typescript
-  addPostOpen = 'out';
-```
-
-And so, you can see that the default is our 'out' state where you remember `maxHeight` is zero and so it is hidden.   All we have to do to activate our animation to show the add-post template, is set the `addPostOpen` property to 'in'!   I simply created a button a user can click to add a post and then set the `addPostOpen` property to 'in' which animated the showing of my `app-add-post` component's template.  
+In `post.component.html` we tie a container element for the HTML we wish to animate to the trigger name prefixed with '@' and wrapped in square brackets. 
 
 ```html
   <div [@slideDownAnimation]="addPostOpen">
@@ -115,6 +108,14 @@ And so, you can see that the default is our 'out' state where you remember `maxH
     </app-add-post>
   </div>
 ```
+
+Then, we bind the trigger to a template expression using standard Angular property binding syntax.   In our example we tie it to a property called `addPostOpen` which is defined in `post.component.ts` as follows:
+
+```typescript
+  addPostOpen = 'out';
+```
+And so, you can see that the default is our 'out' state where you might remember `maxHeight` is zero, and so it is hidden.   All we have to do to activate our animation to show the add-post template, is set the `addPostOpen` property to 'in'!   I simply created a button a user can click to add a post and then set the `addPostOpen` property to 'in' which animated the showing of my `app-add-post` component's template.  
+
 ## Fade in animation on new post
 
 In addition to sliding add-post in and out, when I show the new post back in the post component, I want to slowing fade it in instead of abruptly showing it.  
