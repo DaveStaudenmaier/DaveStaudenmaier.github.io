@@ -22,7 +22,7 @@ Angular Version: 9.1.0
 
 ## What will the animations look like?
 
-When you run the project you will see the following animations in this YouTube video:
+This YouTube video shows the animations you will see when you run the project:
 
 <a href="https://youtu.be/j_7ug2WHK4w"><img src="/images/blog/animations/animations.png" width="200px" target="_blank"></a>
 
@@ -44,7 +44,26 @@ There are four components:
 
 ## Add Post slide-in animation example
 
-In the project is 
+In the `animations.ts` file this animation makes the add-post slide in:
+
+```typescript
+export const slideDownAnimation = trigger('slideDownAnimation', [
+  state('in', style({
+    overflow: 'hidden',
+    maxHeight: '300px'
+  })),
+  state('out', style({
+    overflow: 'hidden',
+    maxHeight: '0px'
+  })),
+  transition('out => in', animate('800ms ease-in-out')),
+  transition('in => out', animate('400ms ease-in-out'))
+]);
+```
+
+So, what are we doing here?  We identify two states that define the styles associated with the 'out' state, when the add-post is not shown, and the 'in' state, when the post is shown.  The only difference is the maxHeight.  maxHeight is set to zero which causes it not to show when in the 'out' state and `300px` for hte 'in' state, causing it to show. 
+
+We use `transition` to tell Angular what to do when transitioning from 'out' to 'in' and from 'in' to 'out'.  When transitioning from 'out' to 'in'
 ## Thumbnail photo expansion animation example
 
 ## Draw attention to an element animation example
