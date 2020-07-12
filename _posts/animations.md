@@ -69,7 +69,7 @@ The `state()` function allows you to collect a set of styles in an animation sta
 
 Note the use of camel case is required, so instead of `max-height` as you would use it in CSS, we use `maxHeight`.  Be sure to always use camel case.
 
-The `transition()` function allows us to specify the animations to apply as we move from one state to another.  The transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of `animate()` steps.  In our case, we move from 'out', where the maxHeight of add-post is zero and thus not shown, to 'in', where the maxHeight is 300px, and so the element is visible.  Later we will see other types of transitions and the use of wildcard.  
+The `transition()` function allows us to specify the animations to apply as we move from one state to another.  The transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of animation steps.  In our case, we move from 'out', where the maxHeight of add-post is zero and thus not shown, to 'in', where the maxHeight is 300px, and so the element is visible.  Later we will see other types of transitions and the use of wildcard.  
 
 The `animate()` function is where the magic happens.  Use the `animate()` function to define the length, delay, and easing of a transition, and to designate the style function for defining styles while transitions are taking place. The animate() function accepts the timings and styles input parameters.  In our example, because our styles are defined in the `state()` function, we only need to define the timings. 
 
@@ -116,6 +116,71 @@ And so, you can see that the default is our 'out' state where you remember `maxH
   </div>
 ```
 ## Fade in animation on new post
+
+In addition to sliding add-post in and out, when I show the new post back in the post component, I want to slowing fade it in instead of abruptly showing it.  
+
+Here is the animation in the `animations.ts` file:
+
+```typescript
+export const addItemFadeAnimation = trigger('addItemFadeAnimation', [
+  transition('* <=> *', [
+    query(':enter',
+      [style({ opacity: 0 }), animate('3000ms ease-out', style({ opacity: 1 }))],
+      { optional: true }
+    ),
+    query(':leave',
+      animate('3000ms', style({ opacity: 0 })),
+      { optional: true }
+    )
+  ])
+]);
+```
+
+Here we start again with a trigger named 'addItemFadeAnimation'.  But in this example we start with transition.  Remember, the transition() function accepts two arguments: the first argument accepts an expression that defines the direction between two transition states, and the second argument accepts one or a series of animation steps.
+
+In this example, when we change our triggered value in any way, we want the animation to trigger.  We define this using wildcard `*`.  If the value changes from anything to anything, apply the animation.
+
+Let's look at how we apply this trigger first.   In `post.component.html` I wrapped an `*ngFor` directive with our animation trigger.  If the posts array length changes (i.e. we add a new element to the array), then apply the animation to the new element.  
+
+```html
+<div [@addItemFadeAnimation]="posts.length">
+  <div *ngFor="let post of posts">
+    <div class="author" >
+      <div>
+        <img class="image profile-image-post"
+              [src]="profileImageUrl"
+              style="width:40px;height:40px;">
+      </div>
+      <div class="name-and-date">
+        <div class="display-name">
+          Dave
+        </div>
+        <div>
+          {{ postDate | date:'short'}}
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <div>
+        <span class="body-text">{{ post }}</span>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</div>
+```
+
+Back to the animation.  We are using the `query()` function, which is typically used to find an element in the HTML.  The `query()` function takes three arguments: (selector, animation, options).  The selector identifies the element to query, or a set of elements that contain Angular-specific characteristics
+
+In our case we are setting the selector to the alias `:enter` which really means going from a state of `void` to anything (`void => *`) and `:leave` which is an alias for `* => void`.   I am not deleting posts in this example, so `:leave` will not be used, but I wanted to leave it for you to see what you could do.  For more information on 'Angular-specific characteristics' see the [Angular documentation](https://angular.io/api/animations/query). 
+
+```html
+query(':enter',
+  [style({ opacity: 0 }), animate('3000ms ease-out', style({ opacity: 1 }))],
+  { optional: true }
+),
+```
+Next we apply the style using the `style()` function, animating from an opacity of zero (invisible) to 1 over 3 seconds.  
 
 ## Thumbnail photo expansion animation example
 
