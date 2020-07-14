@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Create a custom attribute directive in Angular to enforce consistancy, reduce duplication and simplify our templates
+title: Create a custom attribute directive in Angular to enforce consistency, reduce duplication and simplify our templates
 ---
 
 In this blog, I explain the different types of directives in Angular, create a custom attribute directive and use it in a template.
@@ -189,7 +189,7 @@ It still looks awful but at least all the code is in one place when the visual d
 
 ## Conclusion
 
-We've learned how to enforce consistancy by encapsulating duplicate code into a directive and simplifying our HTML. 
+We've learned how to enforce consistency by encapsulating duplicate code into a directive and simplifying our HTML. 
 
 I think custom directives are underutilized by many development teams.  Perhaps this is because it is hard to imagine the use cases.  This is why I laid out this blog in such a way that you may imagine the use case and see the directive's usefulness.  
 
