@@ -56,15 +56,25 @@ Here is what the user sees:
 
 But what is meant by 'template expression'?   Angular will convert to a string any expression within the curly brackets. 
 
-**Number = `{{ 1 + 2 }}`**
+``html
+Number = {{ 1 + 2 }}
+```
 
 Will display as **Number = 3**
 
-If we have a boolean property called **wasHeABeatle = `true`**
- 
-And in the template we have **He was a Beatle = {{ wasHeABeatle }}**
+If we have a boolean property called 
 
-Will display as **He was a Beatle = `true`**
+```typescript
+wasHeABeatle = true
+```
+ 
+And in the template we have 
+
+```html
+He was a Beatle = {{ wasHeABeatle }}
+```
+
+Will display as **He was a Beatle = true**
 
 ### Property Binding
 
