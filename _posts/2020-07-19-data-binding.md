@@ -68,17 +68,17 @@ Will display as **Number = 3**
 
 If we have a boolean property called 
 
-{% raw %}
 ```typescript
 wasHeABeatle = true
 ```
-{% endraw %}
  
 And in the template we have 
 
+{% raw %}
 ```html
 He was a Beatle = {{ wasHeABeatle }}
 ```
+{% endraw %}
 
 Will display as **He was a Beatle = true**
 
