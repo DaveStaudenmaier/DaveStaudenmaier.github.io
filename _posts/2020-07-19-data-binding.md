@@ -45,7 +45,7 @@ In app.component.ts we have a property called name which we display in the templ
  name = 'Richard Starkey';
 ```
 
-**HTML**
+**HTML** <p>Name: {{ name }}</p>
 {% raw %}
 ```html
   <p>Name: {{ name }}</p>
