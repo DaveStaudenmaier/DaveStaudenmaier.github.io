@@ -46,11 +46,11 @@ In app.component.ts we have a property called name which we display in the templ
 ```
 
 **HTML**
-```html
 {% raw %}
+```html
   <p>Name: {{ name }}</p>
-{% endraw %}
 ```
+{% endraw %}
 
 Here is what the user sees:
 
