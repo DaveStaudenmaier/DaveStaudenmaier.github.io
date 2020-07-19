@@ -45,7 +45,7 @@ In app.component.ts we have a property called name which we display in the templ
  name = 'Richard Starkey';
 ```
 
-**HTML** <p>Name: {{ name }}</p>
+**HTML**
 {% raw %}
 ```html
   <p>Name: {{ name }}</p>
@@ -58,17 +58,21 @@ Here is what the user sees:
 
 But what is meant by 'template expression'?   Angular will convert to a string any expression within the curly brackets. 
 
+{% raw %}
 ```html
 Number = {{ 1 + 2 }}
 ```
+{% endraw %}
 
 Will display as **Number = 3**
 
 If we have a boolean property called 
 
+{% raw %}
 ```typescript
 wasHeABeatle = true
 ```
+{% endraw %}
  
 And in the template we have 
 
