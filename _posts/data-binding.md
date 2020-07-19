@@ -58,7 +58,7 @@ But what is meant by 'template expression'?   Angular will convert to a string a
 
 **Number = {{ 1 + 2 }**
 
-Will dsplay as **Number = 3**
+Will display as **Number = 3**
 
 If we have a boolean property called **wasHeABeatle = true**
  
@@ -73,7 +73,7 @@ In the property binding, a template expression appears in quotes to the right of
 Let's say we wanted to display a picture of this Richard Starkey.  We could use property binding like this:
 
 **component** 
-```template
+```typescript
 profilePic = './../assets/images/ringo-Keystone-hutton-archives-getty.jpg';
 ```
 
@@ -90,7 +90,7 @@ Note that you could also have used interpolation in this example, in which case 
 <img class="image" src="{{ profilePic }}">
 ```
 
-Another example of property binding is passing a prooperty reference from a parent component to a child component.  In our example app, I created a component called `name` that uses the `@Input` decorator to get a reference to the name property in app.component.
+Another example of property binding is passing a property reference from a parent component to a child component.  In our example app, I created a component called `name` that uses the `@Input` decorator to get a reference to the name property in `app.component`.
 
 **name component**
 
@@ -106,12 +106,12 @@ Another example of property binding is passing a prooperty reference from a pare
 </app-name>
 ```
 
-Here we pass a reference to name in our app.component.ts (i.e. `="name") to the name.component.ts name (i.e. [name]), which we can now display in our child template.   I created an input element in name.component.html and defaulted the value to the name from app.component.ts.
+Here we pass a reference to name in `app.component.ts` (i.e. `="name"`) to the name.component.ts name (i.e. [name]), which we can now display in our child template.   I created an input element in name.component.html and defaulted the value to the name from app.component.ts.
 
 ```html
 <input matInput [(ngModel)]="name">
 ```
-Whoa, what is this ngModel?   We could have simply displayed the name in our name.component.ts using property binding (i.e. [value]="name"), but we want to update our name property with the user updated name.   This is called two-way data binding which will we discuss in the next section.
+Whoa, what is this ngModel?   We could have simply displayed the name in our name.component.ts using property binding (i.e. `[value]="name"`), but we want to update our name property with the user updated name.   This is called two-way data binding which will we discuss in the next section.
 
 Here is what the user sees so far:
 
@@ -122,7 +122,7 @@ Here is what the user sees so far:
 
 Event binding allows you to listen for certain events such as keystrokes, mouse movements, clicks, and touches.
 
-In our app, I added a button in home.component.html that uses event binding to listen for the click event and bind to the onSubmit method in home.component.ts.
+In our app, I added a button in `home.component.html` that uses event binding to listen for the click event and bind to the onSubmit method in home.component.ts.
 
 **home component HTML**
 ```html
@@ -143,7 +143,7 @@ onSubmit() {
 
 The onSubmit() method uses the @Output decorator to emit the latest value of the name property (see two-way binding) on how that was updated.  
 
-And in our app.component.html file, we are also using event binding to bind to `newName` in name.component.ts on the @Output decorator, and bind to the updateName method in app.component.ts, which updates the name property which is then reflected through string interpolation to the app.component template, as we saw above.    Note that we pass the event to the updateName method using the $event object.   Since all we emitted in the home.componet was the string 'name', then that is the value of the event object, but typically the event object has a rich set of properties you may want to use. 
+And in our app.component.html file, we are also using event binding to bind to `newName` in `name.component.ts` on the @Output decorator, and bind to the updateName method in `app.component.ts`, which updates the name property which is then reflected through string interpolation to the app.component template, as we saw above.    Note that we pass the event to the updateName method using the `$event` object.   Since all we emitted in the home.componet was the string 'name', then that is the value of the event object, but typically the event object has a rich set of properties you may want to use. 
 
 **app component HTML**
 ```html
@@ -164,7 +164,7 @@ Let's go over two-way data binding and then we'll see a video of how the app loo
 
 ### Two-way data binding 
 
-Two-way binding gives your app a way to share data between a component class and its template, but in both directions.  Without two-way binding, if we wanted to update the value of the name property in name.component.ts with the updated value, we would need to use event binding to update the value based on some event with the input, such as `blur`.  
+Two-way binding gives our app a way to share data between a component class and its template, but in both directions.  Without two-way binding, if we wanted to update the value of the name property in `name.component.ts` with the updated value, we would need to use event binding to update the value based on some event with the input, such as `blur`.  
 
 Two-way data binding uses the ngModel directive to make this simple by combining property binding and event binding.   So `property binding` + `event binding` = `two-way binding`.
 
