@@ -47,7 +47,7 @@ In app.component.ts we have a property called name which we display in the templ
 
 **HTML**
 ```html
-  <p>Name: \{\{ name \}\}</p>
+  <p>Name: \\{{ name \\}}</p>
 ```
 
 Here is what the user sees:
