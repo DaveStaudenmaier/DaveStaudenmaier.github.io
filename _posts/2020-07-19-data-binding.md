@@ -56,7 +56,7 @@ Here is what the user sees:
 
 But what is meant by 'template expression'?   Angular will convert to a string any expression within the curly brackets. 
 
-**Number = {{ 1 + 2 }}**
+**Number = `{{ 1 + 2 }}`**
 
 Will display as **Number = 3**
 
