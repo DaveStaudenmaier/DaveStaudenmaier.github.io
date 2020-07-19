@@ -47,7 +47,9 @@ In app.component.ts we have a property called name which we display in the templ
 
 **HTML**
 ```html
-  <p>Name: $\{{ name \}}$</p>
+{% raw %}
+  <p>Name: {{ name }}</p>
+{% endraw %}
 ```
 
 Here is what the user sees:
