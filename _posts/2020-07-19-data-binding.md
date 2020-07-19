@@ -60,11 +60,11 @@ But what is meant by 'template expression'?   Angular will convert to a string a
 
 Will display as **Number = 3**
 
-If we have a boolean property called **wasHeABeatle = true**
+If we have a boolean property called **wasHeABeatle = `true`**
  
 And in the template we have **He was a Beatle = {{ wasHeABeatle }}**
 
-Will display as **He was a Beatle = true**
+Will display as **He was a Beatle = `true`**
 
 ### Property Binding
 
