@@ -234,6 +234,6 @@ Now let's see what our class binding and style binding looks like in this video 
 
 We have used all of the different types of data binding Angular provides in our little app that you can find on my [GitHub](https://github.com/DaveStaudenmaier/data-binding).
 
-Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments. 
+Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments!
 
 Keep on developing!
