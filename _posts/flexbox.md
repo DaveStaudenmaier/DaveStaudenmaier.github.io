@@ -13,7 +13,7 @@ There are a several blogs out there that explain flex box completely that you ma
 
 Instead I wrote a [simple web page](http://davestaud.com) where you can try it out.   As you click on the various options and combination of options, the box will move to the positioning your have selected and in the box, you can see the Flexbox CSS that made this happen.  
 
-<img src="/images/blog/flexbox.png" width="200px"
+<img src="/images/blog/flexbox.png" width="200px">
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments!
 
