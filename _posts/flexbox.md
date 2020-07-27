@@ -9,9 +9,9 @@ This week's blog will be a little different.  I wrote a simple web page that can
 ****
 ## Show me the flexbox page!
 
-There are a several blogs out there that explain flex box completely that you may find helpful.   My favorite is [A complete guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/), so I won't bore you writing about it.  
+There are a several blogs out there that explain flex box completely that you may find helpful.   My favorite is [A complete guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/), so I won't bore you writing about it. 
 
-Instead I wrote a [simple web page](http://davestaud.com) where you can try it out.   As you click on the various options and combination of options, the box will move to the positioning your have selected and in the box, you can see the Flexbox CSS that made this happen.  
+Instead I wrote a [simple web page](http://davestaud.com) where you can try it out.   As you click on the various options and combination of options, the box will move to the positioning your have selected and in the box, you can see the Flexbox CSS that made this happen.    Due to the space needed here, it is best if you use your desktop browser.
 
 <img src="/images/blog/flexbox/flexbox.png">
 
