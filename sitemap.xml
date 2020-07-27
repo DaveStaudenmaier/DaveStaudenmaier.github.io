@@ -30,11 +30,19 @@
     <lastmod>2020-06-28</lastmod>
   </url>
    <url>
-    <loc>http://dev-reboot.com/content-projection</loc>
+    <loc>http://dev-reboot.com/data-binding</loc>
     <lastmod>2020-07-05</lastmod>
+  </url>
+   <url>
+    <loc>http://dev-reboot.com/flexbox</loc>
+    <lastmod>2020-07-12</lastmod>
+  </url>
+  <url>
+    <loc>http://dev-reboot.com/content-projection</loc>
+    <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>http://dev-reboot.com/animations</loc>
-    <lastmod>2020-07-12</lastmod>
+    <lastmod>2020-07-26</lastmod>
   </url>
 </urlset>
