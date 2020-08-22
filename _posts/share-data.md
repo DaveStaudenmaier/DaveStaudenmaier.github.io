@@ -32,6 +32,12 @@ We use property binding to bind the value of the search input box in the child c
 
 <img src="/images/blog/share-data/Input.png" height="500px">
 
+You must import Input like this 
+
+*** typescript
+import { Input } from '@angular/core';
+***
+
 ## Sibling using Query Parameters
 
 ## Sibling using a service
