@@ -52,7 +52,7 @@ An alias may be used if necessary
 
 Check out the app in GitHub to see how you can use this technique to filter everytime the user enters a character, even though the details are in another component.
 
-## Sibling using Query Parameters
+## Unrelated component using Query Parameters
 
 When the component you want to pass data to is not a child component, one way you can pass data is through Query Parameters on the URL.  
 
@@ -62,13 +62,90 @@ In our app, we can use this technique to pass the selected national park to the 
 
 <img src="/images/blog/share-data/query-params.png" height="500px">
 
-In the parent component, we pass an additional paramter when routing using the navigate method of Router.   
+In the calling component, we pass an additional paramter when routing using the navigate method of Router.   
 
 *** Note*** While officially, there is no limit specified by RFC 2616, many security protocols and recommendations state that maxQueryStrings should be limited to 1024 characters, while the entire URL, including the querystring, should not exceed 2048 characters.  
 
-In the child component, we subscribe to queryParams on the ActivatedRoute in OnInit. 
+In the called component, we subscribe to queryParams on the ActivatedRoute in OnInit. 
 
-## Sibling using a service
+## Unrelated component using a service
+
+A more secure way than query parameters to pass data between unrelated components is to use a service.   Here is the service I am using in our app
+
+```typescript
+import { Injectable } from '@angular/core';
+
+export interface INationalParks {
+  name: string;
+  state: string;
+  established: string;
+  area: string;
+  visitors: string;
+}
+
+
+export interface IshareData {
+  parks: INationalParks;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataShareService {
+  private data: IshareData;
+
+  constructor() {
+    this.initializeData();
+  }
+
+  getData(type: string): any {
+    return this.data[type];
+  }
+
+  setData(type: string, data: any) {
+    this.data[type] = data;
+  }
+
+  initializeData() {
+    this.data = {
+      parks: {
+        name: null,
+        state: null,
+        established: null,
+        area: null,
+        visitors: null
+      }
+    };
+  }
+}
+
+```
+
+The calling component uses the setData method of the share-data service to store the data.   The called component uses the getData method to get the data.  
+
+<img src="/images/blog/share-data/share-data-svc.png" height="500px">
+
+You can set up other data types using this method as well.  For example:
+
+```typescript
+export interface INationalParks {
+  name: string;
+  state: string;
+  established: string;
+  area: string;
+  visitors: string;
+}
+
+export interface Iwaterfalls {
+  waterfallName: string;
+  waterfallPark: string;
+}
+
+export interface IshareData {
+  parks: INationalParks;
+  waterfalls: Iwaterfalls
+}
+```
 
 ## Conclusion
 
