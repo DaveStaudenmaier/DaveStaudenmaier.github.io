@@ -50,7 +50,17 @@ An alias may be used if necessary
 @Input('mySearch') search: string;
 ```
 
+Check out the app in GitHub to see how you can use this technique to filter everytime the user enters a character, even though the details are in another component.
+
 ## Sibling using Query Parameters
+
+When the component you want to pass data to is not a child component, one way you can pass data is through Query Parameters on the URL.  
+
+*** Warning *** Do not pass sensitive data in the query string!  It is not secure.
+
+In our app, we can use this technique to pass the selected national park to the parks-detail component.  As this is not sensitive information, it would be acceptable to use query parameters.  
+
+<img src="/images/blog/share-data/query-params.png" height="500px">
 
 ## Sibling using a service
 
