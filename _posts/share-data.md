@@ -12,6 +12,12 @@ Angular Version: 9.1
 ----
 ****
 
+## Parent to child using @Input
+
+## Sibling using Query Parameters
+
+## Sibling using a service
+
 ## Conclusion
 
 We looked at three different ways to pass data between components in Angular including:
