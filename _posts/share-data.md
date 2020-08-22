@@ -12,7 +12,17 @@ Angular Version: 9.1
 ----
 ****
 
+## Introduction
+
+To use Angular effectively it is critical to understand the many ways to pass data between components.   In this blog, I will discuss three of them.
+- Parent to child using @Input
+- Using Query Parameters to pass data between unrelated components
+- Using a service to pass data between unrelated components
+
 ## Parent to child using @Input
+Using @Input is the easiest way to pass data between from a parent component to a child component.  In the example from GitHub, the parent component is a search filter applied to the data shown below from a child component.   So, we need to pass the search text to the child component. 
+
+<img src="
 
 ## Sibling using Query Parameters
 
@@ -22,8 +32,8 @@ Angular Version: 9.1
 
 We looked at three different ways to pass data between components in Angular including:
 - Parent to child using @Input
-- Sibling using Query Parameters
-- Sibling using a service
+- Using Query Parameters to pass data between unrelated components
+- Using a service to pass data between unrelated components
 
 I wanted to focus on these three, but you can also pass data from child to parent using @Output and call methods and pass data to a child using @ViewChild.
 
