@@ -22,7 +22,7 @@ To use Angular effectively it is critical to understand the many ways to pass da
 ## Parent to child using @Input
 Using @Input is the easiest way to pass data between from a parent component to a child component.  In the example from GitHub, the parent component is a search filter applied to the data shown below from a child component.   So, we need to pass the search text to the child component. 
 
-<img src="/images/blog/search-data/input.png" height="500px">
+<img src="/images/blog/share-data/input.png" height="500px">
 
 ## Sibling using Query Parameters
 
