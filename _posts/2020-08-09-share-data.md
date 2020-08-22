@@ -62,7 +62,7 @@ In our app, we can use this technique to pass the selected national park to the 
 
 <img src="/images/blog/share-data/query-params.png" height="500px">
 
-In the calling component, we pass an additional paramter when routing using the navigate method of Router.   
+In the calling component, we pass an additional parameter when routing using the navigate method of Router.   
 
 *** Note*** While officially, there is no limit specified by RFC 2616, many security protocols and recommendations state that maxQueryStrings should be limited to 1024 characters, while the entire URL, including the querystring, should not exceed 2048 characters.  
 
