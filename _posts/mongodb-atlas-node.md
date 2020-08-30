@@ -70,7 +70,7 @@ This optional step will load some sample data that you can use to try out MongoD
 
 It will take a few minutes to load the data and then you will see several dataasets like this.
 
-<img src="/images/blog/mongodb-atlas-node/sample-data3.png">
+<img src="/images/blog/mongodb-atlas-node/sample-data3.png" height="500px">
 
 ## Conclusion
 
