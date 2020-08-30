@@ -30,6 +30,10 @@ Go to [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
 
 <img src="/images/blog/mongodb-atlas-node/getting-started1.png">
 
+Register a new Account.
+
+<img src="/images/blog/mongodb-atlas-node/register.png">
+
 ## Conclusion
 
 
