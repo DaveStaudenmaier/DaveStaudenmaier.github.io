@@ -28,7 +28,7 @@ MongoDB is a cross-platform document-oriented database program that uses JSON-li
 
 Go to [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and click the *Get Started* button.
 
-<img src="/images/blog/share-data/getting-started1.png" height="500px">
+<img src="/images/blog/mongodb-atlas-node/getting-started1.png" height="500px">
 
 ## Conclusion
 
