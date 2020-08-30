@@ -171,12 +171,15 @@ After:
         "CORS_ORIGIN": "*"
     }
 }
+```
 
 ## Setting up our schema
 
 Rather than configure our schema in MongoDB Atlas, which you can do, we will set it up in our code using Mongoose.  
 
 This is the *test.js* file.  Here we include *mongoose* as well as *mongoose.Schema*.  I have set up a document called *testSchema* with just one field called *item*.  Adding *{ timestamps: true }* will cause MongoDB to automatically add createdAt and UpdatedAt time stamps. MongoDB will also automatically add a unique key called *_id* to our document when we add a new document. 
+
+Then we use create a mongoose model called *test* from our testSchema configuration.
 
 ```javascript
 var mongoose = require('mongoose');
@@ -191,10 +194,52 @@ var testSchema = new mongoose.Schema({
 
 mongoose.model('test', testSchema);
 ```
+Now we are ready to add a document.
 
 ## Add a document
 
-Now we are ready to add a document
+In the *routes.js* file, we set up two routes.  One to add data and one to get data.  Each points to a method in the *mongo-test.js* file in the *controllers* folder.
+
+```javascript
+const express = require('express');
+const router = express.Router();
+
+const ctrlMongoTest = require('../controllers/mongo-test');
+
+router.post('/mongo-test', ctrlMongoTest.addTestData);
+router.get('/mongo-test', ctrlMongoTest.getTestData);
+
+module.exports = router;
+```
+
+In the *mongo-test.js* file, let's look at the *addTestData* method.  Here we again include *mongoose* and we also create a variable called Test using the mongoose model *test* we created above. THen we take in a parameter passed through req.query and create a JSON object, which includes the one field we have in our *test* schema.  Then we create a new *Test* object and assign it to variable *doc*.  And then we call the Mongoose *save* method with a callback function that tests for an error and returns the result.  
+
+```javsacript
+const mongoose = require('mongoose');
+const Test = mongoose.model('test');
+
+module.exports.addTestData = async function(req, res) {
+
+    var testDoc = {
+        item: req.query.item
+    };
+  
+    var doc = new Test (testDoc);
+
+    await doc.save(function(error, result) {
+    if (error) {
+        return res.status(500).json({"status":500, "message":error.message, "error":error});
+    }
+  
+    return res.status(201).json(result);
+    });
+};
+```
+
+Let's try it out using Postman, a great app for calling APIs.
+
+<img src="/images/blog/mongodb-atlas-node/test-add1.png" height="500px">
+
 ## Conclusion
 
 
