@@ -60,7 +60,7 @@ Click on the *Network Access* button and then click the *Add IP Address* button.
 
 Next, you can whitelist a specific IP address or you can allow access from anywhere.  We will allow access form anywhere by clicking the *Allow Access From Anywhere* button and then clicking the *Confirm* button.
 
-<img src="/images/blog/mongodb-atlas-node/network-access2.png">
+<img src="/images/blog/mongodb-atlas-node/network-access2.png" height="500px">
 
 
 ## Conclusion
