@@ -80,9 +80,77 @@ We are not going to use the sample data.  I will show you how you can use Node.j
 
 ## Connecting to the Cluster
 
-The last step is to get the connection information we will need to access our cluster.  
+The last step is to get the connection information we will need to access our cluster.  Click the *Connect* button.
 
+<img src="/images/blog/mongodb-atlas-node/connect0.png">
 
+There are three ways to connect to your MongoDB Atlas database.   We are going to use the *Connect Your Application* option. 
+
+<img src="/images/blog/mongodb-atlas-node/connect1.png" height="500px">
+
+Select the Node.js driver and click the *Copy* button to copy the connection string.  Save this for the next step.
+
+<img src="/images/blog/mongodb-atlas-node/connect3.png" height="500px">
+
+## Overview of Node.js shell
+
+You can download the Node.js shell (with all of the Mongoose) code from my [GitHub](https://github.com/DaveStaudenmaier/mongodb-atlas-node).  Here is a brief overview of what's included and how it is structured.
+
+The entry point is *server.js* which sets up listening on port and adds in *app.js*.
+
+*app.js* adds in other important libraries like *express* and *body-parser*, our database models from *db.js*, our routes from *routes.js* and CORS.  
+
+<img src="/images/blog/mongodb-atlas-node/node-structure.png">
+
+## Database set up in Node.js
+
+Let's look at our database configuration in *db.js*.  
+
+```javascript
+var mongoose = require('mongoose');
+var gracefulShutdown;
+
+// TODO: Secure production MongoDB Atlas to only accept calls from production server
+
+mongoose.connect(process.env.MONGO_CONNECT, { autoIndex: false });
+mongoose.set('useFindAndModify', false);
+
+// CONNECTION EVENTS
+mongoose.connection.on('connected', function() {
+  console.log('Mongoose connected');
+});
+mongoose.connection.on('error', function(err) {
+  console.log('Mongoose connection error: ' + err);
+});
+mongoose.connection.on('disconnected', function() {
+  console.log('Mongoose disconnected');
+});
+
+// Capture App Termination / restart events
+// To be called when process is restarted or terminated
+gracefulShutdown = function(msg, callback) {
+  mongoose.connection.close(function() {
+    console.log('Mongoose disconnected through ' + msg);
+    callback();
+  });
+};
+// For nodemon restarts
+process.once('SIGUSR2', function() {
+  gracefulShutdown('nodemon restart', function() {
+    process.kill(process.pid, 'SIGUSR2');
+  });
+});
+// For app termination
+process.on('SIGINT', function() {
+  gracefulShutdown('app termination', function() {
+    process.exit(0);
+  });
+});
+
+// Bring in Schemas and Models
+require('./test');
+
+```
 ## Conclusion
 
 
