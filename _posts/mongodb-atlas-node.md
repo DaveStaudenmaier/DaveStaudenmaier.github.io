@@ -236,13 +236,35 @@ module.exports.addTestData = async function(req, res) {
 };
 ```
 
-Let's try it out using Postman, a great app for calling APIs. Here, we set up a POST request, passing our *item* parameter with the value *Hello World!*. And we receive our results showing it saved the document.  
+Let's try it out using Postman, a great app for calling APIs. Here, we set up a POST request pointing to our *mongo-test* route, passing our *item* parameter with the value *Hello World!*. And we receive our results showing it saved the document.  
 
 <img src="/images/blog/mongodb-atlas-node/test-add1.png">
 
 Let's look into Mongo DB Atlas to see that the document is really there.  Notice that Mongoose created the *test* database for us and the document *test* with the correct data!
 
 <img src="/images/blog/mongodb-atlas-node/test-add2.png">
+
+## Get our data
+
+Back to our controller *mongo-test.js*.  Let's look at the *getTestData* method.  Here we use the Mongoose *Find* method which returns all documents in the *test* database. 
+
+```javascript
+module.exports.getTestData = async function(req, res) {
+
+    Test.find().exec(function(error, result) {
+      if (error) {
+          return res.status(500).json({"status":500, "message":error.message, "error":error})
+      } else {
+        return res.status(200).json(result);
+      }
+    });
+};
+```
+
+Let's try it out using Postman again.   Here, we set up a GET request pointing to our *mongo-test* route and we see our data!
+
+<img src="/images/blog/mongodb-atlas-node/test-get.png">
+
 ## Conclusion
 
 
