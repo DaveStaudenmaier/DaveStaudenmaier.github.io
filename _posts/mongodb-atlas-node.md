@@ -40,11 +40,11 @@ MongoDB Atlas offers many options for your application.   For our purposes, we w
 
 It will take a few minutes to set up your account.   Note that in the lower left, it will walk you through the steps we are about to go through.
 
-<img src="/images/blog/mongodb-atlas-node/cluster.png" height="500px">
+<img src="/images/blog/mongodb-atlas-node/creating.png" height="500px">
 
 When your cluster is created, click on the Database Access button to create a database user.
 
-<img src="/images/blog/mongodb-atlas-node/cluster-ready.png" height="500px">
+<img src="/images/blog/mongodb-atlas-node/cluster-ready.png">
 
 ## Conclusion
 
