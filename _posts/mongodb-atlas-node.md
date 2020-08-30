@@ -68,10 +68,13 @@ This optional step will load some sample data that you can use to try out MongoD
 
 <img src="/images/blog/mongodb-atlas-node/sample-data1.png">
 
-It will take a few minutes to load the data and then you will see several dataasets like this.
+It will take a few minutes to load the data and then you will see several different databases with dataasets like this.
 
 <img src="/images/blog/mongodb-atlas-node/sample-data3.png" height="500px">
 
+## Connecting to the Cluster
+
+The last step is to get the connection information we will need to access our cluster.  
 ## Conclusion
 
 
