@@ -36,7 +36,7 @@ Register a new Account.
 
 MongoDB Atlas offers many options for your application.   For our purposes, we will use the Free Tier, which is always a good idea to get started.
 
-<img src="/images/blog/mongodb-atlas-node/cluster.png">
+<img src="/images/blog/mongodb-atlas-node/cluster.png" height="500px">
 
 MongoDB Atlas will take a few minutes to set up your account. 
 ## Conclusion
