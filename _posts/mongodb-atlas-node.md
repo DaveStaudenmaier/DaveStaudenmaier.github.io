@@ -236,10 +236,13 @@ module.exports.addTestData = async function(req, res) {
 };
 ```
 
-Let's try it out using Postman, a great app for calling APIs.
+Let's try it out using Postman, a great app for calling APIs. Here, we set up a POST request, passing our *item* parameter with the value *Hello World!*. And we receive our results showing it saved the document.  
 
-<img src="/images/blog/mongodb-atlas-node/test-add1.png" height="500px">
+<img src="/images/blog/mongodb-atlas-node/test-add1.png">
 
+Let's look into Mongo DB Atlas to see that the document is really there.  Notice that Mongoose created the *test* database for us and the document *test* with the correct data!
+
+<img src="/images/blog/mongodb-atlas-node/test-add2.png">
 ## Conclusion
 
 
