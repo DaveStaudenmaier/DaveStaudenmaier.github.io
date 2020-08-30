@@ -76,9 +76,13 @@ It will take a few minutes to load the data and then you will see several differ
 
 <img src="/images/blog/mongodb-atlas-node/sample-data3.png" height="500px">
 
+We are not going to use the sample data.  I will show you how you can use Node.js and Mongoose to create a database and documents from Node.js!
+
 ## Connecting to the Cluster
 
 The last step is to get the connection information we will need to access our cluster.  
+
+
 ## Conclusion
 
 
