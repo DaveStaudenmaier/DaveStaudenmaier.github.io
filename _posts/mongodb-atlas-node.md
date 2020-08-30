@@ -11,7 +11,7 @@ In this blog, we will
 - Code a route and controller to get documents from our database in MongoDB Atlas
 - Test the route using Postman to get the data
 
-I have set up a nicely organized Node.js shell program you can have.
+We will use a nicely organized Node.js shell program that you can keep.
 
 As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/mongodb-atlas-node)
 
