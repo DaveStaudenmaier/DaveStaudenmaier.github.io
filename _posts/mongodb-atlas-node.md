@@ -96,21 +96,17 @@ Select the Node.js driver and click the *Copy* button to copy the connection str
 
 You can download the Node.js shell (with all of the Mongoose) code from my [GitHub](https://github.com/DaveStaudenmaier/mongodb-atlas-node).  Here is a brief overview of what's included and how it is structured.
 
-The entry point is *server.js* which sets up listening on port and adds in *app.js*.
-
-*app.js* adds in other important libraries like *express* and *body-parser*, our database models from *db.js*, our routes from *routes.js* and CORS.  
+The entry point is *server.js* which sets up listening on port and adds in *app.js*. *app.js* adds in other important libraries like *express* and *body-parser*, our database models from *db.js*, our routes from *routes.js* and CORS.  *db.js* sets up Mongoose which is an invaluable library which makes it easy to access our Mongo DB database and brings in our schema definition from *test.js*.  Finally, our routes point to an associated controller in *mongo-test.js* that will handle accessing our database.
 
 <img src="/images/blog/mongodb-atlas-node/node-structure.png">
 
 ## Database set up in Node.js
 
-Let's look at our database configuration in *db.js*.  
+Let's look at our database configuration in *db.js*.  Here we bring in Mongoose.   Here is where we connect to our MongoDB Atlas database.  It is good practice not to embed the key in the code so we used an environment variable which we store in our nodemon.json file.  Be careful if you upload your code to GitHub because this key will be visible.  I have deactivated mine after completing this blog.  Let's look at nodemon.json below.
 
 ```javascript
 var mongoose = require('mongoose');
 var gracefulShutdown;
-
-// TODO: Secure production MongoDB Atlas to only accept calls from production server
 
 mongoose.connect(process.env.MONGO_CONNECT, { autoIndex: false });
 mongoose.set('useFindAndModify', false);
@@ -151,6 +147,54 @@ process.on('SIGINT', function() {
 require('./test');
 
 ```
+
+This is where we paste the connection string from above.   Then we have to replace *<password>* with the password for our admin database user that we saved and *<dbname>* with the name of our database.   Since we haven't created a database, we will call it *test*.
+  
+Before: 
+
+```javascript
+{
+    "env": {
+        "ENVIRONMENT": "development",
+        "MONGO_CONNECT": "mongodb+srv://admin:<password>@cluster0.llpfw.mongodb.net/<dbname>?retryWrites=true&w=majority",
+        "CORS_ORIGIN": "*"
+    }
+}
+```
+
+After:
+```javascript
+{
+    "env": {
+        "ENVIRONMENT": "development",
+        "MONGO_CONNECT": "mongodb+srv://admin:CZd3mMoCU9HaeJKv@cluster0.llpfw.mongodb.net/test?retryWrites=true&w=majority",
+        "CORS_ORIGIN": "*"
+    }
+}
+
+## Setting up our schema
+
+Rather than configure our schema in MongoDB Atlas, which you can do, we will set it up in our code using Mongoose.  
+
+This is the *test.js* file.  Here we include *mongoose* as well as *mongoose.Schema*.  I have set up a document called *testSchema* with just one field called *item*.  Adding *{ timestamps: true }* will cause MongoDB to automatically add createdAt and UpdatedAt time stamps. MongoDB will also automatically add a unique key called *_id* to our document when we add a new document. 
+
+```javascript
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var testSchema = new mongoose.Schema({
+  item: {
+    type: String
+  }
+},
+{ timestamps: true });
+
+mongoose.model('test', testSchema);
+```
+
+## Add a document
+
+Now we are ready to add a document
 ## Conclusion
 
 
