@@ -44,7 +44,7 @@ It will take a few minutes to set up your account.   Note that in the lower left
 
 When your cluster is created, click on the Database Access button to create a database user.
 
-<img src="/images/blog/mongodb-atlas-node/cluster-ready.png">
+<img src="/images/blog/mongodb-atlas-node/database-user1.png">
 
 ## Conclusion
 
