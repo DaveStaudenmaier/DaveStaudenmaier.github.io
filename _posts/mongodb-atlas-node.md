@@ -22,7 +22,7 @@ Node.js version 12.18.3
 
 ## What is MongoDB Atlas?
 
-MongoDB is a cross-platform document-oriented database program that uses JSON-like documents with optional schemas.  [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) is a cloud-hosted MongoDB service where you can deploy, operate and scale MongoDB database starting with a free-tier.
+MongoDB is a cross-platform document-oriented database program that uses JSON-like documents with optional schemas.  [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) is a cloud-hosted MongoDB service where you can deploy, operate and scale MongoDB databases starting with a free-tier.
 
 ## Create an Account in MongoDB Atlas
 
