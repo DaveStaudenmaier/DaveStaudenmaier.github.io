@@ -26,9 +26,9 @@ MongoDB is a cross-platform document-oriented database program that uses JSON-li
 
 ## Creating a new database in MongoDB Atlas
 
-Go to [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and click the *Get Started* button.
+Go to [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and click the *Start Free* button.
 
-<img src="/images/blog/mongodb-atlas-node/getting-started1.png" width="500px">
+<img src="/images/blog/mongodb-atlas-node/getting-started1.png">
 
 ## Conclusion
 
