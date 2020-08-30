@@ -38,6 +38,10 @@ MongoDB Atlas offers many options for your application.   For our purposes, we w
 
 <img src="/images/blog/mongodb-atlas-node/cluster.png" height="500px">
 
+Next, it will ask you where you want to host the cluster.  I chose AWS.  Click the *Create Cluster* button.
+
+<img src="/images/blog/mongodb-atlas-node/hosting.png" height="500px">
+
 It will take a few minutes to set up your account.   Note that in the lower left, it will walk you through the steps we are about to go through.
 
 <img src="/images/blog/mongodb-atlas-node/creating.png" height="500px">
