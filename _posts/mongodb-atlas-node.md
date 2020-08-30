@@ -24,7 +24,7 @@ MongoDB is a document-oriented, "NoSQL"
 
 MongoDB is a cross-platform document-oriented database program that uses JSON-like documents with optional schemas.  [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) is a cloud-hosted MongoDB service where you can deploy, operate and scale MongoDB database starting with a free-tier.
 
-## Creating a new database in MongoDB Atlas
+## Create an Account in MongoDB Atlas
 
 Go to [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and click the *Start Free* button.
 
@@ -42,7 +42,9 @@ It will take a few minutes to set up your account.   Note that in the lower left
 
 <img src="/images/blog/mongodb-atlas-node/creating.png" height="500px">
 
-When your cluster is created, click on the Database Access button to create a database user.
+## Set up a Database User
+
+When your cluster is created, click on the Database Access and click the *Add Database User* button to create a database user.
 
 <img src="/images/blog/mongodb-atlas-node/database-user1.png">
 
