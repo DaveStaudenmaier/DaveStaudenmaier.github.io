@@ -212,7 +212,7 @@ router.get('/mongo-test', ctrlMongoTest.getTestData);
 module.exports = router;
 ```
 
-In the *mongo-test.js* file, let's look at the *addTestData* method.  Here we again include *mongoose* and we also create a variable called Test using the mongoose model *test* we created above. THen we take in a parameter passed through req.query and create a JSON object, which includes the one field we have in our *test* schema.  Then we create a new *Test* object and assign it to variable *doc*.  And then we call the Mongoose *save* method with a callback function that tests for an error and returns the result.  
+In the *mongo-test.js* file, let's look at the *addTestData* method.  Here we again include *mongoose* and we also create a variable called Test using the mongoose model *test* we created above. Then we take in a parameter passed through req.query and create a JSON object, which includes the one field we have in our *test* schema.  Then we create a new *Test* object and assign it to variable *doc*.  And then we call the Mongoose *save* method with a callback function that tests for an error and returns the result.  
 
 ```javsacript
 const mongoose = require('mongoose');
@@ -246,7 +246,7 @@ Let's look into Mongo DB Atlas to see that the document is really there.  Notice
 
 ## Get our data
 
-Back to our controller *mongo-test.js*.  Let's look at the *getTestData* method.  Here we use the Mongoose *Find* method which returns all documents in the *test* database. 
+Back to our controller *mongo-test.js*.  Let's look at the *getTestData* method.  Here we use the Mongoose *Find* method which returns all the *test* documents in the *test* database. 
 
 ```javascript
 module.exports.getTestData = async function(req, res) {
