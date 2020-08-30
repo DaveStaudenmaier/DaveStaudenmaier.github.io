@@ -90,7 +90,7 @@ There are three ways to connect to your MongoDB Atlas database.   We are going t
 
 Select the Node.js driver and click the *Copy* button to copy the connection string.  Save this for the next step.
 
-<img src="/images/blog/mongodb-atlas-node/connect3.png" height="500px">
+<img src="/images/blog/mongodb-atlas-node/connect2.png" height="500px">
 
 ## Overview of Node.js shell
 
