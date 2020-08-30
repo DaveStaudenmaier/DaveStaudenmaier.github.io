@@ -4,8 +4,12 @@ title: Learn how to set up a database in MongoDB Atlas and connect to it using N
 ---
 
 In this blog, you will learn how to set a new MongoDB Atlas "NoSQL" database, connect to it through Node.js and add and get data. Here's what we will do:
-- Create and configure a new MongoDB Atlas account
-- Use Node.js to connect to our database, add a new document and get documents
+- Set up a MongoDB Atlas Account and database with credentials and connectivity
+- Code a schema using Mongoose in Node.js
+- Code a route and controller to add a database and document to MongoDB Atlas
+- Test the route using Postman to create the document
+- Code a route and controller to get documents from our database in MongoDB Atlas
+- Test the route using Postman to get the data
 
 I have set up a nicely organized Node.js shell program you can have.
 
@@ -267,7 +271,13 @@ Let's try it out using Postman again.   Here, we set up a GET request pointing t
 
 ## Conclusion
 
-
+In this blog, we have
+- Set up a MongoDB Atlas Account and database with credentials and connectivity
+- Coded a schema using Mongoose in Node.js
+- Coded a route and controller to add a database and document to MongoDB Atlas
+- Tested the route using Postman to create the document
+- Coded a route and controller to get documents from our database in MongoDB Atlas
+- Tested the route using Postman to get the data
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments!
 
