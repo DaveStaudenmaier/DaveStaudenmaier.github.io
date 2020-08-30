@@ -32,7 +32,7 @@ Go to [https://www.mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
 
 Register a new Account.
 
-<img src="/images/blog/mongodb-atlas-node/register.png" height="500px;>
+<img src="/images/blog/mongodb-atlas-node/register.png" height="500px">
 
 ## Conclusion
 
