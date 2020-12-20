@@ -1,6 +1,6 @@
 ---
 layout: post
-title: In Angular, use BehaviorSubject to pre-process long-running API calls
+title: Pre-process long-running API calls and publish via a BehaviorSubject in Angular
 ---
 
 In this blog, I will go over how you can get API data in advance so that when the user gets to the page that needs the data, it will be there.
