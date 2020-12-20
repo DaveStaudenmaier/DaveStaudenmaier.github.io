@@ -5,7 +5,7 @@ title: Pre-process long-running API calls and publish via a BehaviorSubject in A
 
 In this blog, I will go over how you can get API data in advance so that when the user gets to the page that needs the data, it will be there.
 This is useful when you have a potentially long-running API call and do not want to start the retrieval when the user arrives at the page
-because they will have to wait.  Getting the data in advance and publishing via a BehaviorSubject will make the user experience more pleasant.
+because they will have to wait.  Getting the data in advance will make the user experience more pleasant.
 
 As usual, you can find a fully working project on my [GitHub](https://github.com/DaveStaudenmaier/preprocess-API-calls)
 
@@ -27,13 +27,16 @@ A BehaviorSubject is a type of RxJs subject, which is a special type of observab
 
 ## Why use a BehaviorSubject for pre-processing data?
 
-If you have a long-running API call that you subscribe to when your page loads, the user will have to wait and watch a spinner spin until the data arrives.  You can pre-process the data by subscribing to the API call when the application first starts, perhaps in AppComponent.  But then the data resides in AppComponent.  How do you get the data to the page that needs it?  This is where the BehaviorSubject comes in.   As the data arrives from the API call, AppComponent can publish it to the BehaviorSubject, which will override the default values.   The page that requires the data can subscribe to the BehaviorSubject in ngOnInit so that it can populate the properties needed by the HTML view.  If there are things the user will be doing between AppComponent and the component that needs the data such as filling in a form, viewing a dashboard, etc. then during that time the data will be retrieved so that it is available to the target page via the BehaviorSubect.
+If you have a long-running API call that you subscribe to when your page loads, the user will have to wait and watch a spinner spin until the data arrives.  You can pre-process the data by subscribing to the API call when the application first starts, perhaps in AppComponent.  
+
+But then the data resides in AppComponent.  How do you get the data to the page that needs it?  
+
+This is where the BehaviorSubject comes in.   As the data arrives from the API call, AppComponent can publish it to the BehaviorSubject, which will override the default values.   The page that requires the data can subscribe to the BehaviorSubject in ngOnInit so that it can populate the properties needed by the HTML view.  If there are things the user will be doing between AppComponent and the component that needs the data, such as filling in a form, viewing a dashboard, etc. then during that time the data will be retrieved so that it is available to the target page via the BehaviorSubect.
 
 ## Set up the BehaviorSubject
 
-In the example application, go to `data-service.service.ts`. 
+In the example application, in `data-service.service.ts` I have created these interfaces to represent data coming from two sources and combined into one data set.
 
-I have created these interfaces to represent data coming from two sources and combined into one data set
 ``` typescript
 export interface DataStore1 {
   dataValue1: string;
@@ -82,7 +85,7 @@ private initializeData(): StoredData {
 
 ## The API calls
 
-Typically API calls are https calls to a server.  In this case to simplify I have simulated long running API calls using the RxJs `delay` function.  I also used the setTimeOut to avoid populating the data until a millisecond before the delay is expired.
+Typically API calls are https calls to a server.  In this case, to simplify the code, I have simulated long running API calls using the RxJs `delay` function.  I also used the setTimeOut to avoid populating the data until a millisecond before the delay is expired.
 
 ``` typescript
 getData1(): Observable<DataStore1> {
@@ -110,7 +113,7 @@ getData2(): Observable<DataStore2> {
 
 ## Pre-processing in AppComponent
 
-In `AppComponent` subscribe to the API calls.   When the result is returned, publish to the BehaviorSubject via the setData method.
+In `AppComponent` I subscribed to the API calls.   When the result is returned, I published to the BehaviorSubject via the setData method.
 
 ``` typescript
 constructor(private dataService: DataService) {
@@ -131,7 +134,7 @@ constructor(private dataService: DataService) {
 
 I created two components.  `Home` is the initial page.  `View` is the page that displays the data from the long-running API calls. 
 
-In `ViewComponent` in `ngOnInit`, subscribe to the behavior Subject and store the latest data locally for the HTML view.
+In `ViewComponent` in `ngOnInit`, I subscribed to the behavior Subject and stored the latest data in a property for the HTML view.
 
 ``` typescript
 import { DataService, StoredData } from './../data-service.service';
