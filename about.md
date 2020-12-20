@@ -12,4 +12,4 @@ The technical stack I am enjoying right now is the MEAN stack (Angular, Node.js/
 ### Contact me
 
 [dave@dev-reboot.com](mailto:dave@dev-reboot.com)
-[LinkedIn] https://www.linkedin.com/in/davidstaudenmaier/)
+[LinkedIn] (https://www.linkedin.com/in/davidstaudenmaier)
