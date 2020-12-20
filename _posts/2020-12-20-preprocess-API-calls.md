@@ -34,7 +34,7 @@ If you have a long-running API call that you subscribe to when your page loads, 
 In the example application, go to ""data-service.service.ts"". 
 
 I have created these interfaces to represent data coming from two sources and combined into one data set
-''' typescript
+``` typescript
 export interface DataStore1 {
   dataValue1: string;
   dataValue2: string;
@@ -51,7 +51,7 @@ export interface StoredData {
   data1: DataStore1;
   data2: DataStore2;
 }
-'''
+```
 
 ## Conclusion
 <img src="/images/blog/share-data/search.png" height="500px">
