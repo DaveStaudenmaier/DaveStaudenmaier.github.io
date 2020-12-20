@@ -24,15 +24,19 @@ In the secondary page that will require the data, subscribe to the BehaviorSubje
 ## What will the user see?
 
 While the user is reading the home page, the app will begin getting data behind the scenes.
+
 <img src="/images/blog/preprocess-API-calls/home.png" height="400px">
 
 There are two API calls initiated upon app startup.  The first takes 3 seconds and the second takes 6 seconds.   If you went to the view page before 3 seconds, you would see the deafult which is 'No Data'.
+
 <img src="/images/blog/preprocess-API-calls/view-default.png" height="400px">
 
 If you sent to the View page between 3 and 6 seconds you would see some of the data.
+
 <img src="/images/blog/preprocess-API-calls/view-interim.png" height="400px">
 
 If you went to the view page after 6 seconds, you will see all of the data.
+
 <img src="/images/blog/preprocess-API-calls/view-done.png" height="400px">
 
 
