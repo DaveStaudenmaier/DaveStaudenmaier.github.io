@@ -26,6 +26,9 @@ In the secondary page that will require the data, subscribe to the BehaviorSubje
 While the user is reading the home page, the app will begin getting data behind the scenes.
 
 <img src="/images/blog/preprocess-API-calls/home.png" height="400px">
+<img src="/images/blog/preprocess-API-calls/view-default.png" height="400px">
+<img src="/images/blog/preprocess-API-calls/view-interim.png" height="400px">
+<img src="/images/blog/preprocess-API-calls/view-done.png" height="400px">
 
 
 ## What is a BehaviorSubject?
