@@ -21,6 +21,13 @@ When data is returned, publish it via a BehaviorSubject.
 
 In the secondary page that will require the data, subscribe to the BehaviorSubject and display the available data for the user.
 
+## What will the user see?
+
+While the user is reading the home page, the app will begin getting data behind the scenes.
+
+<img src="/images/blog/preprocess-API-calls/home.png" height="500px">
+
+
 ## What is a BehaviorSubject?
 
 A BehaviorSubject is a type of RxJs subject, which is a special type of observable that allows you to subscribe to messages like any other observable.  The unique feature of BehaviorSubjects are that it will always provide a value when subscribed to.  Thus, a default value must be provided so that any subscriptions that happen before data is assigned via next(), will receive the default data and the real data will arrive when available. 
@@ -151,8 +158,6 @@ ngOnInit(): void {
 }
 ```
 ## Conclusion
-<img src="/images/blog/share-data/search.png" height="500px">
-
 
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments!
 
