@@ -48,7 +48,7 @@ A BehaviorSubject is a type of RxJs subject, which is a special type of observab
 
 If you have a long-running API call that you subscribe to when your page loads, the user will have to wait and watch a spinner spin until the data arrives.  You can pre-process the data by subscribing to the API call when the application first starts, perhaps in AppComponent.  
 
-But then the data resides in AppComponent.  How do you get the data to the page that needs it?  
+But then the data resides in AppComponent.  How do you get the data to the page that needs it when the user needs it?
 
 This is where the BehaviorSubject comes in.   As the data arrives from the API call, AppComponent can publish it to the BehaviorSubject, which will override the default values.   The page that requires the data can subscribe to the BehaviorSubject in ngOnInit so that it can populate the properties needed by the HTML view.  If there are things the user will be doing between AppComponent and the component that needs the data, such as filling in a form, viewing a dashboard, etc. then during that time the data will be retrieved so that it is available to the target page via the BehaviorSubect.
 
