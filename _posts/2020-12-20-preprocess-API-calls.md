@@ -31,7 +31,7 @@ If you have a long-running API call that you subscribe to when your page loads, 
 
 ## Set up the BehaviorSubject
 
-In the example application, go to ""data-service.service.ts"". 
+In the example application, go to `data-service.service.ts`. 
 
 I have created these interfaces to represent data coming from two sources and combined into one data set
 ``` typescript
