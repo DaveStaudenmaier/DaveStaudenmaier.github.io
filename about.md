@@ -13,6 +13,6 @@ The technical stack I am enjoying right now is the MEAN stack (Angular, Node.js/
 
 [dave@dev-reboot.com](mailto:dave@dev-reboot.com)
 
-[LinkedIn] (https://www.linkedin.com/in/davidstaudenmaier)
+[LinkedIn](https://www.linkedin.com/in/davidstaudenmaier)
 
  [https://github.com/DaveStaudenmaier/AngularPWANavigationShell](https://github.com/DaveStaudenmaier/AngularPWANavigationShell)
