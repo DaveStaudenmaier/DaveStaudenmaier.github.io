@@ -171,6 +171,8 @@ ngOnInit(): void {
 ```
 ## Conclusion
 
+Pre-processing data is a good thing to do to improve the user experience and using a BehaviorSubject that allows the page to subscribe to the data that was already retrieved is a good way to do it.
+
 Feel free to contact me at [dave@dev-reboot.com](mailto:dave@dev-reboot.com) if you have any questions or comments!
 
 Keep on developing!
