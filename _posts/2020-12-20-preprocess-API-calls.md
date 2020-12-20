@@ -53,7 +53,7 @@ export interface StoredData {
 }
 ```
 
-First we define and initialize a variable that represents the combined data of type interface StoredData.   Then we create the BehaviorSubject and set the initialized StoredData as the default.   Later, we will call setData when real data is available to populate the specific type of data recieved and then call next() to publish it.
+First we define and initialize a variable that represents the combined data of type interface StoredData.   Then we create the BehaviorSubject and set the initialized StoredData as the default.   Later, we will call setData, when real data is available, to populate the specific type of data recieved and then call next() to publish it.
 
 ``` typescript
 private storedData: StoredData = this.initializeData();
@@ -80,6 +80,73 @@ private initializeData(): StoredData {
 }
 ```
 
+## The API calls
+
+Typically API calls are https calls to a server.  In this case to simplify I have simulated long running API calls using the RxJs `delay` function.  I also used the setTimeOut to avoid populating the data until a millisecond before the delay is expired.
+
+``` typescript
+getData1(): Observable<DataStore1> {
+  const self = this;
+  setTimeout(function () {
+    self.storedData.data1.dataValue1 = 'We';
+    self.storedData.data1.dataValue2 = 'received';
+  }, 2999);
+
+  return of(this.storedData.data1)
+  .pipe (delay(3000));
+}
+
+getData2(): Observable<DataStore2> {
+  const self = this;
+  setTimeout(function () {
+    self.storedData.data2.dataValue1 = 'all';
+    self.storedData.data2.dataValue2 = 'data';
+  }, 5999);
+
+  return of(this.storedData.data2)
+  .pipe (delay(6000));
+}
+```
+
+## Pre-processing in AppComponent
+
+In `AppComponent` subscribe to the API calls.   When the result is returned, publish to the BehaviorSubject via the setData method.
+
+``` typescript
+constructor(private dataService: DataService) {
+
+  this.dataService.getData1()
+  .subscribe(result => {
+    this.dataService.setData('data1', result);
+  });
+
+  this.dataService.getData2()
+  .subscribe(result => {
+    this.dataService.setData('data2', result);
+  });
+}
+```
+
+## The Component Views
+
+I created two components.  `Home` is the initial page.  `View` is the page that displays the data from the long-running API calls. 
+
+In `ViewComponent` in `ngOnInit`, subscribe to the behavior Subject and store the latest data locally for the HTML view.
+
+``` typescript
+import { DataService, StoredData } from './../data-service.service';
+
+public returnedData: StoredData;
+
+constructor(private dataService: DataService) { }
+            
+ngOnInit(): void {
+  this.dataService.data$
+  .subscribe(result => {
+    this.returnedData = result;
+  })
+}
+```
 ## Conclusion
 <img src="/images/blog/share-data/search.png" height="500px">
 
