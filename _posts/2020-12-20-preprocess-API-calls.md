@@ -53,6 +53,33 @@ export interface StoredData {
 }
 ```
 
+First we define and initialize a variable that represents the combined data of type interface StoredData.   Then we create the BehaviorSubject and set the initialized StoredData as the default.   Later, we will call setData when real data is available to populate the specific type of data recieved and then call next() to publish it.
+
+``` typescript
+private storedData: StoredData = this.initializeData();
+private data = new BehaviorSubject<StoredData>(this.storedData);
+data$ = this.data.asObservable();
+
+setData(type: string, value: any): void {
+  this.storedData[type] = value;
+  this.data.next(this.storedData);
+}
+
+private initializeData(): StoredData {
+  const data: StoredData = {
+    data1: {
+      dataValue1: 'No Data',
+      dataValue2: ''
+    },
+    data2: {
+      dataValue1: '',
+      dataValue2: ''
+    }
+  };
+  return data;
+}
+```
+
 ## Conclusion
 <img src="/images/blog/share-data/search.png" height="500px">
 
